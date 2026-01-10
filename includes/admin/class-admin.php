@@ -104,6 +104,11 @@ class Nerdy_SEO_Admin {
                 'nerdy_seo_twitter_site',
                 'nerdy_seo_default_og_image',
                 'nerdy_seo_schema_enabled',
+                'nerdy_seo_ai_provider',
+                'nerdy_seo_ai_openai_key',
+                'nerdy_seo_ai_openai_model',
+                'nerdy_seo_ai_gemini_key',
+                'nerdy_seo_ai_gemini_model',
             );
 
             // Handle global schema separately (it's a textarea)
@@ -156,6 +161,13 @@ class Nerdy_SEO_Admin {
         $schema_enabled = get_option('nerdy_seo_schema_enabled', true);
         $global_schema = get_option('nerdy_seo_global_schema', '');
 
+        // AI settings
+        $ai_provider = get_option('nerdy_seo_ai_provider', 'openai');
+        $ai_openai_key = get_option('nerdy_seo_ai_openai_key', '');
+        $ai_openai_model = get_option('nerdy_seo_ai_openai_model', 'gpt-4o');
+        $ai_gemini_key = get_option('nerdy_seo_ai_gemini_key', '');
+        $ai_gemini_model = get_option('nerdy_seo_ai_gemini_model', 'gemini-2.0-flash-exp');
+
         ?>
         <div class="wrap nerdy-seo-settings-wrap">
             <h1 class="nerdy-seo-page-title">
@@ -181,6 +193,10 @@ class Nerdy_SEO_Admin {
                     <button type="button" class="nerdy-seo-tab-btn" data-tab="schema">
                         <span class="dashicons dashicons-editor-code"></span>
                         <?php _e('Schema', 'nerdy-seo'); ?>
+                    </button>
+                    <button type="button" class="nerdy-seo-tab-btn" data-tab="ai">
+                        <span class="dashicons dashicons-superhero"></span>
+                        <?php _e('AI', 'nerdy-seo'); ?>
                     </button>
                     <button type="button" class="nerdy-seo-tab-btn" data-tab="advanced">
                         <span class="dashicons dashicons-admin-tools"></span>
@@ -744,6 +760,168 @@ class Nerdy_SEO_Admin {
                         </div>
                     </div>
 
+                    <!-- AI Tab -->
+                    <div class="nerdy-seo-tab-content" data-tab="ai">
+                        <div class="nerdy-seo-settings-card">
+                            <h2>
+                                <span class="dashicons dashicons-superhero"></span>
+                                <?php _e('AI Configuration', 'nerdy-seo'); ?>
+                            </h2>
+                            <p class="description"><?php _e('Configure AI providers to help generate SEO-optimized content like titles and meta descriptions.', 'nerdy-seo'); ?></p>
+
+                            <table class="form-table">
+                                <tr>
+                                    <th scope="row">
+                                        <label for="nerdy_seo_ai_provider"><?php _e('AI Provider', 'nerdy-seo'); ?></label>
+                                    </th>
+                                    <td>
+                                        <select
+                                            id="nerdy_seo_ai_provider"
+                                            name="nerdy_seo_ai_provider"
+                                            class="regular-text"
+                                        >
+                                            <option value="openai" <?php selected($ai_provider, 'openai'); ?>><?php _e('OpenAI', 'nerdy-seo'); ?></option>
+                                            <option value="gemini" <?php selected($ai_provider, 'gemini'); ?>><?php _e('Google Gemini', 'nerdy-seo'); ?></option>
+                                        </select>
+                                        <p class="description">
+                                            <?php _e('Choose which AI provider to use for content generation.', 'nerdy-seo'); ?>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <!-- OpenAI Settings -->
+                        <div class="nerdy-seo-settings-card nerdy-seo-ai-provider-settings" data-provider="openai" style="<?php echo $ai_provider === 'openai' ? '' : 'display:none;'; ?>">
+                            <h2>
+                                <span class="dashicons dashicons-admin-settings"></span>
+                                <?php _e('OpenAI Settings', 'nerdy-seo'); ?>
+                            </h2>
+                            <p class="description">
+                                <?php _e('Configure your OpenAI API settings.', 'nerdy-seo'); ?>
+                                <a href="https://platform.openai.com/api-keys" target="_blank"><?php _e('Get your API key', 'nerdy-seo'); ?></a>
+                            </p>
+
+                            <table class="form-table">
+                                <tr>
+                                    <th scope="row">
+                                        <label for="nerdy_seo_ai_openai_key"><?php _e('API Key', 'nerdy-seo'); ?></label>
+                                    </th>
+                                    <td>
+                                        <input
+                                            type="password"
+                                            id="nerdy_seo_ai_openai_key"
+                                            name="nerdy_seo_ai_openai_key"
+                                            value="<?php echo esc_attr($ai_openai_key); ?>"
+                                            class="large-text"
+                                            placeholder="sk-..."
+                                            autocomplete="off"
+                                        />
+                                        <p class="description">
+                                            <?php _e('Your OpenAI API key. Keep this secure and never share it publicly.', 'nerdy-seo'); ?>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <label for="nerdy_seo_ai_openai_model"><?php _e('Model', 'nerdy-seo'); ?></label>
+                                    </th>
+                                    <td>
+                                        <select
+                                            id="nerdy_seo_ai_openai_model"
+                                            name="nerdy_seo_ai_openai_model"
+                                            class="regular-text"
+                                        >
+                                            <option value="gpt-4o" <?php selected($ai_openai_model, 'gpt-4o'); ?>>GPT-4o</option>
+                                            <option value="gpt-4o-mini" <?php selected($ai_openai_model, 'gpt-4o-mini'); ?>>GPT-4o Mini</option>
+                                            <option value="gpt-4-turbo" <?php selected($ai_openai_model, 'gpt-4-turbo'); ?>>GPT-4 Turbo</option>
+                                            <option value="gpt-4" <?php selected($ai_openai_model, 'gpt-4'); ?>>GPT-4</option>
+                                            <option value="gpt-3.5-turbo" <?php selected($ai_openai_model, 'gpt-3.5-turbo'); ?>>GPT-3.5 Turbo</option>
+                                        </select>
+                                        <p class="description">
+                                            <?php _e('Choose the OpenAI model to use. GPT-4o is recommended for best results.', 'nerdy-seo'); ?>
+                                            <br>
+                                            <strong><?php _e('Cost per 1M tokens (input/output):', 'nerdy-seo'); ?></strong>
+                                            GPT-4o: $2.50/$10.00 | GPT-4o Mini: $0.15/$0.60 | GPT-4 Turbo: $10/$30
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <!-- Gemini Settings -->
+                        <div class="nerdy-seo-settings-card nerdy-seo-ai-provider-settings" data-provider="gemini" style="<?php echo $ai_provider === 'gemini' ? '' : 'display:none;'; ?>">
+                            <h2>
+                                <span class="dashicons dashicons-admin-settings"></span>
+                                <?php _e('Google Gemini Settings', 'nerdy-seo'); ?>
+                            </h2>
+                            <p class="description">
+                                <?php _e('Configure your Google Gemini API settings.', 'nerdy-seo'); ?>
+                                <a href="https://makersuite.google.com/app/apikey" target="_blank"><?php _e('Get your API key', 'nerdy-seo'); ?></a>
+                            </p>
+
+                            <table class="form-table">
+                                <tr>
+                                    <th scope="row">
+                                        <label for="nerdy_seo_ai_gemini_key"><?php _e('API Key', 'nerdy-seo'); ?></label>
+                                    </th>
+                                    <td>
+                                        <input
+                                            type="password"
+                                            id="nerdy_seo_ai_gemini_key"
+                                            name="nerdy_seo_ai_gemini_key"
+                                            value="<?php echo esc_attr($ai_gemini_key); ?>"
+                                            class="large-text"
+                                            placeholder="AIza..."
+                                            autocomplete="off"
+                                        />
+                                        <p class="description">
+                                            <?php _e('Your Google Gemini API key. Keep this secure and never share it publicly.', 'nerdy-seo'); ?>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <label for="nerdy_seo_ai_gemini_model"><?php _e('Model', 'nerdy-seo'); ?></label>
+                                    </th>
+                                    <td>
+                                        <select
+                                            id="nerdy_seo_ai_gemini_model"
+                                            name="nerdy_seo_ai_gemini_model"
+                                            class="regular-text"
+                                        >
+                                            <option value="gemini-2.0-flash-exp" <?php selected($ai_gemini_model, 'gemini-2.0-flash-exp'); ?>>Gemini 2.0 Flash (Experimental)</option>
+                                            <option value="gemini-1.5-pro" <?php selected($ai_gemini_model, 'gemini-1.5-pro'); ?>>Gemini 1.5 Pro</option>
+                                            <option value="gemini-1.5-flash" <?php selected($ai_gemini_model, 'gemini-1.5-flash'); ?>>Gemini 1.5 Flash</option>
+                                            <option value="gemini-1.5-flash-8b" <?php selected($ai_gemini_model, 'gemini-1.5-flash-8b'); ?>>Gemini 1.5 Flash-8B</option>
+                                        </select>
+                                        <p class="description">
+                                            <?php _e('Choose the Gemini model to use. Gemini 2.0 Flash is recommended for best results.', 'nerdy-seo'); ?>
+                                            <br>
+                                            <strong><?php _e('Cost per 1M tokens (input/output):', 'nerdy-seo'); ?></strong>
+                                            2.0 Flash: Free during experimental | 1.5 Pro: $1.25/$5.00 | 1.5 Flash: $0.075/$0.30 | 1.5 Flash-8B: $0.0375/$0.15
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="nerdy-seo-info-box">
+                            <h3><?php _e('AI Features', 'nerdy-seo'); ?></h3>
+                            <p><?php _e('Once configured, AI will be available for:', 'nerdy-seo'); ?></p>
+                            <ul class="nerdy-seo-feature-list">
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Generate SEO-optimized titles', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Generate meta descriptions', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Suggest content improvements', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Keyword recommendations', 'nerdy-seo'); ?></li>
+                            </ul>
+                            <p class="description">
+                                <strong><?php _e('Privacy Note:', 'nerdy-seo'); ?></strong>
+                                <?php _e('Content sent to AI providers is subject to their privacy policies. We recommend reviewing the terms of service for your chosen provider.', 'nerdy-seo'); ?>
+                            </p>
+                        </div>
+                    </div>
+
                     <!-- Advanced Tab -->
                     <div class="nerdy-seo-tab-content" data-tab="advanced">
                         <div class="nerdy-seo-settings-card">
@@ -866,6 +1044,17 @@ class Nerdy_SEO_Admin {
             $(document).on('input', '.nerdy-seo-variable-input', function() {
                 var $wrapper = $(this).closest('.nerdy-seo-variable-field-wrapper');
                 updatePreview($wrapper);
+            });
+
+            // AI Provider switching
+            $('#nerdy_seo_ai_provider').on('change', function() {
+                var provider = $(this).val();
+
+                // Hide all provider settings
+                $('.nerdy-seo-ai-provider-settings').hide();
+
+                // Show selected provider settings
+                $('.nerdy-seo-ai-provider-settings[data-provider="' + provider + '"]').show();
             });
 
             function updatePreview($wrapper) {

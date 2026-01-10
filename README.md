@@ -24,9 +24,9 @@ As a digital marketing agency, we were spending **thousands of dollars per year*
 - XML sitemaps for search engines
 - A few technical features like redirects and robots.txt
 
-That's it. You don't need AI content generators, keyword density analyzers, or 47 different dashboard widgets telling you to "optimize" things that don't matter.
+That's it. You don't need keyword density analyzers, readability scores, or 47 different dashboard widgets telling you to "optimize" things that don't matter.
 
-So we built **Nerdy SEO** - a plugin that does what SEO plugins should have been doing all along: **the essentials, done right, completely free.**
+So we built **Nerdy SEO** - a plugin that does what SEO plugins should have been doing all along: **the essentials, done right, completely free.** We've added optional AI-powered tools to speed up meta description writing, but the focus remains on technical SEO fundamentals.
 
 ---
 
@@ -111,6 +111,18 @@ So we built **Nerdy SEO** - a plugin that does what SEO plugins should have been
 - Reset to default with one click
 - Automatic sitemap reference
 - Blocks WordPress admin areas by default
+
+**AI Integration**
+- OpenAI (GPT-4o, GPT-4 Turbo, GPT-3.5) support
+- Google Gemini (2.0 Flash, 1.5 Pro, 1.5 Flash) support
+- One-click meta description generation from post list
+- Generates 5 unique suggestions based on content
+- Configurable tone (professional, conversational, friendly, etc.)
+- Focus keyword targeting
+- Character count validation (150-160 optimal)
+- Instant preview and selection
+- Configurable model selection
+- Secure API key storage
 
 ### 🎨 User Experience
 
@@ -325,6 +337,53 @@ Nerdy SEO blocks WordPress admin areas and sensitive files by default while allo
 
 **Important:** If a physical `robots.txt` file exists in your WordPress root, it will override the virtual robots.txt.
 
+### Configuring AI Features
+
+Nerdy SEO supports both OpenAI and Google Gemini for AI-powered content generation:
+
+1. Go to **Nerdy SEO → Settings → AI**
+2. Choose your AI provider (OpenAI or Google Gemini)
+3. Enter your API key:
+   - **OpenAI**: Get your key at [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+   - **Gemini**: Get your key at [makersuite.google.com/app/apikey](https://makersuite.google.com/app/apikey)
+4. Select your preferred model
+5. Save settings
+
+**Available Models:**
+
+*OpenAI:*
+- GPT-4o (recommended) - Best quality, $2.50/$10 per 1M tokens
+- GPT-4o Mini - Good balance, $0.15/$0.60 per 1M tokens
+- GPT-4 Turbo - High quality, $10/$30 per 1M tokens
+- GPT-3.5 Turbo - Budget option
+
+*Google Gemini:*
+- Gemini 2.0 Flash (recommended) - Free during experimental phase
+- Gemini 1.5 Pro - Best quality, $1.25/$5 per 1M tokens
+- Gemini 1.5 Flash - Fast and efficient, $0.075/$0.30 per 1M tokens
+- Gemini 1.5 Flash-8B - Budget option, $0.0375/$0.15 per 1M tokens
+
+**Using AI to Generate Meta Descriptions:**
+
+1. Configure your AI provider in **Nerdy SEO → Settings → AI** (see above)
+2. Go to your post/page list (e.g., **Pages → All Pages**)
+3. In the **Meta Description** column, click the **pencil icon** to edit
+4. Click the blue **AI** button next to Save/Cancel
+5. A modal will appear with options:
+   - **Tone**: Choose from Professional, Conversational, Friendly, Authoritative, Persuasive, or Educational
+   - **Focus Keywords**: Optional keywords to naturally include
+6. Click **Generate Suggestions**
+7. Review 5 AI-generated meta descriptions with character counts
+8. Click **Use This** on your preferred option
+9. The description is populated into the editor - click **Save** to save it
+
+**Character Count Indicators:**
+- 🟢 Green (150-160 characters): Optimal for search results
+- 🟡 Yellow (< 150 characters): Too short, may not be compelling
+- 🔴 Red (> 160 characters): Too long, will be truncated
+
+**Privacy:** Content sent to AI providers is subject to their privacy policies. Your API keys are stored securely in your WordPress database and never shared.
+
 ### Per-Page Schema
 
 Edit any post or page and scroll to the **Schema Markup** meta box:
@@ -404,7 +463,7 @@ All post-level data is stored as WordPress post meta (no custom tables needed).
 | Content Analysis | ❌ | ✅ | ✅ | ✅ |
 | Keyword Tracking | ❌ | ✅ | ✅ | ✅ |
 | Link Assistant | ❌ | ✅ | ✅ | ✅ |
-| AI Features | ❌ | ✅ | ❌ | ✅ |
+| AI Features | ✅ | ✅ | ❌ | ✅ |
 | Dashboard Bloat | ❌ | ✅ | ✅ | ✅ |
 | Upsell Notifications | ❌ | ✅ | ✅ | ✅ |
 
@@ -431,7 +490,6 @@ We're actively developing Nerdy SEO. Here's what's coming:
 - [ ] Advanced schema types (Event, Recipe, Video)
 
 **Not Planned:**
-- ❌ AI content writing (use ChatGPT)
 - ❌ Keyword density analysis (outdated)
 - ❌ Readability scores (write for your audience)
 - ❌ Premium/Pro version (we're staying free)

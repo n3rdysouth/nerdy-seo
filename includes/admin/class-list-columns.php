@@ -109,7 +109,11 @@ class Nerdy_SEO_List_Columns {
             echo '<input type="text" class="nerdy-seo-inline-input" value="' . esc_attr($seo_title) . '" />';
             echo '<div class="nerdy-seo-inline-actions">';
             echo '<button type="button" class="button button-small nerdy-seo-save-btn">' . __('Save', 'nerdy-seo') . '</button> ';
-            echo '<button type="button" class="button button-small nerdy-seo-cancel-btn">' . __('Cancel', 'nerdy-seo') . '</button>';
+            echo '<button type="button" class="button button-small nerdy-seo-cancel-btn">' . __('Cancel', 'nerdy-seo') . '</button> ';
+            echo '<button type="button" class="button button-small button-primary nerdy-seo-ai-inline-btn" data-post-id="' . esc_attr($post_id) . '" title="' . __('Generate with AI', 'nerdy-seo') . '">';
+            echo '<span class="dashicons dashicons-superhero" style="font-size: 13px; width: 13px; height: 13px; margin-top: 5px;"></span> ';
+            echo __('AI', 'nerdy-seo');
+            echo '</button>';
             echo '<span class="nerdy-seo-char-count" style="margin-left: 10px; font-size: 11px; color: #666;">0</span>';
             echo '</div>';
             echo '</div>';
@@ -145,7 +149,11 @@ class Nerdy_SEO_List_Columns {
             echo '<textarea class="nerdy-seo-inline-textarea" rows="3">' . esc_textarea($seo_desc) . '</textarea>';
             echo '<div class="nerdy-seo-inline-actions">';
             echo '<button type="button" class="button button-small nerdy-seo-save-btn">' . __('Save', 'nerdy-seo') . '</button> ';
-            echo '<button type="button" class="button button-small nerdy-seo-cancel-btn">' . __('Cancel', 'nerdy-seo') . '</button>';
+            echo '<button type="button" class="button button-small nerdy-seo-cancel-btn">' . __('Cancel', 'nerdy-seo') . '</button> ';
+            echo '<button type="button" class="button button-small button-primary nerdy-seo-ai-inline-btn" data-post-id="' . esc_attr($post_id) . '" title="' . __('Generate with AI', 'nerdy-seo') . '">';
+            echo '<span class="dashicons dashicons-superhero" style="font-size: 13px; width: 13px; height: 13px; margin-top: 5px;"></span> ';
+            echo __('AI', 'nerdy-seo');
+            echo '</button>';
             echo '<span class="nerdy-seo-char-count" style="margin-left: 10px; font-size: 11px; color: #666;">0</span>';
             echo '</div>';
             echo '</div>';

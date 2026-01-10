@@ -70,6 +70,7 @@ class Nerdy_SEO {
         require_once NERDY_SEO_PLUGIN_DIR . 'includes/class-breadcrumbs.php';
         require_once NERDY_SEO_PLUGIN_DIR . 'includes/class-woocommerce.php';
         require_once NERDY_SEO_PLUGIN_DIR . 'includes/class-robots-txt.php';
+        require_once NERDY_SEO_PLUGIN_DIR . 'includes/class-ai-generator.php';
 
         // Local Business (needed on both frontend and admin)
         require_once NERDY_SEO_PLUGIN_DIR . 'includes/admin/class-local-business.php';
@@ -134,6 +135,9 @@ class Nerdy_SEO {
 
         // Initialize robots.txt editor
         Nerdy_SEO_Robots_Txt::get_instance();
+
+        // Initialize AI generator
+        Nerdy_SEO_AI_Generator::get_instance();
 
         // Initialize WooCommerce integration
         if (class_exists('WooCommerce')) {

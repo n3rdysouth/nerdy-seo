@@ -1,0 +1,329 @@
+/**
+ * AI Meta Description Generator Styles
+ */
+
+/* Modal Overlay */
+.nerdy-seo-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100000;
+}
+
+.nerdy-seo-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(2px);
+}
+
+.nerdy-seo-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Modal Header */
+.nerdy-seo-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid #dcdcde;
+    background: #f6f7f7;
+}
+
+.nerdy-seo-modal-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.nerdy-seo-modal-header .dashicons {
+    color: #2271b1;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+.nerdy-seo-modal-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    color: #646970;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.nerdy-seo-modal-close:hover {
+    background: #dcdcde;
+    color: #1d2327;
+}
+
+/* Modal Body */
+.nerdy-seo-modal-body {
+    padding: 30px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Form */
+.nerdy-seo-form-field {
+    margin-bottom: 20px;
+}
+
+.nerdy-seo-form-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1d2327;
+}
+
+.nerdy-seo-form-field select,
+.nerdy-seo-form-field input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #8c8f94;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.nerdy-seo-form-field select:focus,
+.nerdy-seo-form-field input:focus {
+    border-color: #2271b1;
+    outline: none;
+    box-shadow: 0 0 0 1px #2271b1;
+}
+
+.nerdy-seo-form-actions {
+    margin-top: 30px;
+}
+
+.nerdy-seo-form-actions .button-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.nerdy-seo-form-actions .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+/* Loading State */
+.nerdy-seo-ai-loading {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.nerdy-seo-spinner {
+    border: 4px solid #f3f4f5;
+    border-top: 4px solid #2271b1;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.nerdy-seo-ai-loading p {
+    color: #646970;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Results */
+.nerdy-seo-ai-results h3 {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.nerdy-seo-suggestions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Suggestion Item */
+.nerdy-seo-suggestion-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px;
+    border: 2px solid #dcdcde;
+    border-radius: 8px;
+    background: #f9f9f9;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.nerdy-seo-suggestion-item:hover {
+    border-color: #2271b1;
+    background: white;
+    box-shadow: 0 4px 12px rgba(34, 113, 177, 0.1);
+}
+
+.nerdy-seo-suggestion-number {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: #2271b1;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.nerdy-seo-suggestion-content {
+    flex: 1;
+}
+
+.nerdy-seo-suggestion-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1d2327;
+    margin-bottom: 10px;
+}
+
+.nerdy-seo-suggestion-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nerdy-seo-char-count {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nerdy-seo-char-count.optimal {
+    background: #d4edda;
+    color: #155724;
+}
+
+.nerdy-seo-char-count.short {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.nerdy-seo-char-count.long {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.nerdy-seo-char-count .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+}
+
+.nerdy-seo-use-suggestion {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.nerdy-seo-use-suggestion .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+/* Body lock when modal is open */
+body.nerdy-seo-modal-open {
+    overflow: hidden;
+}
+
+/* Inline edit AI button */
+.nerdy-seo-inline-ai {
+    padding: 10px 0;
+    border-top: 1px solid #dcdcde;
+    margin-top: 10px;
+}
+
+.nerdy-seo-ai-inline-generate {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 5px;
+}
+
+.nerdy-seo-ai-inline-generate .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    color: #2271b1;
+}
+
+/* Responsive */
+@media (max-width: 782px) {
+    .nerdy-seo-modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+
+    .nerdy-seo-modal-header,
+    .nerdy-seo-modal-body {
+        padding: 20px;
+    }
+
+    .nerdy-seo-suggestion-item {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nerdy-seo-use-suggestion {
+        width: 100%;
+        justify-content: center;
+    }
+}

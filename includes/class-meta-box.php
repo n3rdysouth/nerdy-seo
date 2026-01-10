@@ -160,6 +160,10 @@ class Nerdy_SEO_Meta_Box {
             <div class="nerdy-seo-field">
                 <label for="nerdy_seo_title">
                     <?php _e('SEO Title', 'nerdy-seo'); ?>
+                    <button type="button" class="button button-small button-primary nerdy-seo-ai-meta-btn" data-post-id="<?php echo esc_attr($post->ID); ?>" data-field="title" style="float: right; margin-top: -2px;">
+                        <span class="dashicons dashicons-superhero" style="font-size: 13px; width: 13px; height: 13px; margin-top: 5px;"></span>
+                        <?php _e('Generate with AI', 'nerdy-seo'); ?>
+                    </button>
                 </label>
                 <input
                     type="text"
@@ -183,6 +187,10 @@ class Nerdy_SEO_Meta_Box {
             <div class="nerdy-seo-field">
                 <label for="nerdy_seo_description">
                     <?php _e('Meta Description', 'nerdy-seo'); ?>
+                    <button type="button" class="button button-small button-primary nerdy-seo-ai-meta-btn" data-post-id="<?php echo esc_attr($post->ID); ?>" data-field="description" style="float: right; margin-top: -2px;">
+                        <span class="dashicons dashicons-superhero" style="font-size: 13px; width: 13px; height: 13px; margin-top: 5px;"></span>
+                        <?php _e('Generate with AI', 'nerdy-seo'); ?>
+                    </button>
                 </label>
                 <textarea
                     id="nerdy_seo_description"

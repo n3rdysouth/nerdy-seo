@@ -308,7 +308,7 @@
     background: #f6f7f7;
     border-top: 1px solid #dcdcde;
     padding: 20px 30px;
-    margin: 30px -30px -30px -30px;
+    margin: 30px -30px 0 -30px;
     display: flex;
     justify-content: flex-end;
 }
