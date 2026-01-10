@@ -1,4 +1,4 @@
-# Nerdy SEO - WordPress SEO Plugin
+# Nerdy SEO - Free WordPress SEO Plugin
 
 **A lightweight, powerful, and completely free WordPress SEO plugin built by digital marketers who got tired of overpaying for bloated software.**
 
