@@ -444,7 +444,7 @@ We welcome contributions! Here's how you can help:
 
 ### Reporting Bugs
 
-Found a bug? Please [open an issue](https://github.com/yourusername/nerdy-seo/issues) with:
+Found a bug? Please [open an issue](https://github.com/n3rdysouth/nerdy-seo/issues) with:
 - WordPress version
 - PHP version
 - Theme name
