@@ -1,0 +1,578 @@
+/**
+ * Nerdy SEO Admin Styles
+ */
+
+/* ========================================
+   Settings Page
+   ======================================== */
+
+.nerdy-seo-settings-wrap {
+    margin: 20px 20px 0 0;
+}
+
+.nerdy-seo-page-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+}
+
+.nerdy-seo-page-title .dashicons {
+    color: #2271b1;
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+}
+
+.nerdy-seo-settings-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    margin: 0 0 30px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.nerdy-seo-settings-header p {
+    margin: 0;
+    font-size: 16px;
+    opacity: 0.95;
+}
+
+/* ========================================
+   Tabs Navigation
+   ======================================== */
+
+.nerdy-seo-tabs-wrapper {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.nerdy-seo-tabs-nav {
+    display: flex;
+    background: #f6f7f7;
+    border-bottom: 2px solid #dcdcde;
+    padding: 0;
+    margin: 0;
+}
+
+.nerdy-seo-tab-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 20px;
+    border: none;
+    background: transparent;
+    color: #50575e;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.nerdy-seo-tab-btn:hover {
+    background: white;
+    color: #2271b1;
+}
+
+.nerdy-seo-tab-btn.active {
+    background: white;
+    color: #2271b1;
+    border-bottom-color: #2271b1;
+}
+
+.nerdy-seo-tab-btn .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+/* ========================================
+   Tab Content
+   ======================================== */
+
+.nerdy-seo-tab-content {
+    display: none;
+    padding: 30px;
+}
+
+.nerdy-seo-tab-content.active {
+    display: block;
+}
+
+/* ========================================
+   Settings Cards
+   ======================================== */
+
+.nerdy-seo-settings-card {
+    background: #f9f9f9;
+    border: 1px solid #dcdcde;
+    border-left: 4px solid #2271b1;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+}
+
+.nerdy-seo-settings-card h2 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.nerdy-seo-settings-card > p.description {
+    margin: 0 0 20px 0;
+    color: #646970;
+}
+
+.nerdy-seo-settings-card .form-table {
+    margin-top: 0;
+}
+
+.nerdy-seo-settings-card .form-table th {
+    padding-left: 0;
+    font-weight: 600;
+}
+
+/* ========================================
+   Toggle Switches
+   ======================================== */
+
+.nerdy-seo-toggle {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+.nerdy-seo-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.nerdy-seo-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 26px;
+}
+
+.nerdy-seo-toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+.nerdy-seo-toggle input:checked + .nerdy-seo-toggle-slider {
+    background-color: #2271b1;
+}
+
+.nerdy-seo-toggle input:checked + .nerdy-seo-toggle-slider:before {
+    transform: translateX(24px);
+}
+
+/* ========================================
+   Info Boxes
+   ======================================== */
+
+.nerdy-seo-info-box {
+    background: #f0f6fc;
+    border: 1px solid #c3d7ef;
+    border-left: 4px solid #2271b1;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.nerdy-seo-info-box.info {
+    background: #f0f9ff;
+    border-left-color: #0ea5e9;
+}
+
+.nerdy-seo-info-box h3 {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.nerdy-seo-info-box p {
+    margin: 0 0 10px 0;
+}
+
+.nerdy-seo-info-box ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.nerdy-seo-info-box ul li {
+    margin-bottom: 8px;
+}
+
+.nerdy-seo-info-box a {
+    color: #2271b1;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nerdy-seo-info-box a:hover {
+    text-decoration: underline;
+}
+
+.nerdy-seo-feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 0 0;
+}
+
+.nerdy-seo-feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+.nerdy-seo-feature-list .dashicons {
+    color: #46b450;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.nerdy-seo-warning-box {
+    background: #fcf8e3;
+    border-left: 4px solid #ffb900;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+.nerdy-seo-error-box {
+    background: #fef7f7;
+    border-left: 4px solid #dc3232;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+/* ========================================
+   Image Upload
+   ======================================== */
+
+.nerdy-seo-image-upload {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.nerdy-seo-image-preview {
+    margin-top: 10px;
+    padding: 10px;
+    background: white;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.nerdy-seo-image-preview img {
+    max-width: 400px;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+}
+
+/* ========================================
+   Save Bar
+   ======================================== */
+
+.nerdy-seo-save-bar {
+    background: #f6f7f7;
+    border-top: 1px solid #dcdcde;
+    padding: 20px 30px;
+    margin: 30px -30px -30px -30px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nerdy-seo-save-bar .button-primary {
+    padding: 8px 24px;
+    height: auto;
+    font-size: 14px;
+}
+
+/* ========================================
+   Form Fields
+   ======================================== */
+
+.nerdy-seo-settings-wrap .regular-text,
+.nerdy-seo-settings-wrap .large-text {
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+.nerdy-seo-settings-wrap textarea.large-text {
+    min-height: 100px;
+}
+
+.nerdy-seo-settings-wrap .form-table td p.description {
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+.nerdy-seo-settings-wrap code {
+    background: #f0f0f1;
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+/* ========================================
+   Content Types
+   ======================================== */
+
+.nerdy-seo-content-type-card {
+    margin-bottom: 30px;
+}
+
+.nerdy-seo-content-type-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #dcdcde;
+}
+
+.nerdy-seo-content-type-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.nerdy-seo-content-type-header .dashicons {
+    color: #2271b1;
+}
+
+.nerdy-seo-post-type-slug {
+    font-size: 13px;
+    font-weight: 400;
+    color: #646970;
+}
+
+/* ========================================
+   Variable Buttons
+   ======================================== */
+
+.nerdy-seo-variable-field-wrapper {
+    position: relative;
+}
+
+.nerdy-seo-variable-buttons {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.nerdy-seo-insert-var {
+    background: white;
+    border: 1px solid #2271b1;
+    color: #2271b1;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nerdy-seo-insert-var:hover {
+    background: #2271b1;
+    color: white;
+}
+
+.nerdy-seo-insert-var .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    margin-top: 5px;
+}
+
+.nerdy-seo-show-all-vars {
+    color: #2271b1;
+    text-decoration: none;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.nerdy-seo-show-all-vars:hover {
+    text-decoration: underline;
+}
+
+.nerdy-seo-all-variables {
+    background: white;
+    border: 1px solid #dcdcde;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.nerdy-seo-all-variables p {
+    margin: 0 0 10px 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.nerdy-seo-all-variables .nerdy-seo-insert-var {
+    margin: 3px;
+    font-family: 'Courier New', monospace;
+}
+
+/* ========================================
+   Search Preview (SERP)
+   ======================================== */
+
+.nerdy-seo-search-preview {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #dcdcde;
+}
+
+.nerdy-seo-search-preview h4 {
+    margin: 0 0 15px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #646970;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.nerdy-seo-serp-preview {
+    background: white;
+    border: 1px solid #dcdcde;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: flex;
+    gap: 12px;
+}
+
+.nerdy-seo-serp-favicon {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    background: #f1f3f4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nerdy-seo-serp-favicon .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    color: #5f6368;
+}
+
+.nerdy-seo-serp-content {
+    flex: 1;
+}
+
+.nerdy-seo-serp-site {
+    font-size: 12px;
+    line-height: 1.3;
+    color: #5f6368;
+    margin-bottom: 3px;
+}
+
+.nerdy-seo-serp-title {
+    font-size: 20px;
+    line-height: 1.3;
+    color: #1a0dab;
+    margin-bottom: 3px;
+    font-weight: 400;
+    cursor: text;
+    word-wrap: break-word;
+}
+
+.nerdy-seo-serp-description {
+    font-size: 14px;
+    line-height: 1.58;
+    color: #4d5156;
+    word-wrap: break-word;
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 782px) {
+    .nerdy-seo-tabs-nav {
+        flex-wrap: wrap;
+    }
+
+    .nerdy-seo-tab-btn {
+        flex: 1 1 50%;
+        min-width: 50%;
+    }
+
+    .nerdy-seo-tab-content {
+        padding: 20px;
+    }
+
+    .nerdy-seo-settings-card {
+        padding: 15px;
+    }
+
+    .nerdy-seo-save-bar {
+        padding: 15px 20px;
+        margin: 0 -20px -20px -20px;
+    }
+
+    .nerdy-seo-content-type-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .nerdy-seo-serp-preview {
+        flex-direction: column;
+    }
+
+    .nerdy-seo-serp-title {
+        font-size: 18px;
+    }
+
+    .nerdy-seo-serp-description {
+        font-size: 13px;
+    }
+}

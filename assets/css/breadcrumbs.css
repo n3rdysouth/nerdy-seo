@@ -1,0 +1,55 @@
+/**
+ * Nerdy SEO Breadcrumbs Styles
+ */
+
+.nerdy-breadcrumbs {
+    padding: 10px 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.breadcrumb-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.breadcrumb-item {
+    display: inline;
+}
+
+.breadcrumb-item a {
+    color: #0073aa;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: #005177;
+    text-decoration: underline;
+}
+
+.breadcrumb-separator {
+    margin: 0 8px;
+    color: #999;
+}
+
+/* Current page (no link) */
+.breadcrumb-item:last-child span {
+    color: #666;
+    font-weight: 500;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .nerdy-breadcrumbs {
+        font-size: 13px;
+    }
+
+    .breadcrumb-separator {
+        margin: 0 6px;
+    }
+}
