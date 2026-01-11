@@ -1,4 +1,4 @@
-# Nerdy SEO - WordPress SEO Plugin
+# Nerdy SEO - Free WordPress SEO Plugin
 
 **A lightweight, powerful, and completely free WordPress SEO plugin built by digital marketers who got tired of overpaying for bloated software.**
 
@@ -13,8 +13,8 @@
 As a digital marketing agency, we were spending **thousands of dollars per year** on premium SEO plugins across our client sites. After years of using these "enterprise" solutions, we realized something frustrating:
 
 - 🎯 **90% of features go unused** - Most sites only need titles, meta descriptions, schema, and social tags
-- 💸 **Expensive recurring costs** - $200-500/year per site adds up fast when you manage dozens of clients
-- 🐌 **Performance overhead** - Premium plugins are bloated with features nobody asked for
+- 💸 **Expensive recurring costs** - $50-100+/year per year per site adds up fast when you manage dozens of clients, and agency licensed plugins are also expensive and limited.
+- 🐌 **Performance overhead** - Premium plugins are bloated with features nobody that knows what they're doing actually uses, like content scores based on hardcoded algorithms.
 - 🔒 **Vendor lock-in** - Switching plugins means losing data and spending hours on migration
 
 **SEO isn't rocket science.** At its core, you need:
@@ -502,7 +502,7 @@ We welcome contributions! Here's how you can help:
 
 ### Reporting Bugs
 
-Found a bug? Please [open an issue](https://github.com/yourusername/nerdy-seo/issues) with:
+Found a bug? Please [open an issue](https://github.com/n3rdysouth/nerdy-seo/issues) with:
 - WordPress version
 - PHP version
 - Theme name
