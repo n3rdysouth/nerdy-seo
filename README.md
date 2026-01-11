@@ -592,10 +592,6 @@ Yes. Nerdy SEO works with Gutenberg, Elementor, Divi, Beaver Builder, and any ot
 
 Basic WooCommerce product schema is included. We're working on enhanced product schema features.
 
-### Can I remove the "Generated with Nerdy SEO" comment?
-
-Sure, though we'd appreciate if you kept it! Look for it in `/includes/class-frontend.php` if you want to remove it.
-
 ---
 
 ## Credits
