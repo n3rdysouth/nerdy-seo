@@ -13,7 +13,7 @@
 As a digital marketing agency, we were spending **thousands of dollars per year** on premium SEO plugins across our client sites. After years of using these "enterprise" solutions, we realized something frustrating:
 
 - 🎯 **90% of features go unused** - Most sites only need titles, meta descriptions, schema, and social tags
-- 💸 **Expensive recurring costs** - $50-100+/year per year per site adds up fast when you manage dozens of clients, and agency licensed plugins are also expensive and limited.
+- 💸 **Expensive recurring costs** - $50-100+/year per site adds up fast when you manage dozens of clients, and agency licensed plugins are also expensive and limited.
 - 🐌 **Performance overhead** - Premium plugins are bloated with features nobody that knows what they're doing actually uses, like content scores based on hardcoded algorithms.
 - 🔒 **Vendor lock-in** - Switching plugins means losing data and spending hours on migration
 
