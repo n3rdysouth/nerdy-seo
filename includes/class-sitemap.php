@@ -403,7 +403,7 @@ class Nerdy_SEO_Sitemap {
      */
     public function schedule_regeneration() {
         if (!wp_next_scheduled('nerdy_seo_generate_sitemap')) {
-            wp_schedule_single_event(time() + 300, 'nerdy_seo_generate_sitemap');
+            wp_schedule_single_event(time() + 3600, 'nerdy_seo_generate_sitemap');
         }
     }
 
