@@ -261,9 +261,38 @@
 
 .nerdy-seo-warning-box {
     background: #fcf8e3;
+    border: 1px solid #f0e5c7;
     border-left: 4px solid #ffb900;
-    padding: 15px;
-    margin: 15px 0;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.nerdy-seo-warning-box h3 {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1d2327;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nerdy-seo-warning-box p {
+    margin: 0 0 10px 0;
+}
+
+.nerdy-seo-warning-box ul {
+    margin: 10px 0;
+}
+
+.nerdy-seo-warning-box a {
+    color: #2271b1;
+    text-decoration: none;
+}
+
+.nerdy-seo-warning-box a:hover {
+    text-decoration: underline;
 }
 
 .nerdy-seo-error-box {

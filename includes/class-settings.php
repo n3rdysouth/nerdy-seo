@@ -42,14 +42,33 @@ class Nerdy_SEO_Settings {
      */
     public function register_settings() {
         // Register settings
-        register_setting('nerdy_seo_settings', 'nerdy_seo_home_title');
-        register_setting('nerdy_seo_settings', 'nerdy_seo_home_description');
-        register_setting('nerdy_seo_settings', 'nerdy_seo_default_title_format');
-        register_setting('nerdy_seo_settings', 'nerdy_seo_og_enabled');
-        register_setting('nerdy_seo_settings', 'nerdy_seo_twitter_enabled');
-        register_setting('nerdy_seo_settings', 'nerdy_seo_twitter_site');
-        register_setting('nerdy_seo_settings', 'nerdy_seo_default_og_image');
-        register_setting('nerdy_seo_settings', 'nerdy_seo_schema_enabled');
+        register_setting('nerdy_seo_settings', 'nerdy_seo_home_title', array(
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+        register_setting('nerdy_seo_settings', 'nerdy_seo_home_description', array(
+            'sanitize_callback' => 'sanitize_textarea_field',
+        ));
+        register_setting('nerdy_seo_settings', 'nerdy_seo_default_title_format', array(
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+        register_setting('nerdy_seo_settings', 'nerdy_seo_og_enabled', array(
+            'sanitize_callback' => 'absint',
+            'default' => 1,
+        ));
+        register_setting('nerdy_seo_settings', 'nerdy_seo_twitter_enabled', array(
+            'sanitize_callback' => 'absint',
+            'default' => 1,
+        ));
+        register_setting('nerdy_seo_settings', 'nerdy_seo_twitter_site', array(
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+        register_setting('nerdy_seo_settings', 'nerdy_seo_default_og_image', array(
+            'sanitize_callback' => 'esc_url_raw',
+        ));
+        register_setting('nerdy_seo_settings', 'nerdy_seo_schema_enabled', array(
+            'sanitize_callback' => 'absint',
+            'default' => 1,
+        ));
 
         // General section
         add_settings_section(

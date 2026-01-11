@@ -1,7 +1,6 @@
 <?php
 /**
  * Plugin Name: Nerdy SEO
- * Plugin URI: https://nerdysouthinc.com
  * Description: Lightweight, powerful SEO plugin with title/meta management, social media integration, schema markup, and NestedPages support
  * Version: 1.0.0
  * Author: Nerdy South Inc

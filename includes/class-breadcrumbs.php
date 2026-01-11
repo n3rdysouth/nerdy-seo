@@ -446,10 +446,22 @@ class Nerdy_SEO_Breadcrumbs {
      * Register settings
      */
     public function register_settings() {
-        register_setting('nerdy_seo_settings', 'nerdy_seo_breadcrumb_enabled');
-        register_setting('nerdy_seo_settings', 'nerdy_seo_breadcrumb_schema');
-        register_setting('nerdy_seo_settings', 'nerdy_seo_breadcrumb_separator');
-        register_setting('nerdy_seo_settings', 'nerdy_seo_breadcrumb_home_text');
+        register_setting('nerdy_seo_settings', 'nerdy_seo_breadcrumb_enabled', array(
+            'sanitize_callback' => 'absint',
+            'default' => 1,
+        ));
+        register_setting('nerdy_seo_settings', 'nerdy_seo_breadcrumb_schema', array(
+            'sanitize_callback' => 'absint',
+            'default' => 1,
+        ));
+        register_setting('nerdy_seo_settings', 'nerdy_seo_breadcrumb_separator', array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default' => '›',
+        ));
+        register_setting('nerdy_seo_settings', 'nerdy_seo_breadcrumb_home_text', array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default' => 'Home',
+        ));
 
         // Breadcrumb section
         add_settings_section(

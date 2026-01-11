@@ -943,10 +943,6 @@ class Nerdy_SEO_Admin {
                                 <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Suggest content improvements', 'nerdy-seo'); ?></li>
                                 <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Keyword recommendations', 'nerdy-seo'); ?></li>
                             </ul>
-                            <p class="description">
-                                <strong><?php _e('Privacy Note:', 'nerdy-seo'); ?></strong>
-                                <?php _e('Content sent to AI providers is subject to their privacy policies. We recommend reviewing the terms of service for your chosen provider.', 'nerdy-seo'); ?>
-                            </p>
                         </div>
                     </div>
 
