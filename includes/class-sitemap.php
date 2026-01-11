@@ -1,6 +1,8 @@
 <?php
 /**
- * XML Sitemap functionality
+ * Custom XML Sitemap functionality
+ *
+ * Pre-generates sitemaps via WP Cron for better performance and reliability
  *
  * @package Nerdy_SEO
  */
@@ -34,16 +36,22 @@ class Nerdy_SEO_Sitemap {
      * Constructor
      */
     private function __construct() {
-        // WordPress native sitemap filters
-        add_filter('wp_sitemaps_enabled', array($this, 'enable_sitemaps'));
-        add_filter('wp_sitemaps_max_urls', array($this, 'max_urls'));
-        add_filter('wp_sitemaps_posts_entry', array($this, 'modify_post_entry'), 10, 3);
-        add_filter('wp_sitemaps_add_provider', array($this, 'add_custom_providers'), 10, 2);
-        add_filter('wp_sitemaps_post_types', array($this, 'filter_post_types'));
-        add_filter('wp_sitemaps_taxonomies', array($this, 'filter_taxonomies'));
+        // Disable WordPress native sitemaps
+        add_filter('wp_sitemaps_enabled', '__return_false');
 
-        // Add custom sitemap types
-        add_action('init', array($this, 'register_custom_sitemaps'));
+        // Add rewrite rules for sitemap
+        add_action('init', array($this, 'add_rewrite_rules'));
+
+        // Serve sitemap
+        add_action('template_redirect', array($this, 'serve_sitemap'), 1);
+
+        // Schedule sitemap generation
+        add_action('nerdy_seo_generate_sitemap', array($this, 'generate_all_sitemaps'));
+
+        // Regenerate on post save/delete
+        add_action('save_post', array($this, 'schedule_regeneration'), 99);
+        add_action('delete_post', array($this, 'schedule_regeneration'), 99);
+        add_action('transition_post_status', array($this, 'schedule_regeneration'), 99);
 
         // Add meta box for per-post sitemap settings
         add_action('add_meta_boxes', array($this, 'add_sitemap_meta_box'));
@@ -52,52 +60,302 @@ class Nerdy_SEO_Sitemap {
         // Add sitemap settings to admin
         add_action('admin_init', array($this, 'register_sitemap_settings'));
 
-        // Flush rewrite rules on settings change
-        add_action('update_option_nerdy_seo_sitemap_enabled', array($this, 'flush_rewrites'));
+        // AJAX handler for manual generation
+        add_action('wp_ajax_nerdy_seo_generate_sitemap', array($this, 'ajax_generate_sitemap'));
+
+        // Schedule cron if not scheduled
+        if (!wp_next_scheduled('nerdy_seo_generate_sitemap')) {
+            wp_schedule_event(time(), 'daily', 'nerdy_seo_generate_sitemap');
+        }
     }
 
     /**
-     * Enable/disable sitemaps
+     * Add rewrite rules
      */
-    public function enable_sitemaps($enabled) {
-        return get_option('nerdy_seo_sitemap_enabled', true);
+    public function add_rewrite_rules() {
+        // Main sitemap index
+        add_rewrite_rule('^sitemap\.xml$', 'index.php?nerdy_seo_sitemap=index', 'top');
+        add_rewrite_rule('^sitemap_index\.xml$', 'index.php?nerdy_seo_sitemap=index', 'top');
+
+        // Post type sitemaps
+        add_rewrite_rule('^sitemap-([a-z_]+)\.xml$', 'index.php?nerdy_seo_sitemap=$matches[1]', 'top');
+
+        // Taxonomy sitemaps
+        add_rewrite_rule('^sitemap-tax-([a-z_]+)\.xml$', 'index.php?nerdy_seo_sitemap_tax=$matches[1]', 'top');
+
+        // Add query vars
+        add_rewrite_tag('%nerdy_seo_sitemap%', '([^&]+)');
+        add_rewrite_tag('%nerdy_seo_sitemap_tax%', '([^&]+)');
     }
 
     /**
-     * Set max URLs per sitemap
+     * Serve sitemap from cache
      */
-    public function max_urls($max_urls) {
-        return get_option('nerdy_seo_sitemap_max_urls', 2000);
-    }
+    public function serve_sitemap() {
+        $sitemap_type = get_query_var('nerdy_seo_sitemap');
+        $sitemap_tax = get_query_var('nerdy_seo_sitemap_tax');
 
-    /**
-     * Modify post entry in sitemap
-     */
-    public function modify_post_entry($entry, $post, $post_type) {
-        // Check if post should be excluded
-        $exclude = get_post_meta($post->ID, '_nerdy_seo_sitemap_exclude', true);
-        if ($exclude === '1') {
-            return null; // Remove from sitemap
+        if (empty($sitemap_type) && empty($sitemap_tax)) {
+            return;
         }
 
-        // Get custom priority
-        $priority = get_post_meta($post->ID, '_nerdy_seo_sitemap_priority', true);
-        if ($priority) {
-            $entry['priority'] = floatval($priority);
+        // Check if sitemaps are enabled
+        if (!get_option('nerdy_seo_sitemap_enabled', true)) {
+            return;
+        }
+
+        // Get cached sitemap
+        $cache_key = '';
+        if ($sitemap_type === 'index') {
+            $cache_key = 'nerdy_seo_sitemap_index';
+        } elseif (!empty($sitemap_tax)) {
+            $cache_key = "nerdy_seo_sitemap_tax_{$sitemap_tax}";
+        } elseif (!empty($sitemap_type)) {
+            $cache_key = "nerdy_seo_sitemap_{$sitemap_type}";
+        }
+
+        $xml = get_option($cache_key);
+
+        // If not cached, generate on the fly
+        if (empty($xml)) {
+            if ($sitemap_type === 'index') {
+                $xml = $this->build_sitemap_index();
+            } elseif (!empty($sitemap_tax)) {
+                $xml = $this->build_taxonomy_sitemap($sitemap_tax);
+            } elseif (!empty($sitemap_type)) {
+                $xml = $this->build_post_type_sitemap($sitemap_type);
+            }
+
+            if ($xml) {
+                update_option($cache_key, $xml, false);
+            }
+        }
+
+        if ($xml) {
+            status_header(200);
+            header('Content-Type: application/xml; charset=utf-8');
+            header('X-Robots-Tag: noindex, follow', true);
+            echo $xml;
+            exit;
+        }
+    }
+
+    /**
+     * Generate all sitemaps (called by cron)
+     */
+    public function generate_all_sitemaps() {
+        // Get WordPress root directory
+        $sitemap_dir = ABSPATH;
+
+        // Generate sitemap index
+        $index = $this->build_sitemap_index();
+
+        // Save to database (backup)
+        update_option('nerdy_seo_sitemap_index', $index, false);
+
+        // Write physical file
+        $this->write_sitemap_file($sitemap_dir . 'sitemap.xml', $index);
+
+        // Generate post type sitemaps
+        $post_types = get_post_types(array('public' => true), 'names');
+        $excluded_types = get_option('nerdy_seo_sitemap_exclude_post_types', array());
+
+        foreach ($post_types as $post_type) {
+            if (in_array($post_type, $excluded_types)) {
+                continue;
+            }
+
+            $count = wp_count_posts($post_type);
+            if ($count->publish > 0) {
+                $xml = $this->build_post_type_sitemap($post_type);
+
+                // Save to database (backup)
+                update_option("nerdy_seo_sitemap_{$post_type}", $xml, false);
+
+                // Write physical file
+                $this->write_sitemap_file($sitemap_dir . "sitemap-{$post_type}.xml", $xml);
+            }
+        }
+
+        // Generate taxonomy sitemaps
+        $taxonomies = get_taxonomies(array('public' => true), 'names');
+        $excluded_taxonomies = get_option('nerdy_seo_sitemap_exclude_taxonomies', array());
+
+        foreach ($taxonomies as $taxonomy) {
+            if (in_array($taxonomy, $excluded_taxonomies)) {
+                continue;
+            }
+
+            $terms = get_terms(array('taxonomy' => $taxonomy, 'hide_empty' => true));
+            if (!empty($terms) && !is_wp_error($terms)) {
+                $xml = $this->build_taxonomy_sitemap($taxonomy);
+
+                // Save to database (backup)
+                update_option("nerdy_seo_sitemap_tax_{$taxonomy}", $xml, false);
+
+                // Write physical file
+                $this->write_sitemap_file($sitemap_dir . "sitemap-tax-{$taxonomy}.xml", $xml);
+            }
+        }
+
+        // Update last generated time
+        update_option('nerdy_seo_sitemap_last_generated', current_time('mysql'), false);
+    }
+
+    /**
+     * Write sitemap to physical file
+     */
+    private function write_sitemap_file($filepath, $content) {
+        global $wp_filesystem;
+
+        // Initialize WordPress filesystem if not already
+        if (empty($wp_filesystem)) {
+            require_once ABSPATH . 'wp-admin/includes/file.php';
+            WP_Filesystem();
+        }
+
+        // Use WordPress filesystem API if available, otherwise fall back to file_put_contents
+        if ($wp_filesystem && is_object($wp_filesystem)) {
+            $wp_filesystem->put_contents($filepath, $content, FS_CHMOD_FILE);
         } else {
-            // Default priorities based on post type and date
-            $entry['priority'] = $this->calculate_priority($post);
+            // Fallback to direct file writing
+            @file_put_contents($filepath, $content);
+            @chmod($filepath, 0644);
+        }
+    }
+
+    /**
+     * Build sitemap index
+     */
+    private function build_sitemap_index() {
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        $xml .= '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+
+        // Get post types
+        $post_types = get_post_types(array('public' => true), 'names');
+        $excluded_types = get_option('nerdy_seo_sitemap_exclude_post_types', array());
+
+        foreach ($post_types as $post_type) {
+            if (in_array($post_type, $excluded_types)) {
+                continue;
+            }
+
+            $count = wp_count_posts($post_type);
+            if ($count->publish > 0) {
+                $xml .= "\t<sitemap>\n";
+                $xml .= "\t\t<loc>" . home_url("/sitemap-{$post_type}.xml") . "</loc>\n";
+                $xml .= "\t\t<lastmod>" . date('c') . "</lastmod>\n";
+                $xml .= "\t</sitemap>\n";
+            }
         }
 
-        // Get custom change frequency
-        $changefreq = get_post_meta($post->ID, '_nerdy_seo_sitemap_changefreq', true);
-        if ($changefreq) {
-            $entry['changefreq'] = $changefreq;
-        } else {
-            $entry['changefreq'] = $this->calculate_changefreq($post);
+        // Get taxonomies
+        $taxonomies = get_taxonomies(array('public' => true), 'names');
+        $excluded_taxonomies = get_option('nerdy_seo_sitemap_exclude_taxonomies', array());
+
+        foreach ($taxonomies as $taxonomy) {
+            if (in_array($taxonomy, $excluded_taxonomies)) {
+                continue;
+            }
+
+            $terms = get_terms(array('taxonomy' => $taxonomy, 'hide_empty' => true));
+            if (!empty($terms) && !is_wp_error($terms)) {
+                $xml .= "\t<sitemap>\n";
+                $xml .= "\t\t<loc>" . home_url("/sitemap-tax-{$taxonomy}.xml") . "</loc>\n";
+                $xml .= "\t\t<lastmod>" . date('c') . "</lastmod>\n";
+                $xml .= "\t</sitemap>\n";
+            }
         }
 
-        return $entry;
+        $xml .= '</sitemapindex>';
+        return $xml;
+    }
+
+    /**
+     * Build post type sitemap
+     */
+    private function build_post_type_sitemap($post_type) {
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+
+        $args = array(
+            'post_type' => $post_type,
+            'post_status' => 'publish',
+            'posts_per_page' => 2000,
+            'orderby' => 'modified',
+            'order' => 'DESC',
+            'no_found_rows' => true,
+            'update_post_meta_cache' => false,
+            'update_post_term_cache' => false,
+        );
+
+        $posts = get_posts($args);
+
+        foreach ($posts as $post) {
+            // Check if excluded
+            $exclude = get_post_meta($post->ID, '_nerdy_seo_sitemap_exclude', true);
+            if ($exclude === '1') {
+                continue;
+            }
+
+            // Check if noindex
+            $noindex = get_post_meta($post->ID, '_nerdy_seo_noindex', true);
+            if ($noindex === '1') {
+                continue;
+            }
+
+            $xml .= "\t<url>\n";
+            $xml .= "\t\t<loc>" . esc_url(get_permalink($post->ID)) . "</loc>\n";
+            $xml .= "\t\t<lastmod>" . get_the_modified_date('c', $post->ID) . "</lastmod>\n";
+
+            // Priority
+            $priority = get_post_meta($post->ID, '_nerdy_seo_sitemap_priority', true);
+            if (empty($priority)) {
+                $priority = $this->calculate_priority($post);
+            }
+            $xml .= "\t\t<priority>" . number_format($priority, 1) . "</priority>\n";
+
+            // Change frequency
+            $changefreq = get_post_meta($post->ID, '_nerdy_seo_sitemap_changefreq', true);
+            if (empty($changefreq)) {
+                $changefreq = $this->calculate_changefreq($post);
+            }
+            $xml .= "\t\t<changefreq>{$changefreq}</changefreq>\n";
+
+            $xml .= "\t</url>\n";
+        }
+
+        $xml .= '</urlset>';
+        return $xml;
+    }
+
+    /**
+     * Build taxonomy sitemap
+     */
+    private function build_taxonomy_sitemap($taxonomy) {
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+
+        $terms = get_terms(array(
+            'taxonomy' => $taxonomy,
+            'hide_empty' => true,
+            'orderby' => 'count',
+            'order' => 'DESC',
+        ));
+
+        if (!is_wp_error($terms) && !empty($terms)) {
+            foreach ($terms as $term) {
+                $xml .= "\t<url>\n";
+                $xml .= "\t\t<loc>" . esc_url(get_term_link($term)) . "</loc>\n";
+                $xml .= "\t\t<lastmod>" . date('c') . "</lastmod>\n";
+                $xml .= "\t\t<priority>0.6</priority>\n";
+                $xml .= "\t\t<changefreq>weekly</changefreq>\n";
+                $xml .= "\t</url>\n";
+            }
+        }
+
+        $xml .= '</urlset>';
+        return $xml;
     }
 
     /**
@@ -115,11 +373,11 @@ class Nerdy_SEO_Sitemap {
         if ($post_age_days < 30) {
             return 0.8;
         } elseif ($post_age_days < 90) {
-            return 0.6;
+            return 0.7;
         } elseif ($post_age_days < 365) {
-            return 0.5;
+            return 0.6;
         } else {
-            return 0.4;
+            return 0.5;
         }
     }
 
@@ -141,314 +399,30 @@ class Nerdy_SEO_Sitemap {
     }
 
     /**
-     * Filter post types in sitemap
+     * Schedule regeneration (debounced to avoid multiple regenerations)
      */
-    public function filter_post_types($post_types) {
-        $excluded_types = get_option('nerdy_seo_sitemap_exclude_post_types', array());
-
-        if (!empty($excluded_types)) {
-            foreach ($excluded_types as $type) {
-                unset($post_types[$type]);
-            }
-        }
-
-        return $post_types;
-    }
-
-    /**
-     * Filter taxonomies in sitemap
-     */
-    public function filter_taxonomies($taxonomies) {
-        $excluded_taxonomies = get_option('nerdy_seo_sitemap_exclude_taxonomies', array());
-
-        if (!empty($excluded_taxonomies)) {
-            foreach ($excluded_taxonomies as $taxonomy) {
-                unset($taxonomies[$taxonomy]);
-            }
-        }
-
-        return $taxonomies;
-    }
-
-    /**
-     * Register custom sitemap types
-     */
-    public function register_custom_sitemaps() {
-        // Image sitemap
-        if (get_option('nerdy_seo_image_sitemap_enabled', false)) {
-            add_action('init', array($this, 'add_image_sitemap_rewrite'));
-            add_action('template_redirect', array($this, 'serve_image_sitemap'));
-        }
-
-        // Video sitemap
-        if (get_option('nerdy_seo_video_sitemap_enabled', false)) {
-            add_action('init', array($this, 'add_video_sitemap_rewrite'));
-            add_action('template_redirect', array($this, 'serve_video_sitemap'));
-        }
-
-        // News sitemap
-        if (get_option('nerdy_seo_news_sitemap_enabled', false)) {
-            add_action('init', array($this, 'add_news_sitemap_rewrite'));
-            add_action('template_redirect', array($this, 'serve_news_sitemap'));
+    public function schedule_regeneration() {
+        if (!wp_next_scheduled('nerdy_seo_generate_sitemap')) {
+            wp_schedule_single_event(time() + 300, 'nerdy_seo_generate_sitemap');
         }
     }
 
     /**
-     * Add image sitemap rewrite
+     * AJAX handler for manual generation
      */
-    public function add_image_sitemap_rewrite() {
-        add_rewrite_rule('^image-sitemap\.xml$', 'index.php?nerdy_seo_sitemap=image', 'top');
-        add_rewrite_tag('%nerdy_seo_sitemap%', '([^&]+)');
-    }
+    public function ajax_generate_sitemap() {
+        check_ajax_referer('nerdy_seo_generate_sitemap', 'nonce');
 
-    /**
-     * Add video sitemap rewrite
-     */
-    public function add_video_sitemap_rewrite() {
-        add_rewrite_rule('^video-sitemap\.xml$', 'index.php?nerdy_seo_sitemap=video', 'top');
-        add_rewrite_tag('%nerdy_seo_sitemap%', '([^&]+)');
-    }
-
-    /**
-     * Add news sitemap rewrite
-     */
-    public function add_news_sitemap_rewrite() {
-        add_rewrite_rule('^news-sitemap\.xml$', 'index.php?nerdy_seo_sitemap=news', 'top');
-        add_rewrite_tag('%nerdy_seo_sitemap%', '([^&]+)');
-    }
-
-    /**
-     * Serve image sitemap
-     */
-    public function serve_image_sitemap() {
-        $sitemap_type = get_query_var('nerdy_seo_sitemap');
-
-        if ($sitemap_type !== 'image') {
-            return;
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(array('message' => __('Permission denied', 'nerdy-seo')));
         }
 
-        header('Content-Type: application/xml; charset=utf-8');
-        echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
-        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">' . "\n";
+        $this->generate_all_sitemaps();
 
-        $posts = get_posts(array(
-            'post_type' => 'any',
-            'post_status' => 'publish',
-            'posts_per_page' => -1,
-            'meta_query' => array(
-                array(
-                    'key' => '_nerdy_seo_sitemap_exclude',
-                    'compare' => 'NOT EXISTS',
-                ),
-            ),
+        wp_send_json_success(array(
+            'message' => __('Sitemap generated successfully!', 'nerdy-seo'),
+            'last_generated' => get_option('nerdy_seo_sitemap_last_generated')
         ));
-
-        foreach ($posts as $post) {
-            $images = $this->get_post_images($post);
-
-            if (empty($images)) {
-                continue;
-            }
-
-            echo "\t<url>\n";
-            echo "\t\t<loc>" . esc_url(get_permalink($post->ID)) . "</loc>\n";
-
-            foreach ($images as $image) {
-                echo "\t\t<image:image>\n";
-                echo "\t\t\t<image:loc>" . esc_url($image['url']) . "</image:loc>\n";
-
-                if (!empty($image['title'])) {
-                    echo "\t\t\t<image:title><![CDATA[" . $image['title'] . "]]></image:title>\n";
-                }
-
-                if (!empty($image['caption'])) {
-                    echo "\t\t\t<image:caption><![CDATA[" . $image['caption'] . "]]></image:caption>\n";
-                }
-
-                echo "\t\t</image:image>\n";
-            }
-
-            echo "\t</url>\n";
-        }
-
-        echo '</urlset>';
-        exit;
-    }
-
-    /**
-     * Serve video sitemap
-     */
-    public function serve_video_sitemap() {
-        $sitemap_type = get_query_var('nerdy_seo_sitemap');
-
-        if ($sitemap_type !== 'video') {
-            return;
-        }
-
-        header('Content-Type: application/xml; charset=utf-8');
-        echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
-        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">' . "\n";
-
-        $posts = get_posts(array(
-            'post_type' => 'any',
-            'post_status' => 'publish',
-            'posts_per_page' => -1,
-        ));
-
-        foreach ($posts as $post) {
-            $videos = $this->get_post_videos($post);
-
-            if (empty($videos)) {
-                continue;
-            }
-
-            echo "\t<url>\n";
-            echo "\t\t<loc>" . esc_url(get_permalink($post->ID)) . "</loc>\n";
-
-            foreach ($videos as $video) {
-                echo "\t\t<video:video>\n";
-                echo "\t\t\t<video:content_loc>" . esc_url($video['url']) . "</video:content_loc>\n";
-                echo "\t\t\t<video:title><![CDATA[" . ($video['title'] ?: get_the_title($post->ID)) . "]]></video:title>\n";
-                echo "\t\t\t<video:description><![CDATA[" . ($video['description'] ?: wp_trim_words($post->post_content, 50)) . "]]></video:description>\n";
-
-                if (!empty($video['thumbnail'])) {
-                    echo "\t\t\t<video:thumbnail_loc>" . esc_url($video['thumbnail']) . "</video:thumbnail_loc>\n";
-                }
-
-                echo "\t\t</video:video>\n";
-            }
-
-            echo "\t</url>\n";
-        }
-
-        echo '</urlset>';
-        exit;
-    }
-
-    /**
-     * Serve news sitemap
-     */
-    public function serve_news_sitemap() {
-        $sitemap_type = get_query_var('nerdy_seo_sitemap');
-
-        if ($sitemap_type !== 'news') {
-            return;
-        }
-
-        header('Content-Type: application/xml; charset=utf-8');
-        echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
-        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">' . "\n";
-
-        // News sitemap only includes posts from last 2 days
-        $posts = get_posts(array(
-            'post_type' => 'post',
-            'post_status' => 'publish',
-            'posts_per_page' => 1000,
-            'date_query' => array(
-                array(
-                    'after' => '2 days ago',
-                ),
-            ),
-        ));
-
-        foreach ($posts as $post) {
-            echo "\t<url>\n";
-            echo "\t\t<loc>" . esc_url(get_permalink($post->ID)) . "</loc>\n";
-            echo "\t\t<news:news>\n";
-            echo "\t\t\t<news:publication>\n";
-            echo "\t\t\t\t<news:name>" . esc_html(get_bloginfo('name')) . "</news:name>\n";
-            echo "\t\t\t\t<news:language>en</news:language>\n";
-            echo "\t\t\t</news:publication>\n";
-            echo "\t\t\t<news:publication_date>" . get_the_date('c', $post->ID) . "</news:publication_date>\n";
-            echo "\t\t\t<news:title><![CDATA[" . get_the_title($post->ID) . "]]></news:title>\n";
-            echo "\t\t</news:news>\n";
-            echo "\t</url>\n";
-        }
-
-        echo '</urlset>';
-        exit;
-    }
-
-    /**
-     * Get images from post
-     */
-    private function get_post_images($post) {
-        $images = array();
-
-        // Featured image
-        if (has_post_thumbnail($post->ID)) {
-            $thumbnail_id = get_post_thumbnail_id($post->ID);
-            $image_url = get_the_post_thumbnail_url($post->ID, 'full');
-            $image_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
-            $attachment = get_post($thumbnail_id);
-
-            $images[] = array(
-                'url' => $image_url,
-                'title' => $image_alt ?: $attachment->post_title,
-                'caption' => $attachment->post_excerpt,
-            );
-        }
-
-        // Content images
-        preg_match_all('/<img[^>]+src=[\'"]([^\'"]+)[\'"][^>]*>/i', $post->post_content, $matches);
-
-        if (!empty($matches[1])) {
-            foreach ($matches[1] as $img_url) {
-                $attachment_id = attachment_url_to_postid($img_url);
-
-                if ($attachment_id) {
-                    $image_alt = get_post_meta($attachment_id, '_wp_attachment_image_alt', true);
-                    $attachment = get_post($attachment_id);
-
-                    $images[] = array(
-                        'url' => $img_url,
-                        'title' => $image_alt ?: ($attachment ? $attachment->post_title : ''),
-                        'caption' => $attachment ? $attachment->post_excerpt : '',
-                    );
-                }
-            }
-        }
-
-        return array_slice($images, 0, 10); // Max 10 images per page
-    }
-
-    /**
-     * Get videos from post
-     */
-    private function get_post_videos($post) {
-        $videos = array();
-
-        // YouTube embeds
-        preg_match_all('/youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)|youtu\.be\/([a-zA-Z0-9_-]+)/i', $post->post_content, $youtube_matches);
-
-        if (!empty($youtube_matches[1]) || !empty($youtube_matches[2])) {
-            foreach (array_merge($youtube_matches[1], $youtube_matches[2]) as $video_id) {
-                if (empty($video_id)) continue;
-
-                $videos[] = array(
-                    'url' => 'https://www.youtube.com/watch?v=' . $video_id,
-                    'title' => get_the_title($post->ID),
-                    'description' => wp_trim_words($post->post_content, 50),
-                    'thumbnail' => 'https://img.youtube.com/vi/' . $video_id . '/maxresdefault.jpg',
-                );
-            }
-        }
-
-        // Vimeo embeds
-        preg_match_all('/vimeo\.com\/([0-9]+)/i', $post->post_content, $vimeo_matches);
-
-        if (!empty($vimeo_matches[1])) {
-            foreach ($vimeo_matches[1] as $video_id) {
-                $videos[] = array(
-                    'url' => 'https://vimeo.com/' . $video_id,
-                    'title' => get_the_title($post->ID),
-                    'description' => wp_trim_words($post->post_content, 50),
-                    'thumbnail' => '',
-                );
-            }
-        }
-
-        return $videos;
     }
 
     /**
@@ -581,12 +555,8 @@ class Nerdy_SEO_Sitemap {
      */
     public function register_sitemap_settings() {
         register_setting('nerdy_seo_settings', 'nerdy_seo_sitemap_enabled');
-        register_setting('nerdy_seo_settings', 'nerdy_seo_sitemap_max_urls');
         register_setting('nerdy_seo_settings', 'nerdy_seo_sitemap_exclude_post_types');
         register_setting('nerdy_seo_settings', 'nerdy_seo_sitemap_exclude_taxonomies');
-        register_setting('nerdy_seo_settings', 'nerdy_seo_image_sitemap_enabled');
-        register_setting('nerdy_seo_settings', 'nerdy_seo_video_sitemap_enabled');
-        register_setting('nerdy_seo_settings', 'nerdy_seo_news_sitemap_enabled');
 
         // Sitemap section
         add_settings_section(
@@ -605,41 +575,17 @@ class Nerdy_SEO_Sitemap {
         );
 
         add_settings_field(
-            'nerdy_seo_sitemap_max_urls',
-            __('Max URLs per Sitemap', 'nerdy-seo'),
-            array($this, 'render_max_urls_field'),
-            'nerdy-seo',
-            'nerdy_seo_sitemap_section'
-        );
-
-        add_settings_field(
-            'nerdy_seo_image_sitemap_enabled',
-            __('Enable Image Sitemap', 'nerdy-seo'),
-            array($this, 'render_image_sitemap_field'),
-            'nerdy-seo',
-            'nerdy_seo_sitemap_section'
-        );
-
-        add_settings_field(
-            'nerdy_seo_video_sitemap_enabled',
-            __('Enable Video Sitemap', 'nerdy-seo'),
-            array($this, 'render_video_sitemap_field'),
-            'nerdy-seo',
-            'nerdy_seo_sitemap_section'
-        );
-
-        add_settings_field(
-            'nerdy_seo_news_sitemap_enabled',
-            __('Enable News Sitemap', 'nerdy-seo'),
-            array($this, 'render_news_sitemap_field'),
-            'nerdy-seo',
-            'nerdy_seo_sitemap_section'
-        );
-
-        add_settings_field(
             'nerdy_seo_sitemap_exclude_post_types',
             __('Exclude Post Types', 'nerdy-seo'),
             array($this, 'render_exclude_post_types_field'),
+            'nerdy-seo',
+            'nerdy_seo_sitemap_section'
+        );
+
+        add_settings_field(
+            'nerdy_seo_generate_sitemap',
+            __('Generate Sitemap', 'nerdy-seo'),
+            array($this, 'render_generate_field'),
             'nerdy-seo',
             'nerdy_seo_sitemap_section'
         );
@@ -649,9 +595,17 @@ class Nerdy_SEO_Sitemap {
      * Render sitemap section
      */
     public function render_sitemap_section() {
-        $sitemap_url = home_url('/wp-sitemap.xml');
-        echo '<p>' . __('Configure your XML sitemaps. Your main sitemap is located at:', 'nerdy-seo') . '</p>';
-        echo '<p><a href="' . esc_url($sitemap_url) . '" target="_blank">' . esc_html($sitemap_url) . '</a></p>';
+        $sitemap_url = home_url('/sitemap.xml');
+        $last_generated = get_option('nerdy_seo_sitemap_last_generated');
+
+        echo '<p>' . __('Your XML sitemap is located at:', 'nerdy-seo') . '</p>';
+        echo '<p><a href="' . esc_url($sitemap_url) . '" target="_blank" class="button">' . esc_html($sitemap_url) . '</a></p>';
+
+        if ($last_generated) {
+            echo '<p class="description">' . sprintf(__('Last generated: %s', 'nerdy-seo'), $last_generated) . '</p>';
+        }
+
+        echo '<p class="description">' . __('Sitemap is automatically regenerated daily and when content changes.', 'nerdy-seo') . '</p>';
     }
 
     /**
@@ -662,77 +616,8 @@ class Nerdy_SEO_Sitemap {
         ?>
         <label>
             <input type="checkbox" name="nerdy_seo_sitemap_enabled" value="1" <?php checked($value, true); ?> />
-            <?php _e('Enable WordPress XML sitemaps', 'nerdy-seo'); ?>
+            <?php _e('Enable XML sitemaps', 'nerdy-seo'); ?>
         </label>
-        <?php
-    }
-
-    /**
-     * Render max URLs field
-     */
-    public function render_max_urls_field() {
-        $value = get_option('nerdy_seo_sitemap_max_urls', 2000);
-        ?>
-        <input type="number" name="nerdy_seo_sitemap_max_urls" value="<?php echo esc_attr($value); ?>" min="1" max="50000" class="small-text" />
-        <p class="description"><?php _e('Maximum URLs per sitemap file (default: 2000, max: 50000)', 'nerdy-seo'); ?></p>
-        <?php
-    }
-
-    /**
-     * Render image sitemap field
-     */
-    public function render_image_sitemap_field() {
-        $value = get_option('nerdy_seo_image_sitemap_enabled', false);
-        $sitemap_url = home_url('/image-sitemap.xml');
-        ?>
-        <label>
-            <input type="checkbox" name="nerdy_seo_image_sitemap_enabled" value="1" <?php checked($value, true); ?> />
-            <?php _e('Generate image sitemap', 'nerdy-seo'); ?>
-        </label>
-        <?php if ($value): ?>
-            <p class="description">
-                <a href="<?php echo esc_url($sitemap_url); ?>" target="_blank"><?php echo esc_html($sitemap_url); ?></a>
-            </p>
-        <?php endif; ?>
-        <?php
-    }
-
-    /**
-     * Render video sitemap field
-     */
-    public function render_video_sitemap_field() {
-        $value = get_option('nerdy_seo_video_sitemap_enabled', false);
-        $sitemap_url = home_url('/video-sitemap.xml');
-        ?>
-        <label>
-            <input type="checkbox" name="nerdy_seo_video_sitemap_enabled" value="1" <?php checked($value, true); ?> />
-            <?php _e('Generate video sitemap (YouTube, Vimeo)', 'nerdy-seo'); ?>
-        </label>
-        <?php if ($value): ?>
-            <p class="description">
-                <a href="<?php echo esc_url($sitemap_url); ?>" target="_blank"><?php echo esc_html($sitemap_url); ?></a>
-            </p>
-        <?php endif; ?>
-        <?php
-    }
-
-    /**
-     * Render news sitemap field
-     */
-    public function render_news_sitemap_field() {
-        $value = get_option('nerdy_seo_news_sitemap_enabled', false);
-        $sitemap_url = home_url('/news-sitemap.xml');
-        ?>
-        <label>
-            <input type="checkbox" name="nerdy_seo_news_sitemap_enabled" value="1" <?php checked($value, true); ?> />
-            <?php _e('Generate Google News sitemap', 'nerdy-seo'); ?>
-        </label>
-        <?php if ($value): ?>
-            <p class="description">
-                <a href="<?php echo esc_url($sitemap_url); ?>" target="_blank"><?php echo esc_html($sitemap_url); ?></a>
-            </p>
-        <?php endif; ?>
-        <p class="description"><?php _e('Only includes posts from the last 2 days for Google News', 'nerdy-seo'); ?></p>
         <?php
     }
 
@@ -747,7 +632,7 @@ class Nerdy_SEO_Sitemap {
         foreach ($post_types as $post_type) {
             $checked = in_array($post_type->name, $excluded);
             ?>
-            <label>
+            <label style="display: block; margin-bottom: 5px;">
                 <input
                     type="checkbox"
                     name="nerdy_seo_sitemap_exclude_post_types[]"
@@ -755,7 +640,7 @@ class Nerdy_SEO_Sitemap {
                     <?php checked($checked); ?>
                 />
                 <?php echo esc_html($post_type->label); ?>
-            </label><br>
+            </label>
             <?php
         }
         echo '</fieldset>';
@@ -763,16 +648,55 @@ class Nerdy_SEO_Sitemap {
     }
 
     /**
-     * Flush rewrite rules
+     * Render generate field
      */
-    public function flush_rewrites() {
-        flush_rewrite_rules();
-    }
+    public function render_generate_field() {
+        ?>
+        <button type="button" class="button button-primary" id="nerdy-seo-generate-sitemap">
+            <span class="dashicons dashicons-update" style="margin-top: 3px;"></span>
+            <?php _e('Generate Now', 'nerdy-seo'); ?>
+        </button>
+        <span id="nerdy-seo-sitemap-status" style="margin-left: 10px;"></span>
+        <p class="description"><?php _e('Manually regenerate all sitemap files. This happens automatically daily and when content changes.', 'nerdy-seo'); ?></p>
 
-    /**
-     * Add custom providers
-     */
-    public function add_custom_providers($provider, $name) {
-        return $provider;
+        <script>
+        jQuery(document).ready(function($) {
+            $('#nerdy-seo-generate-sitemap').on('click', function() {
+                var $btn = $(this);
+                var $status = $('#nerdy-seo-sitemap-status');
+
+                $btn.prop('disabled', true);
+                $btn.find('.dashicons').addClass('spin');
+                $status.html('<span style="color: #666;">Generating...</span>');
+
+                $.post(ajaxurl, {
+                    action: 'nerdy_seo_generate_sitemap',
+                    nonce: '<?php echo wp_create_nonce('nerdy_seo_generate_sitemap'); ?>'
+                }, function(response) {
+                    $btn.prop('disabled', false);
+                    $btn.find('.dashicons').removeClass('spin');
+
+                    if (response.success) {
+                        $status.html('<span style="color: #00a32a;">✓ ' + response.data.message + '</span>');
+                        setTimeout(function() {
+                            $status.fadeOut();
+                        }, 3000);
+                    } else {
+                        $status.html('<span style="color: #d63638;">✗ Error generating sitemap</span>');
+                    }
+                });
+            });
+        });
+        </script>
+        <style>
+        .dashicons.spin {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        </style>
+        <?php
     }
 }

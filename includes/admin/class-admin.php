@@ -104,6 +104,7 @@ class Nerdy_SEO_Admin {
                 'nerdy_seo_twitter_site',
                 'nerdy_seo_default_og_image',
                 'nerdy_seo_schema_enabled',
+                'nerdy_seo_sitemap_enabled',
                 'nerdy_seo_ai_provider',
                 'nerdy_seo_ai_openai_key',
                 'nerdy_seo_ai_openai_model',
@@ -144,6 +145,21 @@ class Nerdy_SEO_Admin {
                         update_option($setting, false);
                     }
                 }
+            }
+
+            // Handle sitemap exclusions (arrays)
+            if (isset($_POST['nerdy_seo_sitemap_exclude_post_types'])) {
+                $excluded_types = array_map('sanitize_text_field', $_POST['nerdy_seo_sitemap_exclude_post_types']);
+                update_option('nerdy_seo_sitemap_exclude_post_types', $excluded_types);
+            } else {
+                update_option('nerdy_seo_sitemap_exclude_post_types', array());
+            }
+
+            if (isset($_POST['nerdy_seo_sitemap_exclude_taxonomies'])) {
+                $excluded_taxonomies = array_map('sanitize_text_field', $_POST['nerdy_seo_sitemap_exclude_taxonomies']);
+                update_option('nerdy_seo_sitemap_exclude_taxonomies', $excluded_taxonomies);
+            } else {
+                update_option('nerdy_seo_sitemap_exclude_taxonomies', array());
             }
 
             echo '<div class="notice notice-success is-dismissible"><p>' . __('Settings saved successfully!', 'nerdy-seo') . '</p></div>';
@@ -197,6 +213,10 @@ class Nerdy_SEO_Admin {
                     <button type="button" class="nerdy-seo-tab-btn" data-tab="ai">
                         <span class="dashicons dashicons-superhero"></span>
                         <?php _e('AI', 'nerdy-seo'); ?>
+                    </button>
+                    <button type="button" class="nerdy-seo-tab-btn" data-tab="sitemap">
+                        <span class="dashicons dashicons-admin-site-alt3"></span>
+                        <?php _e('Sitemap', 'nerdy-seo'); ?>
                     </button>
                     <button type="button" class="nerdy-seo-tab-btn" data-tab="advanced">
                         <span class="dashicons dashicons-admin-tools"></span>
@@ -448,7 +468,15 @@ class Nerdy_SEO_Admin {
                             <div class="nerdy-seo-settings-card nerdy-seo-content-type-card">
                                 <div class="nerdy-seo-content-type-header">
                                     <h2>
-                                        <span class="dashicons dashicons-<?php echo $post_type->menu_icon ?: 'admin-post'; ?>"></span>
+                                        <?php
+                                        $icon = $post_type->menu_icon ?: 'dashicons-admin-post';
+                                        // If icon already has dashicons- prefix, use it as is, otherwise add the class
+                                        if (strpos($icon, 'dashicons-') === 0) {
+                                            echo '<span class="dashicons ' . esc_attr($icon) . '"></span>';
+                                        } else {
+                                            echo '<span class="dashicons dashicons-admin-post"></span>';
+                                        }
+                                        ?>
                                         <?php echo esc_html($post_type->labels->name); ?>
                                         <span class="nerdy-seo-post-type-slug">(<?php echo esc_html($slug); ?>)</span>
                                     </h2>
@@ -920,6 +948,165 @@ class Nerdy_SEO_Admin {
                                 <?php _e('Content sent to AI providers is subject to their privacy policies. We recommend reviewing the terms of service for your chosen provider.', 'nerdy-seo'); ?>
                             </p>
                         </div>
+                    </div>
+
+                    <!-- Sitemap Tab -->
+                    <div class="nerdy-seo-tab-content" data-tab="sitemap">
+                        <div class="nerdy-seo-settings-card">
+                            <h2><?php _e('XML Sitemap', 'nerdy-seo'); ?></h2>
+                            <?php
+                            $sitemap_url = home_url('/sitemap.xml');
+                            $last_generated = get_option('nerdy_seo_sitemap_last_generated');
+                            $sitemap_enabled = get_option('nerdy_seo_sitemap_enabled', true);
+                            ?>
+                            <p class="description"><?php _e('Your XML sitemap helps search engines discover and index all your content. It is automatically regenerated daily and when content changes.', 'nerdy-seo'); ?></p>
+
+                            <table class="form-table">
+                                <tr>
+                                    <th scope="row"><?php _e('Enable XML Sitemaps', 'nerdy-seo'); ?></th>
+                                    <td>
+                                        <label class="nerdy-seo-toggle">
+                                            <input
+                                                type="checkbox"
+                                                name="nerdy_seo_sitemap_enabled"
+                                                value="1"
+                                                <?php checked($sitemap_enabled, true); ?>
+                                            />
+                                            <span class="nerdy-seo-toggle-slider"></span>
+                                        </label>
+                                        <p class="description"><?php _e('Enable or disable XML sitemap generation.', 'nerdy-seo'); ?></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><?php _e('Sitemap URL', 'nerdy-seo'); ?></th>
+                                    <td>
+                                        <a href="<?php echo esc_url($sitemap_url); ?>" target="_blank" class="button">
+                                            <span class="dashicons dashicons-external" style="margin-top: 3px;"></span>
+                                            <?php echo esc_html($sitemap_url); ?>
+                                        </a>
+                                        <?php if ($last_generated): ?>
+                                            <p class="description"><?php printf(__('Last generated: %s', 'nerdy-seo'), $last_generated); ?></p>
+                                        <?php else: ?>
+                                            <p class="description"><?php _e('Sitemap has not been generated yet. Click "Generate Now" below.', 'nerdy-seo'); ?></p>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><?php _e('Manual Generation', 'nerdy-seo'); ?></th>
+                                    <td>
+                                        <button type="button" class="button button-primary" id="nerdy-seo-generate-sitemap">
+                                            <span class="dashicons dashicons-update" style="margin-top: 3px;"></span>
+                                            <?php _e('Generate Now', 'nerdy-seo'); ?>
+                                        </button>
+                                        <span id="nerdy-seo-sitemap-status" style="margin-left: 10px;"></span>
+                                        <p class="description"><?php _e('Manually regenerate all sitemap files. This happens automatically daily and when content changes.', 'nerdy-seo'); ?></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="nerdy-seo-settings-card">
+                            <h2><?php _e('Content Exclusions', 'nerdy-seo'); ?></h2>
+                            <p class="description"><?php _e('Choose which post types and taxonomies to exclude from your sitemap.', 'nerdy-seo'); ?></p>
+
+                            <table class="form-table">
+                                <tr>
+                                    <th scope="row"><?php _e('Exclude Post Types', 'nerdy-seo'); ?></th>
+                                    <td>
+                                        <?php
+                                        $excluded_types = get_option('nerdy_seo_sitemap_exclude_post_types', array());
+                                        $post_types = get_post_types(array('public' => true), 'objects');
+
+                                        echo '<fieldset>';
+                                        foreach ($post_types as $post_type) {
+                                            $checked = is_array($excluded_types) && in_array($post_type->name, $excluded_types);
+                                            ?>
+                                            <label style="display: block; margin-bottom: 8px;">
+                                                <input
+                                                    type="checkbox"
+                                                    name="nerdy_seo_sitemap_exclude_post_types[]"
+                                                    value="<?php echo esc_attr($post_type->name); ?>"
+                                                    <?php checked($checked); ?>
+                                                />
+                                                <?php echo esc_html($post_type->label); ?> <code>(<?php echo esc_html($post_type->name); ?>)</code>
+                                            </label>
+                                            <?php
+                                        }
+                                        echo '</fieldset>';
+                                        ?>
+                                        <p class="description"><?php _e('Select post types to exclude from the sitemap.', 'nerdy-seo'); ?></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><?php _e('Exclude Taxonomies', 'nerdy-seo'); ?></th>
+                                    <td>
+                                        <?php
+                                        $excluded_taxonomies = get_option('nerdy_seo_sitemap_exclude_taxonomies', array());
+                                        $taxonomies = get_taxonomies(array('public' => true), 'objects');
+
+                                        echo '<fieldset>';
+                                        foreach ($taxonomies as $taxonomy) {
+                                            $checked = is_array($excluded_taxonomies) && in_array($taxonomy->name, $excluded_taxonomies);
+                                            ?>
+                                            <label style="display: block; margin-bottom: 8px;">
+                                                <input
+                                                    type="checkbox"
+                                                    name="nerdy_seo_sitemap_exclude_taxonomies[]"
+                                                    value="<?php echo esc_attr($taxonomy->name); ?>"
+                                                    <?php checked($checked); ?>
+                                                />
+                                                <?php echo esc_html($taxonomy->label); ?> <code>(<?php echo esc_html($taxonomy->name); ?>)</code>
+                                            </label>
+                                            <?php
+                                        }
+                                        echo '</fieldset>';
+                                        ?>
+                                        <p class="description"><?php _e('Select taxonomies to exclude from the sitemap.', 'nerdy-seo'); ?></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="nerdy-seo-info-box">
+                            <h3><?php _e('Per-Post Sitemap Settings', 'nerdy-seo'); ?></h3>
+                            <p><?php _e('You can also control sitemap settings for individual posts and pages:', 'nerdy-seo'); ?></p>
+                            <ul class="nerdy-seo-feature-list">
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Exclude specific posts from sitemap', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Set custom priority (0.0 to 1.0)', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Set change frequency', 'nerdy-seo'); ?></li>
+                            </ul>
+                            <p class="description"><?php _e('Look for the "Sitemap Settings" meta box in the post editor sidebar.', 'nerdy-seo'); ?></p>
+                        </div>
+
+                        <script>
+                        jQuery(document).ready(function($) {
+                            $('#nerdy-seo-generate-sitemap').on('click', function() {
+                                var $btn = $(this);
+                                var $status = $('#nerdy-seo-sitemap-status');
+
+                                $btn.prop('disabled', true);
+                                $btn.find('.dashicons').addClass('nerdy-seo-spin');
+                                $status.html('<span style="color: #666;">Generating...</span>');
+
+                                $.post(ajaxurl, {
+                                    action: 'nerdy_seo_generate_sitemap',
+                                    nonce: '<?php echo wp_create_nonce('nerdy_seo_generate_sitemap'); ?>'
+                                }, function(response) {
+                                    $btn.prop('disabled', false);
+                                    $btn.find('.dashicons').removeClass('nerdy-seo-spin');
+
+                                    if (response.success) {
+                                        $status.html('<span style="color: #00a32a;">✓ ' + response.data.message + '</span>');
+                                        setTimeout(function() {
+                                            $status.fadeOut();
+                                        }, 3000);
+                                    } else {
+                                        $status.html('<span style="color: #d63638;">✗ Error generating sitemap</span>');
+                                    }
+                                });
+                            });
+                        });
+                        </script>
                     </div>
 
                     <!-- Advanced Tab -->

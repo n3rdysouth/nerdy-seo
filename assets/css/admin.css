@@ -576,3 +576,20 @@
         font-size: 13px;
     }
 }
+
+/* ========================================
+   Animations
+   ======================================== */
+
+.nerdy-seo-spin {
+    animation: nerdy-seo-spin-animation 1s linear infinite;
+}
+
+@keyframes nerdy-seo-spin-animation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
