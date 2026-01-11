@@ -35,7 +35,21 @@ class Nerdy_SEO_Local_Business {
      */
     private function __construct() {
         add_action('admin_menu', array($this, 'add_admin_menu'), 66);
+        add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
         add_action('wp_head', array($this, 'output_local_business_schema'), 5);
+    }
+
+    /**
+     * Enqueue admin scripts
+     */
+    public function enqueue_admin_scripts($hook) {
+        // Only load on our page
+        if ($hook !== 'nerdy-seo_page_nerdy-seo-local-business') {
+            return;
+        }
+
+        // Enqueue WordPress media uploader
+        wp_enqueue_media();
     }
 
     /**
