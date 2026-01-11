@@ -182,19 +182,19 @@ class Nerdy_SEO_List_Columns {
         <fieldset class="inline-edit-col-right nerdy-seo-quick-edit">
             <div class="inline-edit-col">
                 <label>
-                    <span class="title"><?php _e('SEO Title', 'nerdy-seo'); ?></span>
+                    <span class="title"><?php esc_html_e('SEO Title', 'nerdy-seo'); ?></span>
                     <span class="input-text-wrap">
                         <input type="text" name="nerdy_seo_title" class="nerdy-seo-quick-title" value="" />
-                        <span class="nerdy-seo-title-count" style="font-size: 11px; color: #666;">0 <?php _e('characters', 'nerdy-seo'); ?></span>
+                        <span class="nerdy-seo-title-count" style="font-size: 11px; color: #666;">0 <?php esc_html_e('characters', 'nerdy-seo'); ?></span>
                     </span>
                 </label>
             </div>
             <div class="inline-edit-col">
                 <label>
-                    <span class="title"><?php _e('Meta Description', 'nerdy-seo'); ?></span>
+                    <span class="title"><?php esc_html_e('Meta Description', 'nerdy-seo'); ?></span>
                     <span class="input-text-wrap">
                         <textarea name="nerdy_seo_description" class="nerdy-seo-quick-desc" rows="3"></textarea>
-                        <span class="nerdy-seo-desc-count" style="font-size: 11px; color: #666;">0 <?php _e('characters', 'nerdy-seo'); ?></span>
+                        <span class="nerdy-seo-desc-count" style="font-size: 11px; color: #666;">0 <?php esc_html_e('characters', 'nerdy-seo'); ?></span>
                     </span>
                 </label>
             </div>
@@ -214,17 +214,17 @@ class Nerdy_SEO_List_Columns {
         <fieldset class="inline-edit-col-right nerdy-seo-bulk-edit">
             <div class="inline-edit-col">
                 <div class="inline-edit-group">
-                    <p class="description"><?php _e('Note: Bulk editing SEO fields will overwrite existing values for all selected posts.', 'nerdy-seo'); ?></p>
+                    <p class="description"><?php esc_html_e('Note: Bulk editing SEO fields will overwrite existing values for all selected posts.', 'nerdy-seo'); ?></p>
                     <label>
-                        <span class="title"><?php _e('SEO Title', 'nerdy-seo'); ?></span>
+                        <span class="title"><?php esc_html_e('SEO Title', 'nerdy-seo'); ?></span>
                         <span class="input-text-wrap">
-                            <input type="text" name="nerdy_seo_title" value="" placeholder="<?php _e('Leave empty to keep existing values', 'nerdy-seo'); ?>" />
+                            <input type="text" name="nerdy_seo_title" value="" placeholder="<?php esc_html_e('Leave empty to keep existing values', 'nerdy-seo'); ?>" />
                         </span>
                     </label>
                     <label>
-                        <span class="title"><?php _e('Meta Description', 'nerdy-seo'); ?></span>
+                        <span class="title"><?php esc_html_e('Meta Description', 'nerdy-seo'); ?></span>
                         <span class="input-text-wrap">
-                            <textarea name="nerdy_seo_description" rows="3" placeholder="<?php _e('Leave empty to keep existing values', 'nerdy-seo'); ?>"></textarea>
+                            <textarea name="nerdy_seo_description" rows="3" placeholder="<?php esc_html_e('Leave empty to keep existing values', 'nerdy-seo'); ?>"></textarea>
                         </span>
                     </label>
                 </div>
@@ -319,7 +319,7 @@ class Nerdy_SEO_List_Columns {
                 var value = $input.val();
 
                 // Disable button during save
-                $btn.prop('disabled', true).text('<?php _e('Saving...', 'nerdy-seo'); ?>');
+                $btn.prop('disabled', true).text('<?php esc_html_e('Saving...', 'nerdy-seo'); ?>');
 
                 // AJAX save
                 $.post(ajaxurl, {
@@ -361,10 +361,10 @@ class Nerdy_SEO_List_Columns {
                             displayHTML = '<span class="nerdy-seo-length" style="color: ' + color + ';">(' + length + ')</span> ';
                             displayHTML += '<span class="nerdy-seo-text">' + $('<div>').text(truncated).html() + '</span>';
                         } else {
-                            displayHTML = '<span style="color: #999;"><?php _e('Not set', 'nerdy-seo'); ?></span>';
+                            displayHTML = '<span style="color: #999;"><?php esc_html_e('Not set', 'nerdy-seo'); ?></span>';
                         }
 
-                        displayHTML += ' <button type="button" class="button-link nerdy-seo-edit-btn" title="<?php _e('Edit', 'nerdy-seo'); ?>">';
+                        displayHTML += ' <button type="button" class="button-link nerdy-seo-edit-btn" title="<?php esc_html_e('Edit', 'nerdy-seo'); ?>">';
                         displayHTML += '<span class="dashicons dashicons-edit"></span>';
                         displayHTML += '</button>';
 
@@ -380,11 +380,11 @@ class Nerdy_SEO_List_Columns {
                             $wrapper.css('background', '');
                         }, 1000);
                     } else {
-                        alert(response.data.message || '<?php _e('Error saving', 'nerdy-seo'); ?>');
+                        alert(response.data.message || '<?php esc_html_e('Error saving', 'nerdy-seo'); ?>');
                     }
 
                     // Re-enable button
-                    $btn.prop('disabled', false).text('<?php _e('Save', 'nerdy-seo'); ?>');
+                    $btn.prop('disabled', false).text('<?php esc_html_e('Save', 'nerdy-seo'); ?>');
                 });
             });
 
@@ -414,7 +414,7 @@ class Nerdy_SEO_List_Columns {
                     }
                 }
 
-                $counter.text(length + ' <?php _e('characters', 'nerdy-seo'); ?>').css('color', color);
+                $counter.text(length + ' <?php esc_html_e('characters', 'nerdy-seo'); ?>').css('color', color);
             }
 
             // Update count on input
@@ -468,7 +468,7 @@ class Nerdy_SEO_List_Columns {
                     }
                 }
 
-                $counter.text(length + ' <?php _e('characters', 'nerdy-seo'); ?>').css('color', color);
+                $counter.text(length + ' <?php esc_html_e('characters', 'nerdy-seo'); ?>').css('color', color);
             }
 
             $(document).on('input', '.nerdy-seo-quick-title', function() {

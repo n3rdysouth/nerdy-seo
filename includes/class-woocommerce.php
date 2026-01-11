@@ -154,7 +154,7 @@ class Nerdy_SEO_WooCommerce {
             'url' => get_permalink($product->get_id()),
             'priceCurrency' => get_woocommerce_currency(),
             'price' => $product->get_price(),
-            'priceValidUntil' => date('Y-12-31'), // End of current year
+            'priceValidUntil' => gmdate('Y-12-31'), // End of current year
         );
 
         // Availability
@@ -243,7 +243,7 @@ class Nerdy_SEO_WooCommerce {
                     '@type' => 'Person',
                     'name' => $comment->comment_author,
                 ),
-                'datePublished' => date('c', strtotime($comment->comment_date)),
+                'datePublished' => gmdate('c', strtotime($comment->comment_date)),
                 'reviewBody' => $comment->comment_content,
             );
         }
@@ -303,9 +303,9 @@ class Nerdy_SEO_WooCommerce {
         ?>
         <label>
             <input type="checkbox" name="nerdy_seo_woocommerce_schema" value="1" <?php checked($enabled, true); ?> />
-            <?php _e('Enable Product schema markup (includes price, availability, reviews)', 'nerdy-seo'); ?>
+            <?php esc_html_e('Enable Product schema markup (includes price, availability, reviews)', 'nerdy-seo'); ?>
         </label>
-        <p class="description"><?php _e('Helps products appear in Google Shopping and rich results', 'nerdy-seo'); ?></p>
+        <p class="description"><?php esc_html_e('Helps products appear in Google Shopping and rich results', 'nerdy-seo'); ?></p>
         <?php
     }
 
@@ -323,7 +323,7 @@ class Nerdy_SEO_WooCommerce {
             placeholder="0.00"
         />
         <p class="description">
-            <?php _e('Default shipping cost in your store currency. Leave blank if free shipping or variable.', 'nerdy-seo'); ?>
+            <?php esc_html_e('Default shipping cost in your store currency. Leave blank if free shipping or variable.', 'nerdy-seo'); ?>
         </p>
         <?php
     }
@@ -373,7 +373,7 @@ class Nerdy_SEO_WooCommerce {
 
         <div class="nerdy-seo-product-field">
             <label for="nerdy_seo_product_brand">
-                <?php _e('Brand', 'nerdy-seo'); ?>
+                <?php esc_html_e('Brand', 'nerdy-seo'); ?>
             </label>
             <input
                 type="text"
@@ -383,13 +383,13 @@ class Nerdy_SEO_WooCommerce {
                 placeholder="<?php echo esc_attr(get_bloginfo('name')); ?>"
             />
             <p class="nerdy-seo-product-hint">
-                <?php _e('Product brand name', 'nerdy-seo'); ?>
+                <?php esc_html_e('Product brand name', 'nerdy-seo'); ?>
             </p>
         </div>
 
         <div class="nerdy-seo-product-field">
             <label for="nerdy_seo_product_gtin">
-                <?php _e('GTIN', 'nerdy-seo'); ?>
+                <?php esc_html_e('GTIN', 'nerdy-seo'); ?>
             </label>
             <input
                 type="text"
@@ -399,13 +399,13 @@ class Nerdy_SEO_WooCommerce {
                 placeholder="0123456789012"
             />
             <p class="nerdy-seo-product-hint">
-                <?php _e('Global Trade Item Number (UPC, EAN, ISBN)', 'nerdy-seo'); ?>
+                <?php esc_html_e('Global Trade Item Number (UPC, EAN, ISBN)', 'nerdy-seo'); ?>
             </p>
         </div>
 
         <div class="nerdy-seo-product-field">
             <label for="nerdy_seo_product_mpn">
-                <?php _e('MPN', 'nerdy-seo'); ?>
+                <?php esc_html_e('MPN', 'nerdy-seo'); ?>
             </label>
             <input
                 type="text"
@@ -414,7 +414,7 @@ class Nerdy_SEO_WooCommerce {
                 value="<?php echo esc_attr($mpn); ?>"
             />
             <p class="nerdy-seo-product-hint">
-                <?php _e('Manufacturer Part Number', 'nerdy-seo'); ?>
+                <?php esc_html_e('Manufacturer Part Number', 'nerdy-seo'); ?>
             </p>
         </div>
         <?php

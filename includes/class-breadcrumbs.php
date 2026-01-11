@@ -523,7 +523,7 @@ class Nerdy_SEO_Breadcrumbs {
         ?>
         <label>
             <input type="checkbox" name="nerdy_seo_breadcrumb_enabled" value="1" <?php checked($enabled, true); ?> />
-            <?php _e('Enable breadcrumb functionality', 'nerdy-seo'); ?>
+            <?php esc_html_e('Enable breadcrumb functionality', 'nerdy-seo'); ?>
         </label>
         <?php
     }
@@ -536,9 +536,9 @@ class Nerdy_SEO_Breadcrumbs {
         ?>
         <label>
             <input type="checkbox" name="nerdy_seo_breadcrumb_schema" value="1" <?php checked($enabled, true); ?> />
-            <?php _e('Output BreadcrumbList schema markup in page head', 'nerdy-seo'); ?>
+            <?php esc_html_e('Output BreadcrumbList schema markup in page head', 'nerdy-seo'); ?>
         </label>
-        <p class="description"><?php _e('Helps search engines understand your site structure', 'nerdy-seo'); ?></p>
+        <p class="description"><?php esc_html_e('Helps search engines understand your site structure', 'nerdy-seo'); ?></p>
         <?php
     }
 
@@ -550,7 +550,7 @@ class Nerdy_SEO_Breadcrumbs {
         ?>
         <input type="text" name="nerdy_seo_breadcrumb_separator" value="<?php echo esc_attr($separator); ?>" class="small-text" />
         <p class="description">
-            <?php _e('Common options:', 'nerdy-seo'); ?>
+            <?php esc_html_e('Common options:', 'nerdy-seo'); ?>
             › / » &gt; &raquo; •
         </p>
         <?php
@@ -563,7 +563,7 @@ class Nerdy_SEO_Breadcrumbs {
         $home_text = get_option('nerdy_seo_breadcrumb_home_text', __('Home', 'nerdy-seo'));
         ?>
         <input type="text" name="nerdy_seo_breadcrumb_home_text" value="<?php echo esc_attr($home_text); ?>" class="regular-text" />
-        <p class="description"><?php _e('Text for the home link in breadcrumbs', 'nerdy-seo'); ?></p>
+        <p class="description"><?php esc_html_e('Text for the home link in breadcrumbs', 'nerdy-seo'); ?></p>
         <?php
     }
 }

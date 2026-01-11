@@ -304,7 +304,7 @@ class Nerdy_SEO_Settings {
                 class="button nerdy-seo-upload-image-btn"
                 data-target="<?php echo esc_attr($name); ?>"
             >
-                <?php _e('Upload Image', 'nerdy-seo'); ?>
+                <?php esc_html_e('Upload Image', 'nerdy-seo'); ?>
             </button>
             <?php if ($value): ?>
                 <br><br>
@@ -331,9 +331,9 @@ class Nerdy_SEO_Settings {
                     }
 
                     mediaUploader = wp.media({
-                        title: '<?php _e('Choose Image', 'nerdy-seo'); ?>',
+                        title: '<?php esc_html_e('Choose Image', 'nerdy-seo'); ?>',
                         button: {
-                            text: '<?php _e('Use this image', 'nerdy-seo'); ?>'
+                            text: '<?php esc_html_e('Use this image', 'nerdy-seo'); ?>'
                         },
                         multiple: false
                     });

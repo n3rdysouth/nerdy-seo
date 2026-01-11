@@ -93,7 +93,7 @@ class Nerdy_SEO_Nested_Pages {
         ?>
         <div class="nerdy-seo-quick-edit">
             <div class="nerdy-seo-field">
-                <label><?php _e('SEO Title', 'nerdy-seo'); ?></label>
+                <label><?php esc_html_e('SEO Title', 'nerdy-seo'); ?></label>
                 <input
                     type="text"
                     class="nerdy-seo-title-input"
@@ -110,12 +110,12 @@ class Nerdy_SEO_Nested_Pages {
             </div>
 
             <div class="nerdy-seo-field">
-                <label><?php _e('Meta Description', 'nerdy-seo'); ?></label>
+                <label><?php esc_html_e('Meta Description', 'nerdy-seo'); ?></label>
                 <textarea
                     class="nerdy-seo-description-input"
                     data-post-id="<?php echo esc_attr($post->ID); ?>"
                     rows="3"
-                    placeholder="<?php _e('Enter meta description...', 'nerdy-seo'); ?>"
+                    placeholder="<?php esc_html_e('Enter meta description...', 'nerdy-seo'); ?>"
                 ><?php echo esc_textarea($description); ?></textarea>
                 <span class="nerdy-seo-char-count">
                     <?php
@@ -126,13 +126,13 @@ class Nerdy_SEO_Nested_Pages {
             </div>
 
             <div class="nerdy-seo-field">
-                <label><?php _e('Focus Keyword', 'nerdy-seo'); ?></label>
+                <label><?php esc_html_e('Focus Keyword', 'nerdy-seo'); ?></label>
                 <input
                     type="text"
                     class="nerdy-seo-keyword-input"
                     data-post-id="<?php echo esc_attr($post->ID); ?>"
                     value="<?php echo esc_attr($keyword); ?>"
-                    placeholder="<?php _e('Enter focus keyword...', 'nerdy-seo'); ?>"
+                    placeholder="<?php esc_html_e('Enter focus keyword...', 'nerdy-seo'); ?>"
                 />
             </div>
 
@@ -141,7 +141,7 @@ class Nerdy_SEO_Nested_Pages {
                 class="button button-primary nerdy-seo-save-btn"
                 data-post-id="<?php echo esc_attr($post->ID); ?>"
             >
-                <?php _e('Save SEO', 'nerdy-seo'); ?>
+                <?php esc_html_e('Save SEO', 'nerdy-seo'); ?>
             </button>
 
             <span class="nerdy-seo-save-status"></span>
@@ -323,7 +323,7 @@ class Nerdy_SEO_Nested_Pages {
                         keyword: $container.find('.nerdy-seo-keyword-input').val()
                     };
 
-                    $btn.prop('disabled', true).text('<?php _e('Saving...', 'nerdy-seo'); ?>');
+                    $btn.prop('disabled', true).text('<?php esc_html_e('Saving...', 'nerdy-seo'); ?>');
                     $status.removeClass('success error').text('');
 
                     $.post(ajaxurl, data, function(response) {
@@ -333,13 +333,13 @@ class Nerdy_SEO_Nested_Pages {
                                 $status.fadeOut();
                             }, 3000);
                         } else {
-                            $status.addClass('error').text('✗ ' + (response.data.message || '<?php _e('Error saving', 'nerdy-seo'); ?>'));
+                            $status.addClass('error').text('✗ ' + (response.data.message || '<?php esc_html_e('Error saving', 'nerdy-seo'); ?>'));
                         }
 
-                        $btn.prop('disabled', false).text('<?php _e('Save SEO', 'nerdy-seo'); ?>');
+                        $btn.prop('disabled', false).text('<?php esc_html_e('Save SEO', 'nerdy-seo'); ?>');
                     }).fail(function() {
-                        $status.addClass('error').text('✗ <?php _e('Error saving', 'nerdy-seo'); ?>');
-                        $btn.prop('disabled', false).text('<?php _e('Save SEO', 'nerdy-seo'); ?>');
+                        $status.addClass('error').text('✗ <?php esc_html_e('Error saving', 'nerdy-seo'); ?>');
+                        $btn.prop('disabled', false).text('<?php esc_html_e('Save SEO', 'nerdy-seo'); ?>');
                     });
                 });
             });

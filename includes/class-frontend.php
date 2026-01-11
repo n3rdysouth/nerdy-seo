@@ -77,13 +77,15 @@ class Nerdy_SEO_Frontend {
             return $term->name;
         } elseif (is_author()) {
             $author = get_queried_object();
-            return sprintf(__('Author: %s', 'nerdy-seo'), $author->display_name);
+            /* translators: %s: author display name */
+            return sprintf(esc_html__('Author: %s', 'nerdy-seo'), $author->display_name);
         } elseif (is_archive()) {
             return get_the_archive_title();
         } elseif (is_search()) {
-            return sprintf(__('Search Results for: %s', 'nerdy-seo'), get_search_query());
+            /* translators: %s: search query */
+            return sprintf(esc_html__('Search Results for: %s', 'nerdy-seo'), get_search_query());
         } elseif (is_404()) {
-            return __('Page Not Found', 'nerdy-seo');
+            return esc_html__('Page Not Found', 'nerdy-seo');
         }
 
         return $title;
@@ -115,7 +117,7 @@ class Nerdy_SEO_Frontend {
         }
 
         // Generator tag
-        echo '<meta name="generator" content="Nerdy SEO ' . NERDY_SEO_VERSION . '">' . "\n";
+        echo '<meta name="generator" content="Nerdy SEO ' . esc_attr(NERDY_SEO_VERSION) . '">' . "\n";
     }
 
     /**
@@ -146,7 +148,8 @@ class Nerdy_SEO_Frontend {
             }
         } elseif (is_author()) {
             $author = get_queried_object();
-            return sprintf(__('All posts by %s', 'nerdy-seo'), $author->display_name);
+            /* translators: %s: author display name */
+            return sprintf(esc_html__('All posts by %s', 'nerdy-seo'), $author->display_name);
         }
 
         return '';
@@ -238,9 +241,9 @@ class Nerdy_SEO_Frontend {
             '%excerpt%' => $post && $post->post_excerpt ? $post->post_excerpt : '',
             '%author%' => $post ? get_the_author_meta('display_name', $post->post_author) : '',
             '%date%' => $post ? get_the_date('', $post->ID) : '',
-            '%year%' => date('Y'),
-            '%month%' => date('F'),
-            '%day%' => date('j'),
+            '%year%' => gmdate('Y'),
+            '%month%' => gmdate('F'),
+            '%day%' => gmdate('j'),
             '%categories%' => $categories,
             '%tags%' => $tags,
         );

@@ -188,7 +188,7 @@ class Nerdy_SEO_Admin {
         <div class="wrap nerdy-seo-settings-wrap">
             <h1 class="nerdy-seo-page-title">
                 <span class="dashicons dashicons-search"></span>
-                <?php _e('Nerdy SEO Settings', 'nerdy-seo'); ?>
+                <?php esc_html_e('Nerdy SEO Settings', 'nerdy-seo'); ?>
             </h1>
 
             <div class="nerdy-seo-tabs-wrapper">
@@ -196,31 +196,31 @@ class Nerdy_SEO_Admin {
                 <div class="nerdy-seo-tabs-nav">
                     <button type="button" class="nerdy-seo-tab-btn active" data-tab="general">
                         <span class="dashicons dashicons-admin-settings"></span>
-                        <?php _e('General', 'nerdy-seo'); ?>
+                        <?php esc_html_e('General', 'nerdy-seo'); ?>
                     </button>
                     <button type="button" class="nerdy-seo-tab-btn" data-tab="content-types">
                         <span class="dashicons dashicons-admin-post"></span>
-                        <?php _e('Content Types', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Content Types', 'nerdy-seo'); ?>
                     </button>
                     <button type="button" class="nerdy-seo-tab-btn" data-tab="social">
                         <span class="dashicons dashicons-share"></span>
-                        <?php _e('Social Media', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Social Media', 'nerdy-seo'); ?>
                     </button>
                     <button type="button" class="nerdy-seo-tab-btn" data-tab="schema">
                         <span class="dashicons dashicons-editor-code"></span>
-                        <?php _e('Schema', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Schema', 'nerdy-seo'); ?>
                     </button>
                     <button type="button" class="nerdy-seo-tab-btn" data-tab="ai">
                         <span class="dashicons dashicons-superhero"></span>
-                        <?php _e('AI', 'nerdy-seo'); ?>
+                        <?php esc_html_e('AI', 'nerdy-seo'); ?>
                     </button>
                     <button type="button" class="nerdy-seo-tab-btn" data-tab="sitemap">
                         <span class="dashicons dashicons-admin-site-alt3"></span>
-                        <?php _e('Sitemap', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Sitemap', 'nerdy-seo'); ?>
                     </button>
                     <button type="button" class="nerdy-seo-tab-btn" data-tab="advanced">
                         <span class="dashicons dashicons-admin-tools"></span>
-                        <?php _e('Advanced', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Advanced', 'nerdy-seo'); ?>
                     </button>
                 </div>
 
@@ -231,13 +231,13 @@ class Nerdy_SEO_Admin {
                     <!-- General Tab -->
                     <div class="nerdy-seo-tab-content active" data-tab="general">
                         <div class="nerdy-seo-settings-card nerdy-seo-content-type-card">
-                            <h2><?php _e('Homepage SEO', 'nerdy-seo'); ?></h2>
-                            <p class="description"><?php _e('Configure the SEO settings for your homepage.', 'nerdy-seo'); ?></p>
+                            <h2><?php esc_html_e('Homepage SEO', 'nerdy-seo'); ?></h2>
+                            <p class="description"><?php esc_html_e('Configure the SEO settings for your homepage.', 'nerdy-seo'); ?></p>
 
                             <table class="form-table">
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_home_title"><?php _e('Homepage Title', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_home_title"><?php esc_html_e('Homepage Title', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <div class="nerdy-seo-variable-field-wrapper">
@@ -252,15 +252,15 @@ class Nerdy_SEO_Admin {
                                             />
                                             <div class="nerdy-seo-variable-buttons">
                                                 <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%sitename%">
-                                                    <span class="dashicons dashicons-plus-alt2"></span> <?php _e('Site Title', 'nerdy-seo'); ?>
+                                                    <span class="dashicons dashicons-plus-alt2"></span> <?php esc_html_e('Site Title', 'nerdy-seo'); ?>
                                                 </button>
                                                 <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%sitedesc%">
-                                                    <span class="dashicons dashicons-plus-alt2"></span> <?php _e('Site Description', 'nerdy-seo'); ?>
+                                                    <span class="dashicons dashicons-plus-alt2"></span> <?php esc_html_e('Site Description', 'nerdy-seo'); ?>
                                                 </button>
-                                                <a href="#" class="nerdy-seo-show-all-vars"><?php _e('View all tags →', 'nerdy-seo'); ?></a>
+                                                <a href="#" class="nerdy-seo-show-all-vars"><?php esc_html_e('View all tags →', 'nerdy-seo'); ?></a>
                                             </div>
                                             <div class="nerdy-seo-all-variables" style="display: none;">
-                                                <p><strong><?php _e('Click to insert:', 'nerdy-seo'); ?></strong></p>
+                                                <p><strong><?php esc_html_e('Click to insert:', 'nerdy-seo'); ?></strong></p>
                                                 <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%sitename%">%sitename%</button>
                                                 <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%sitedesc%">%sitedesc%</button>
                                                 <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%separator%">%separator%</button>
@@ -273,7 +273,7 @@ class Nerdy_SEO_Admin {
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_home_description"><?php _e('Homepage Description', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_home_description"><?php esc_html_e('Homepage Description', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <div class="nerdy-seo-variable-field-wrapper">
@@ -287,15 +287,15 @@ class Nerdy_SEO_Admin {
                                             ><?php echo esc_textarea($home_description); ?></textarea>
                                             <div class="nerdy-seo-variable-buttons">
                                                 <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%sitename%">
-                                                    <span class="dashicons dashicons-plus-alt2"></span> <?php _e('Site Title', 'nerdy-seo'); ?>
+                                                    <span class="dashicons dashicons-plus-alt2"></span> <?php esc_html_e('Site Title', 'nerdy-seo'); ?>
                                                 </button>
                                                 <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%sitedesc%">
-                                                    <span class="dashicons dashicons-plus-alt2"></span> <?php _e('Site Description', 'nerdy-seo'); ?>
+                                                    <span class="dashicons dashicons-plus-alt2"></span> <?php esc_html_e('Site Description', 'nerdy-seo'); ?>
                                                 </button>
-                                                <a href="#" class="nerdy-seo-show-all-vars"><?php _e('View all tags →', 'nerdy-seo'); ?></a>
+                                                <a href="#" class="nerdy-seo-show-all-vars"><?php esc_html_e('View all tags →', 'nerdy-seo'); ?></a>
                                             </div>
                                             <div class="nerdy-seo-all-variables" style="display: none;">
-                                                <p><strong><?php _e('Click to insert:', 'nerdy-seo'); ?></strong></p>
+                                                <p><strong><?php esc_html_e('Click to insert:', 'nerdy-seo'); ?></strong></p>
                                                 <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%sitename%">%sitename%</button>
                                                 <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%sitedesc%">%sitedesc%</button>
                                                 <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%separator%">%separator%</button>
@@ -310,7 +310,7 @@ class Nerdy_SEO_Admin {
 
                             <!-- Google Search Preview for Homepage -->
                             <div class="nerdy-seo-search-preview">
-                                <h4><?php _e('Preview', 'nerdy-seo'); ?></h4>
+                                <h4><?php esc_html_e('Preview', 'nerdy-seo'); ?></h4>
                                 <div class="nerdy-seo-serp-preview">
                                     <div class="nerdy-seo-serp-favicon">
                                         <?php if (has_site_icon()): ?>
@@ -320,12 +320,12 @@ class Nerdy_SEO_Admin {
                                         <?php endif; ?>
                                     </div>
                                     <div class="nerdy-seo-serp-content">
-                                        <div class="nerdy-seo-serp-site"><?php echo esc_html(parse_url(home_url(), PHP_URL_HOST)); ?></div>
+                                        <div class="nerdy-seo-serp-site"><?php echo esc_html(wp_parse_url(home_url(), PHP_URL_HOST)); ?></div>
                                         <div class="nerdy-seo-serp-title" data-template="<?php echo esc_attr($home_title); ?>">
                                             <?php
                                             $preview_title = str_replace(
                                                 array('%sitename%', '%sitedesc%', '%separator%', '%year%', '%month%', '%day%'),
-                                                array(get_bloginfo('name'), get_bloginfo('description'), '|', date('Y'), date('F'), date('j')),
+                                                array(get_bloginfo('name'), get_bloginfo('description'), '|', gmdate('Y'), gmdate('F'), gmdate('j')),
                                                 $home_title
                                             );
                                             echo esc_html($preview_title);
@@ -335,7 +335,7 @@ class Nerdy_SEO_Admin {
                                             <?php
                                             $preview_desc = str_replace(
                                                 array('%sitename%', '%sitedesc%', '%separator%', '%year%', '%month%', '%day%'),
-                                                array(get_bloginfo('name'), get_bloginfo('description'), '|', date('Y'), date('F'), date('j')),
+                                                array(get_bloginfo('name'), get_bloginfo('description'), '|', gmdate('Y'), gmdate('F'), gmdate('j')),
                                                 $home_description
                                             );
                                             echo esc_html($preview_desc);
@@ -347,13 +347,13 @@ class Nerdy_SEO_Admin {
                         </div>
 
                         <div class="nerdy-seo-settings-card">
-                            <h2><?php _e('Title Settings', 'nerdy-seo'); ?></h2>
-                            <p class="description"><?php _e('Customize how page titles are formatted across your site.', 'nerdy-seo'); ?></p>
+                            <h2><?php esc_html_e('Title Settings', 'nerdy-seo'); ?></h2>
+                            <p class="description"><?php esc_html_e('Customize how page titles are formatted across your site.', 'nerdy-seo'); ?></p>
 
                             <table class="form-table">
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_separator"><?php _e('Title Separator', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_separator"><?php esc_html_e('Title Separator', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <input
@@ -366,13 +366,13 @@ class Nerdy_SEO_Admin {
                                             style="max-width: 80px;"
                                         />
                                         <p class="description">
-                                            <?php _e('The character used to separate parts of your page titles. Common choices: | - • · ›', 'nerdy-seo'); ?>
+                                            <?php esc_html_e('The character used to separate parts of your page titles. Common choices: | - • · ›', 'nerdy-seo'); ?>
                                         </p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_default_title_format"><?php _e('Default Title Format', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_default_title_format"><?php esc_html_e('Default Title Format', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <div class="nerdy-seo-variable-field-wrapper">
@@ -387,18 +387,18 @@ class Nerdy_SEO_Admin {
                                             />
                                             <div class="nerdy-seo-variable-buttons">
                                                 <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%title%">
-                                                    <span class="dashicons dashicons-plus-alt2"></span> <?php _e('Post Title', 'nerdy-seo'); ?>
+                                                    <span class="dashicons dashicons-plus-alt2"></span> <?php esc_html_e('Post Title', 'nerdy-seo'); ?>
                                                 </button>
                                                 <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%separator%">
-                                                    <span class="dashicons dashicons-plus-alt2"></span> <?php _e('Separator', 'nerdy-seo'); ?>
+                                                    <span class="dashicons dashicons-plus-alt2"></span> <?php esc_html_e('Separator', 'nerdy-seo'); ?>
                                                 </button>
                                                 <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%sitename%">
-                                                    <span class="dashicons dashicons-plus-alt2"></span> <?php _e('Site Title', 'nerdy-seo'); ?>
+                                                    <span class="dashicons dashicons-plus-alt2"></span> <?php esc_html_e('Site Title', 'nerdy-seo'); ?>
                                                 </button>
-                                                <a href="#" class="nerdy-seo-show-all-vars"><?php _e('View all tags →', 'nerdy-seo'); ?></a>
+                                                <a href="#" class="nerdy-seo-show-all-vars"><?php esc_html_e('View all tags →', 'nerdy-seo'); ?></a>
                                             </div>
                                             <div class="nerdy-seo-all-variables" style="display: none;">
-                                                <p><strong><?php _e('Click to insert:', 'nerdy-seo'); ?></strong></p>
+                                                <p><strong><?php esc_html_e('Click to insert:', 'nerdy-seo'); ?></strong></p>
                                                 <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%title%">%title%</button>
                                                 <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%sitename%">%sitename%</button>
                                                 <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%sitedesc%">%sitedesc%</button>
@@ -419,7 +419,7 @@ class Nerdy_SEO_Admin {
 
                             <!-- Google Search Preview for Default Title -->
                             <div class="nerdy-seo-search-preview">
-                                <h4><?php _e('Preview', 'nerdy-seo'); ?></h4>
+                                <h4><?php esc_html_e('Preview', 'nerdy-seo'); ?></h4>
                                 <div class="nerdy-seo-serp-preview">
                                     <div class="nerdy-seo-serp-favicon">
                                         <?php if (has_site_icon()): ?>
@@ -429,19 +429,19 @@ class Nerdy_SEO_Admin {
                                         <?php endif; ?>
                                     </div>
                                     <div class="nerdy-seo-serp-content">
-                                        <div class="nerdy-seo-serp-site"><?php echo esc_html(parse_url(home_url(), PHP_URL_HOST)); ?></div>
+                                        <div class="nerdy-seo-serp-site"><?php echo esc_html(wp_parse_url(home_url(), PHP_URL_HOST)); ?></div>
                                         <div class="nerdy-seo-serp-title" data-template="<?php echo esc_attr($default_title_format); ?>">
                                             <?php
                                             $preview_default_title = str_replace(
                                                 array('%title%', '%sitename%', '%sitedesc%', '%separator%', '%excerpt%', '%author%', '%date%', '%year%', '%month%', '%day%', '%categories%', '%tags%'),
-                                                array('Sample Page Title', get_bloginfo('name'), get_bloginfo('description'), $separator, 'Sample excerpt', 'Author Name', date('F j, Y'), date('Y'), date('F'), date('j'), 'Category 1, Category 2', 'Tag 1, Tag 2'),
+                                                array('Sample Page Title', get_bloginfo('name'), get_bloginfo('description'), $separator, 'Sample excerpt', 'Author Name', gmdate('F j, Y'), gmdate('Y'), gmdate('F'), gmdate('j'), 'Category 1, Category 2', 'Tag 1, Tag 2'),
                                                 $default_title_format
                                             );
                                             echo esc_html($preview_default_title);
                                             ?>
                                         </div>
                                         <div class="nerdy-seo-serp-description" data-template="">
-                                            <?php _e('This is how your page titles will appear in search results when using the default format.', 'nerdy-seo'); ?>
+                                            <?php esc_html_e('This is how your page titles will appear in search results when using the default format.', 'nerdy-seo'); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -480,7 +480,7 @@ class Nerdy_SEO_Admin {
                                         <?php echo esc_html($post_type->labels->name); ?>
                                         <span class="nerdy-seo-post-type-slug">(<?php echo esc_html($slug); ?>)</span>
                                     </h2>
-                                    <label class="nerdy-seo-toggle" title="<?php _e('Show in Search Results', 'nerdy-seo'); ?>">
+                                    <label class="nerdy-seo-toggle" title="<?php esc_html_e('Show in Search Results', 'nerdy-seo'); ?>">
                                         <input
                                             type="checkbox"
                                             name="nerdy_seo_pt_<?php echo esc_attr($slug); ?>_noindex"
@@ -494,7 +494,7 @@ class Nerdy_SEO_Admin {
                                 <table class="form-table">
                                     <tr>
                                         <th scope="row">
-                                            <label><?php _e('Title Template', 'nerdy-seo'); ?></label>
+                                            <label><?php esc_html_e('Title Template', 'nerdy-seo'); ?></label>
                                         </th>
                                         <td>
                                             <div class="nerdy-seo-variable-field-wrapper">
@@ -507,18 +507,18 @@ class Nerdy_SEO_Admin {
                                                 />
                                                 <div class="nerdy-seo-variable-buttons">
                                                     <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%title%">
-                                                        <span class="dashicons dashicons-plus-alt2"></span> <?php _e('Post Title', 'nerdy-seo'); ?>
+                                                        <span class="dashicons dashicons-plus-alt2"></span> <?php esc_html_e('Post Title', 'nerdy-seo'); ?>
                                                     </button>
                                                     <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%separator%">
-                                                        <span class="dashicons dashicons-plus-alt2"></span> <?php _e('Separator', 'nerdy-seo'); ?>
+                                                        <span class="dashicons dashicons-plus-alt2"></span> <?php esc_html_e('Separator', 'nerdy-seo'); ?>
                                                     </button>
                                                     <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%sitename%">
-                                                        <span class="dashicons dashicons-plus-alt2"></span> <?php _e('Site Title', 'nerdy-seo'); ?>
+                                                        <span class="dashicons dashicons-plus-alt2"></span> <?php esc_html_e('Site Title', 'nerdy-seo'); ?>
                                                     </button>
-                                                    <a href="#" class="nerdy-seo-show-all-vars"><?php _e('View all tags →', 'nerdy-seo'); ?></a>
+                                                    <a href="#" class="nerdy-seo-show-all-vars"><?php esc_html_e('View all tags →', 'nerdy-seo'); ?></a>
                                                 </div>
                                                 <div class="nerdy-seo-all-variables" style="display: none;">
-                                                    <p><strong><?php _e('Click to insert:', 'nerdy-seo'); ?></strong></p>
+                                                    <p><strong><?php esc_html_e('Click to insert:', 'nerdy-seo'); ?></strong></p>
                                                     <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%title%">%title%</button>
                                                     <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%sitename%">%sitename%</button>
                                                     <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%sitedesc%">%sitedesc%</button>
@@ -537,7 +537,7 @@ class Nerdy_SEO_Admin {
                                     </tr>
                                     <tr>
                                         <th scope="row">
-                                            <label><?php _e('Meta Description Template', 'nerdy-seo'); ?></label>
+                                            <label><?php esc_html_e('Meta Description Template', 'nerdy-seo'); ?></label>
                                         </th>
                                         <td>
                                             <div class="nerdy-seo-variable-field-wrapper">
@@ -549,15 +549,15 @@ class Nerdy_SEO_Admin {
                                                 ><?php echo esc_textarea($desc_format); ?></textarea>
                                                 <div class="nerdy-seo-variable-buttons">
                                                     <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%excerpt%">
-                                                        <span class="dashicons dashicons-plus-alt2"></span> <?php _e('Post Excerpt', 'nerdy-seo'); ?>
+                                                        <span class="dashicons dashicons-plus-alt2"></span> <?php esc_html_e('Post Excerpt', 'nerdy-seo'); ?>
                                                     </button>
                                                     <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%title%">
-                                                        <span class="dashicons dashicons-plus-alt2"></span> <?php _e('Post Title', 'nerdy-seo'); ?>
+                                                        <span class="dashicons dashicons-plus-alt2"></span> <?php esc_html_e('Post Title', 'nerdy-seo'); ?>
                                                     </button>
-                                                    <a href="#" class="nerdy-seo-show-all-vars"><?php _e('View all tags →', 'nerdy-seo'); ?></a>
+                                                    <a href="#" class="nerdy-seo-show-all-vars"><?php esc_html_e('View all tags →', 'nerdy-seo'); ?></a>
                                                 </div>
                                                 <div class="nerdy-seo-all-variables" style="display: none;">
-                                                    <p><strong><?php _e('Click to insert:', 'nerdy-seo'); ?></strong></p>
+                                                    <p><strong><?php esc_html_e('Click to insert:', 'nerdy-seo'); ?></strong></p>
                                                     <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%title%">%title%</button>
                                                     <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%sitename%">%sitename%</button>
                                                     <button type="button" class="button button-small nerdy-seo-insert-var" data-var="%sitedesc%">%sitedesc%</button>
@@ -578,7 +578,7 @@ class Nerdy_SEO_Admin {
 
                                 <!-- Google Search Preview -->
                                 <div class="nerdy-seo-search-preview">
-                                    <h4><?php _e('Preview', 'nerdy-seo'); ?></h4>
+                                    <h4><?php esc_html_e('Preview', 'nerdy-seo'); ?></h4>
                                     <div class="nerdy-seo-serp-preview">
                                         <div class="nerdy-seo-serp-favicon">
                                             <?php if (has_site_icon()): ?>
@@ -588,7 +588,7 @@ class Nerdy_SEO_Admin {
                                             <?php endif; ?>
                                         </div>
                                         <div class="nerdy-seo-serp-content">
-                                            <div class="nerdy-seo-serp-site"><?php echo esc_html(parse_url(home_url(), PHP_URL_HOST)); ?></div>
+                                            <div class="nerdy-seo-serp-site"><?php echo esc_html(wp_parse_url(home_url(), PHP_URL_HOST)); ?></div>
                                             <div class="nerdy-seo-serp-title" data-template="<?php echo esc_attr($title_format); ?>">
                                                 <?php echo esc_html($this->preview_template($title_format, $post_type)); ?>
                                             </div>
@@ -607,12 +607,12 @@ class Nerdy_SEO_Admin {
                     <!-- Social Tab -->
                     <div class="nerdy-seo-tab-content" data-tab="social">
                         <div class="nerdy-seo-settings-card">
-                            <h2><?php _e('Open Graph (Facebook)', 'nerdy-seo'); ?></h2>
-                            <p class="description"><?php _e('Control how your content appears when shared on Facebook, LinkedIn, and other platforms.', 'nerdy-seo'); ?></p>
+                            <h2><?php esc_html_e('Open Graph (Facebook)', 'nerdy-seo'); ?></h2>
+                            <p class="description"><?php esc_html_e('Control how your content appears when shared on Facebook, LinkedIn, and other platforms.', 'nerdy-seo'); ?></p>
 
                             <table class="form-table">
                                 <tr>
-                                    <th scope="row"><?php _e('Enable Open Graph', 'nerdy-seo'); ?></th>
+                                    <th scope="row"><?php esc_html_e('Enable Open Graph', 'nerdy-seo'); ?></th>
                                     <td>
                                         <label class="nerdy-seo-toggle">
                                             <input
@@ -623,19 +623,19 @@ class Nerdy_SEO_Admin {
                                             />
                                             <span class="nerdy-seo-toggle-slider"></span>
                                         </label>
-                                        <p class="description"><?php _e('Add Open Graph meta tags to your pages.', 'nerdy-seo'); ?></p>
+                                        <p class="description"><?php esc_html_e('Add Open Graph meta tags to your pages.', 'nerdy-seo'); ?></p>
                                     </td>
                                 </tr>
                             </table>
                         </div>
 
                         <div class="nerdy-seo-settings-card">
-                            <h2><?php _e('Twitter Cards', 'nerdy-seo'); ?></h2>
-                            <p class="description"><?php _e('Optimize how your content appears when shared on Twitter.', 'nerdy-seo'); ?></p>
+                            <h2><?php esc_html_e('Twitter Cards', 'nerdy-seo'); ?></h2>
+                            <p class="description"><?php esc_html_e('Optimize how your content appears when shared on Twitter.', 'nerdy-seo'); ?></p>
 
                             <table class="form-table">
                                 <tr>
-                                    <th scope="row"><?php _e('Enable Twitter Cards', 'nerdy-seo'); ?></th>
+                                    <th scope="row"><?php esc_html_e('Enable Twitter Cards', 'nerdy-seo'); ?></th>
                                     <td>
                                         <label class="nerdy-seo-toggle">
                                             <input
@@ -646,12 +646,12 @@ class Nerdy_SEO_Admin {
                                             />
                                             <span class="nerdy-seo-toggle-slider"></span>
                                         </label>
-                                        <p class="description"><?php _e('Add Twitter Card meta tags to your pages.', 'nerdy-seo'); ?></p>
+                                        <p class="description"><?php esc_html_e('Add Twitter Card meta tags to your pages.', 'nerdy-seo'); ?></p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_twitter_site"><?php _e('Twitter Username', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_twitter_site"><?php esc_html_e('Twitter Username', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <input
@@ -662,20 +662,20 @@ class Nerdy_SEO_Admin {
                                             class="regular-text"
                                             placeholder="@yourusername"
                                         />
-                                        <p class="description"><?php _e('Your Twitter username (include the @ symbol).', 'nerdy-seo'); ?></p>
+                                        <p class="description"><?php esc_html_e('Your Twitter username (include the @ symbol).', 'nerdy-seo'); ?></p>
                                     </td>
                                 </tr>
                             </table>
                         </div>
 
                         <div class="nerdy-seo-settings-card">
-                            <h2><?php _e('Default Social Image', 'nerdy-seo'); ?></h2>
-                            <p class="description"><?php _e('Fallback image for social sharing when no featured image is set.', 'nerdy-seo'); ?></p>
+                            <h2><?php esc_html_e('Default Social Image', 'nerdy-seo'); ?></h2>
+                            <p class="description"><?php esc_html_e('Fallback image for social sharing when no featured image is set.', 'nerdy-seo'); ?></p>
 
                             <table class="form-table">
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_default_og_image"><?php _e('Image URL', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_default_og_image"><?php esc_html_e('Image URL', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <div class="nerdy-seo-image-upload">
@@ -691,7 +691,7 @@ class Nerdy_SEO_Admin {
                                                 class="button nerdy-seo-upload-btn"
                                                 data-target="nerdy_seo_default_og_image"
                                             >
-                                                <?php _e('Choose Image', 'nerdy-seo'); ?>
+                                                <?php esc_html_e('Choose Image', 'nerdy-seo'); ?>
                                             </button>
                                         </div>
                                         <?php if ($default_og_image): ?>
@@ -699,7 +699,7 @@ class Nerdy_SEO_Admin {
                                                 <img src="<?php echo esc_url($default_og_image); ?>" alt="" />
                                             </div>
                                         <?php endif; ?>
-                                        <p class="description"><?php _e('Recommended size: 1200x630 pixels. This will be used when no featured image is available.', 'nerdy-seo'); ?></p>
+                                        <p class="description"><?php esc_html_e('Recommended size: 1200x630 pixels. This will be used when no featured image is available.', 'nerdy-seo'); ?></p>
                                     </td>
                                 </tr>
                             </table>
@@ -709,12 +709,12 @@ class Nerdy_SEO_Admin {
                     <!-- Schema Tab -->
                     <div class="nerdy-seo-tab-content" data-tab="schema">
                         <div class="nerdy-seo-settings-card">
-                            <h2><?php _e('Schema Markup (Structured Data)', 'nerdy-seo'); ?></h2>
-                            <p class="description"><?php _e('Schema markup helps search engines understand your content better, leading to rich snippets in search results.', 'nerdy-seo'); ?></p>
+                            <h2><?php esc_html_e('Schema Markup (Structured Data)', 'nerdy-seo'); ?></h2>
+                            <p class="description"><?php esc_html_e('Schema markup helps search engines understand your content better, leading to rich snippets in search results.', 'nerdy-seo'); ?></p>
 
                             <table class="form-table">
                                 <tr>
-                                    <th scope="row"><?php _e('Enable Schema Markup', 'nerdy-seo'); ?></th>
+                                    <th scope="row"><?php esc_html_e('Enable Schema Markup', 'nerdy-seo'); ?></th>
                                     <td>
                                         <label class="nerdy-seo-toggle">
                                             <input
@@ -725,20 +725,20 @@ class Nerdy_SEO_Admin {
                                             />
                                             <span class="nerdy-seo-toggle-slider"></span>
                                         </label>
-                                        <p class="description"><?php _e('Automatically add JSON-LD structured data to your pages.', 'nerdy-seo'); ?></p>
+                                        <p class="description"><?php esc_html_e('Automatically add JSON-LD structured data to your pages.', 'nerdy-seo'); ?></p>
                                     </td>
                                 </tr>
                             </table>
                         </div>
 
                         <div class="nerdy-seo-settings-card">
-                            <h2><?php _e('Global Schema Templates', 'nerdy-seo'); ?></h2>
-                            <p class="description"><?php _e('Add schema markup that appears on every page of your site. Enter valid JSON-LD format.', 'nerdy-seo'); ?></p>
+                            <h2><?php esc_html_e('Global Schema Templates', 'nerdy-seo'); ?></h2>
+                            <p class="description"><?php esc_html_e('Add schema markup that appears on every page of your site. Enter valid JSON-LD format.', 'nerdy-seo'); ?></p>
 
                             <table class="form-table">
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_global_schema"><?php _e('Global Schema JSON', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_global_schema"><?php esc_html_e('Global Schema JSON', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <textarea
@@ -762,12 +762,12 @@ class Nerdy_SEO_Admin {
                                             style="font-family: 'Courier New', monospace; font-size: 13px;"
                                         ><?php echo esc_textarea($global_schema); ?></textarea>
                                         <p class="description">
-                                            <strong><?php _e('Important:', 'nerdy-seo'); ?></strong> <?php _e('This schema will be added to EVERY page on your site. Make sure it\'s valid JSON format. Do not include the outer @context or @graph wrapper - just the object itself.', 'nerdy-seo'); ?>
+                                            <strong><?php esc_html_e('Important:', 'nerdy-seo'); ?></strong> <?php esc_html_e('This schema will be added to EVERY page on your site. Make sure it\'s valid JSON format. Do not include the outer @context or @graph wrapper - just the object itself.', 'nerdy-seo'); ?>
                                             <br><br>
-                                            <strong><?php _e('Example:', 'nerdy-seo'); ?></strong> Product schema, Organization schema, or any other schema type you want globally.
+                                            <strong><?php esc_html_e('Example:', 'nerdy-seo'); ?></strong> Product schema, Organization schema, or any other schema type you want globally.
                                             <br><br>
-                                            <a href="https://schema.org/" target="_blank"><?php _e('View all schema types at schema.org', 'nerdy-seo'); ?></a> |
-                                            <a href="https://validator.schema.org/" target="_blank"><?php _e('Validate your schema', 'nerdy-seo'); ?></a>
+                                            <a href="https://schema.org/" target="_blank"><?php esc_html_e('View all schema types at schema.org', 'nerdy-seo'); ?></a> |
+                                            <a href="https://validator.schema.org/" target="_blank"><?php esc_html_e('Validate your schema', 'nerdy-seo'); ?></a>
                                         </p>
                                     </td>
                                 </tr>
@@ -775,15 +775,15 @@ class Nerdy_SEO_Admin {
                         </div>
 
                         <div class="nerdy-seo-info-box">
-                            <h3><?php _e('Available Per-Page Schema Types', 'nerdy-seo'); ?></h3>
-                            <p><?php _e('You can also add custom schema to individual pages via the post editor:', 'nerdy-seo'); ?></p>
+                            <h3><?php esc_html_e('Available Per-Page Schema Types', 'nerdy-seo'); ?></h3>
+                            <p><?php esc_html_e('You can also add custom schema to individual pages via the post editor:', 'nerdy-seo'); ?></p>
                             <ul class="nerdy-seo-feature-list">
-                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Article (automatic for blog posts)', 'nerdy-seo'); ?></li>
-                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('FAQ Schema (add via post editor)', 'nerdy-seo'); ?></li>
-                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Review Schema (add via post editor)', 'nerdy-seo'); ?></li>
-                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Product Schema (WooCommerce integration)', 'nerdy-seo'); ?></li>
-                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Local Business Schema', 'nerdy-seo'); ?></li>
-                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Breadcrumb Schema', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e('Article (automatic for blog posts)', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e('FAQ Schema (add via post editor)', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e('Review Schema (add via post editor)', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e('Product Schema (WooCommerce integration)', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e('Local Business Schema', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e('Breadcrumb Schema', 'nerdy-seo'); ?></li>
                             </ul>
                         </div>
                     </div>
@@ -793,14 +793,14 @@ class Nerdy_SEO_Admin {
                         <div class="nerdy-seo-settings-card">
                             <h2>
                                 <span class="dashicons dashicons-superhero"></span>
-                                <?php _e('AI Configuration', 'nerdy-seo'); ?>
+                                <?php esc_html_e('AI Configuration', 'nerdy-seo'); ?>
                             </h2>
-                            <p class="description"><?php _e('Configure AI providers to help generate SEO-optimized content like titles and meta descriptions.', 'nerdy-seo'); ?></p>
+                            <p class="description"><?php esc_html_e('Configure AI providers to help generate SEO-optimized content like titles and meta descriptions.', 'nerdy-seo'); ?></p>
 
                             <table class="form-table">
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_ai_provider"><?php _e('AI Provider', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_ai_provider"><?php esc_html_e('AI Provider', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <select
@@ -808,11 +808,11 @@ class Nerdy_SEO_Admin {
                                             name="nerdy_seo_ai_provider"
                                             class="regular-text"
                                         >
-                                            <option value="openai" <?php selected($ai_provider, 'openai'); ?>><?php _e('OpenAI', 'nerdy-seo'); ?></option>
-                                            <option value="gemini" <?php selected($ai_provider, 'gemini'); ?>><?php _e('Google Gemini', 'nerdy-seo'); ?></option>
+                                            <option value="openai" <?php selected($ai_provider, 'openai'); ?>><?php esc_html_e('OpenAI', 'nerdy-seo'); ?></option>
+                                            <option value="gemini" <?php selected($ai_provider, 'gemini'); ?>><?php esc_html_e('Google Gemini', 'nerdy-seo'); ?></option>
                                         </select>
                                         <p class="description">
-                                            <?php _e('Choose which AI provider to use for content generation.', 'nerdy-seo'); ?>
+                                            <?php esc_html_e('Choose which AI provider to use for content generation.', 'nerdy-seo'); ?>
                                         </p>
                                     </td>
                                 </tr>
@@ -823,17 +823,17 @@ class Nerdy_SEO_Admin {
                         <div class="nerdy-seo-settings-card nerdy-seo-ai-provider-settings" data-provider="openai" style="<?php echo $ai_provider === 'openai' ? '' : 'display:none;'; ?>">
                             <h2>
                                 <span class="dashicons dashicons-admin-settings"></span>
-                                <?php _e('OpenAI Settings', 'nerdy-seo'); ?>
+                                <?php esc_html_e('OpenAI Settings', 'nerdy-seo'); ?>
                             </h2>
                             <p class="description">
-                                <?php _e('Configure your OpenAI API settings.', 'nerdy-seo'); ?>
-                                <a href="https://platform.openai.com/api-keys" target="_blank"><?php _e('Get your API key', 'nerdy-seo'); ?></a>
+                                <?php esc_html_e('Configure your OpenAI API settings.', 'nerdy-seo'); ?>
+                                <a href="https://platform.openai.com/api-keys" target="_blank"><?php esc_html_e('Get your API key', 'nerdy-seo'); ?></a>
                             </p>
 
                             <table class="form-table">
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_ai_openai_key"><?php _e('API Key', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_ai_openai_key"><?php esc_html_e('API Key', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <input
@@ -846,13 +846,13 @@ class Nerdy_SEO_Admin {
                                             autocomplete="off"
                                         />
                                         <p class="description">
-                                            <?php _e('Your OpenAI API key. Keep this secure and never share it publicly.', 'nerdy-seo'); ?>
+                                            <?php esc_html_e('Your OpenAI API key. Keep this secure and never share it publicly.', 'nerdy-seo'); ?>
                                         </p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_ai_openai_model"><?php _e('Model', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_ai_openai_model"><?php esc_html_e('Model', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <select
@@ -867,9 +867,9 @@ class Nerdy_SEO_Admin {
                                             <option value="gpt-3.5-turbo" <?php selected($ai_openai_model, 'gpt-3.5-turbo'); ?>>GPT-3.5 Turbo</option>
                                         </select>
                                         <p class="description">
-                                            <?php _e('Choose the OpenAI model to use. GPT-4o is recommended for best results.', 'nerdy-seo'); ?>
+                                            <?php esc_html_e('Choose the OpenAI model to use. GPT-4o is recommended for best results.', 'nerdy-seo'); ?>
                                             <br>
-                                            <strong><?php _e('Cost per 1M tokens (input/output):', 'nerdy-seo'); ?></strong>
+                                            <strong><?php esc_html_e('Cost per 1M tokens (input/output):', 'nerdy-seo'); ?></strong>
                                             GPT-4o: $2.50/$10.00 | GPT-4o Mini: $0.15/$0.60 | GPT-4 Turbo: $10/$30
                                         </p>
                                     </td>
@@ -881,17 +881,17 @@ class Nerdy_SEO_Admin {
                         <div class="nerdy-seo-settings-card nerdy-seo-ai-provider-settings" data-provider="gemini" style="<?php echo $ai_provider === 'gemini' ? '' : 'display:none;'; ?>">
                             <h2>
                                 <span class="dashicons dashicons-admin-settings"></span>
-                                <?php _e('Google Gemini Settings', 'nerdy-seo'); ?>
+                                <?php esc_html_e('Google Gemini Settings', 'nerdy-seo'); ?>
                             </h2>
                             <p class="description">
-                                <?php _e('Configure your Google Gemini API settings.', 'nerdy-seo'); ?>
-                                <a href="https://makersuite.google.com/app/apikey" target="_blank"><?php _e('Get your API key', 'nerdy-seo'); ?></a>
+                                <?php esc_html_e('Configure your Google Gemini API settings.', 'nerdy-seo'); ?>
+                                <a href="https://makersuite.google.com/app/apikey" target="_blank"><?php esc_html_e('Get your API key', 'nerdy-seo'); ?></a>
                             </p>
 
                             <table class="form-table">
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_ai_gemini_key"><?php _e('API Key', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_ai_gemini_key"><?php esc_html_e('API Key', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <input
@@ -904,13 +904,13 @@ class Nerdy_SEO_Admin {
                                             autocomplete="off"
                                         />
                                         <p class="description">
-                                            <?php _e('Your Google Gemini API key. Keep this secure and never share it publicly.', 'nerdy-seo'); ?>
+                                            <?php esc_html_e('Your Google Gemini API key. Keep this secure and never share it publicly.', 'nerdy-seo'); ?>
                                         </p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_ai_gemini_model"><?php _e('Model', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_ai_gemini_model"><?php esc_html_e('Model', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <select
@@ -924,9 +924,9 @@ class Nerdy_SEO_Admin {
                                             <option value="gemini-1.5-flash-8b" <?php selected($ai_gemini_model, 'gemini-1.5-flash-8b'); ?>>Gemini 1.5 Flash-8B</option>
                                         </select>
                                         <p class="description">
-                                            <?php _e('Choose the Gemini model to use. Gemini 2.0 Flash is recommended for best results.', 'nerdy-seo'); ?>
+                                            <?php esc_html_e('Choose the Gemini model to use. Gemini 2.0 Flash is recommended for best results.', 'nerdy-seo'); ?>
                                             <br>
-                                            <strong><?php _e('Cost per 1M tokens (input/output):', 'nerdy-seo'); ?></strong>
+                                            <strong><?php esc_html_e('Cost per 1M tokens (input/output):', 'nerdy-seo'); ?></strong>
                                             2.0 Flash: Free during experimental | 1.5 Pro: $1.25/$5.00 | 1.5 Flash: $0.075/$0.30 | 1.5 Flash-8B: $0.0375/$0.15
                                         </p>
                                     </td>
@@ -935,13 +935,13 @@ class Nerdy_SEO_Admin {
                         </div>
 
                         <div class="nerdy-seo-info-box">
-                            <h3><?php _e('AI Features', 'nerdy-seo'); ?></h3>
-                            <p><?php _e('Once configured, AI will be available for:', 'nerdy-seo'); ?></p>
+                            <h3><?php esc_html_e('AI Features', 'nerdy-seo'); ?></h3>
+                            <p><?php esc_html_e('Once configured, AI will be available for:', 'nerdy-seo'); ?></p>
                             <ul class="nerdy-seo-feature-list">
-                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Generate SEO-optimized titles', 'nerdy-seo'); ?></li>
-                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Generate meta descriptions', 'nerdy-seo'); ?></li>
-                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Suggest content improvements', 'nerdy-seo'); ?></li>
-                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Keyword recommendations', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e('Generate SEO-optimized titles', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e('Generate meta descriptions', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e('Suggest content improvements', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e('Keyword recommendations', 'nerdy-seo'); ?></li>
                             </ul>
                         </div>
                     </div>
@@ -949,17 +949,17 @@ class Nerdy_SEO_Admin {
                     <!-- Sitemap Tab -->
                     <div class="nerdy-seo-tab-content" data-tab="sitemap">
                         <div class="nerdy-seo-settings-card">
-                            <h2><?php _e('XML Sitemap', 'nerdy-seo'); ?></h2>
+                            <h2><?php esc_html_e('XML Sitemap', 'nerdy-seo'); ?></h2>
                             <?php
                             $sitemap_url = home_url('/sitemap.xml');
                             $last_generated = get_option('nerdy_seo_sitemap_last_generated');
                             $sitemap_enabled = get_option('nerdy_seo_sitemap_enabled', true);
                             ?>
-                            <p class="description"><?php _e('Your XML sitemap helps search engines discover and index all your content. It is automatically regenerated daily and when content changes.', 'nerdy-seo'); ?></p>
+                            <p class="description"><?php esc_html_e('Your XML sitemap helps search engines discover and index all your content. It is automatically regenerated daily and when content changes.', 'nerdy-seo'); ?></p>
 
                             <table class="form-table">
                                 <tr>
-                                    <th scope="row"><?php _e('Enable XML Sitemaps', 'nerdy-seo'); ?></th>
+                                    <th scope="row"><?php esc_html_e('Enable XML Sitemaps', 'nerdy-seo'); ?></th>
                                     <td>
                                         <label class="nerdy-seo-toggle">
                                             <input
@@ -970,11 +970,11 @@ class Nerdy_SEO_Admin {
                                             />
                                             <span class="nerdy-seo-toggle-slider"></span>
                                         </label>
-                                        <p class="description"><?php _e('Enable or disable XML sitemap generation.', 'nerdy-seo'); ?></p>
+                                        <p class="description"><?php esc_html_e('Enable or disable XML sitemap generation.', 'nerdy-seo'); ?></p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><?php _e('Sitemap URL', 'nerdy-seo'); ?></th>
+                                    <th scope="row"><?php esc_html_e('Sitemap URL', 'nerdy-seo'); ?></th>
                                     <td>
                                         <a href="<?php echo esc_url($sitemap_url); ?>" target="_blank" class="button">
                                             <span class="dashicons dashicons-external" style="margin-top: 3px;"></span>
@@ -983,31 +983,31 @@ class Nerdy_SEO_Admin {
                                         <?php if ($last_generated): ?>
                                             <p class="description"><?php printf(__('Last generated: %s', 'nerdy-seo'), $last_generated); ?></p>
                                         <?php else: ?>
-                                            <p class="description"><?php _e('Sitemap has not been generated yet. Click "Generate Now" below.', 'nerdy-seo'); ?></p>
+                                            <p class="description"><?php esc_html_e('Sitemap has not been generated yet. Click "Generate Now" below.', 'nerdy-seo'); ?></p>
                                         <?php endif; ?>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><?php _e('Manual Generation', 'nerdy-seo'); ?></th>
+                                    <th scope="row"><?php esc_html_e('Manual Generation', 'nerdy-seo'); ?></th>
                                     <td>
                                         <button type="button" class="button button-primary" id="nerdy-seo-generate-sitemap">
                                             <span class="dashicons dashicons-update" style="margin-top: 3px;"></span>
-                                            <?php _e('Generate Now', 'nerdy-seo'); ?>
+                                            <?php esc_html_e('Generate Now', 'nerdy-seo'); ?>
                                         </button>
                                         <span id="nerdy-seo-sitemap-status" style="margin-left: 10px;"></span>
-                                        <p class="description"><?php _e('Manually regenerate all sitemap files. This happens automatically daily and when content changes.', 'nerdy-seo'); ?></p>
+                                        <p class="description"><?php esc_html_e('Manually regenerate all sitemap files. This happens automatically daily and when content changes.', 'nerdy-seo'); ?></p>
                                     </td>
                                 </tr>
                             </table>
                         </div>
 
                         <div class="nerdy-seo-settings-card">
-                            <h2><?php _e('Content Exclusions', 'nerdy-seo'); ?></h2>
-                            <p class="description"><?php _e('Choose which post types and taxonomies to exclude from your sitemap.', 'nerdy-seo'); ?></p>
+                            <h2><?php esc_html_e('Content Exclusions', 'nerdy-seo'); ?></h2>
+                            <p class="description"><?php esc_html_e('Choose which post types and taxonomies to exclude from your sitemap.', 'nerdy-seo'); ?></p>
 
                             <table class="form-table">
                                 <tr>
-                                    <th scope="row"><?php _e('Exclude Post Types', 'nerdy-seo'); ?></th>
+                                    <th scope="row"><?php esc_html_e('Exclude Post Types', 'nerdy-seo'); ?></th>
                                     <td>
                                         <?php
                                         $excluded_types = get_option('nerdy_seo_sitemap_exclude_post_types', array());
@@ -1030,11 +1030,11 @@ class Nerdy_SEO_Admin {
                                         }
                                         echo '</fieldset>';
                                         ?>
-                                        <p class="description"><?php _e('Select post types to exclude from the sitemap.', 'nerdy-seo'); ?></p>
+                                        <p class="description"><?php esc_html_e('Select post types to exclude from the sitemap.', 'nerdy-seo'); ?></p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><?php _e('Exclude Taxonomies', 'nerdy-seo'); ?></th>
+                                    <th scope="row"><?php esc_html_e('Exclude Taxonomies', 'nerdy-seo'); ?></th>
                                     <td>
                                         <?php
                                         $excluded_taxonomies = get_option('nerdy_seo_sitemap_exclude_taxonomies', array());
@@ -1057,21 +1057,21 @@ class Nerdy_SEO_Admin {
                                         }
                                         echo '</fieldset>';
                                         ?>
-                                        <p class="description"><?php _e('Select taxonomies to exclude from the sitemap.', 'nerdy-seo'); ?></p>
+                                        <p class="description"><?php esc_html_e('Select taxonomies to exclude from the sitemap.', 'nerdy-seo'); ?></p>
                                     </td>
                                 </tr>
                             </table>
                         </div>
 
                         <div class="nerdy-seo-info-box">
-                            <h3><?php _e('Per-Post Sitemap Settings', 'nerdy-seo'); ?></h3>
-                            <p><?php _e('You can also control sitemap settings for individual posts and pages:', 'nerdy-seo'); ?></p>
+                            <h3><?php esc_html_e('Per-Post Sitemap Settings', 'nerdy-seo'); ?></h3>
+                            <p><?php esc_html_e('You can also control sitemap settings for individual posts and pages:', 'nerdy-seo'); ?></p>
                             <ul class="nerdy-seo-feature-list">
-                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Exclude specific posts from sitemap', 'nerdy-seo'); ?></li>
-                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Set custom priority (0.0 to 1.0)', 'nerdy-seo'); ?></li>
-                                <li><span class="dashicons dashicons-yes-alt"></span> <?php _e('Set change frequency', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e('Exclude specific posts from sitemap', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e('Set custom priority (0.0 to 1.0)', 'nerdy-seo'); ?></li>
+                                <li><span class="dashicons dashicons-yes-alt"></span> <?php esc_html_e('Set change frequency', 'nerdy-seo'); ?></li>
                             </ul>
-                            <p class="description"><?php _e('Look for the "Sitemap Settings" meta box in the post editor sidebar.', 'nerdy-seo'); ?></p>
+                            <p class="description"><?php esc_html_e('Look for the "Sitemap Settings" meta box in the post editor sidebar.', 'nerdy-seo'); ?></p>
                         </div>
 
                         <script>
@@ -1108,28 +1108,28 @@ class Nerdy_SEO_Admin {
                     <!-- Advanced Tab -->
                     <div class="nerdy-seo-tab-content" data-tab="advanced">
                         <div class="nerdy-seo-settings-card">
-                            <h2><?php _e('Plugin Information', 'nerdy-seo'); ?></h2>
+                            <h2><?php esc_html_e('Plugin Information', 'nerdy-seo'); ?></h2>
 
                             <table class="form-table">
                                 <tr>
-                                    <th scope="row"><?php _e('Version', 'nerdy-seo'); ?></th>
+                                    <th scope="row"><?php esc_html_e('Version', 'nerdy-seo'); ?></th>
                                     <td><code><?php echo NERDY_SEO_VERSION; ?></code></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><?php _e('Plugin Directory', 'nerdy-seo'); ?></th>
+                                    <th scope="row"><?php esc_html_e('Plugin Directory', 'nerdy-seo'); ?></th>
                                     <td><code><?php echo NERDY_SEO_PLUGIN_DIR; ?></code></td>
                                 </tr>
                             </table>
                         </div>
 
                         <div class="nerdy-seo-info-box info">
-                            <h3><?php _e('Need Help?', 'nerdy-seo'); ?></h3>
-                            <p><?php _e('Check out the other admin pages for more features:', 'nerdy-seo'); ?></p>
+                            <h3><?php esc_html_e('Need Help?', 'nerdy-seo'); ?></h3>
+                            <p><?php esc_html_e('Check out the other admin pages for more features:', 'nerdy-seo'); ?></p>
                             <ul>
-                                <li><a href="<?php echo admin_url('admin.php?page=nerdy-seo-redirects'); ?>"><?php _e('Manage 301/302 Redirects', 'nerdy-seo'); ?></a></li>
-                                <li><a href="<?php echo admin_url('admin.php?page=nerdy-seo-404s'); ?>"><?php _e('View 404 Error Logs', 'nerdy-seo'); ?></a></li>
-                                <li><a href="<?php echo admin_url('admin.php?page=nerdy-seo-images'); ?>"><?php _e('Bulk Edit Image Alt Text', 'nerdy-seo'); ?></a></li>
-                                <li><a href="<?php echo admin_url('admin.php?page=nerdy-seo-migration'); ?>"><?php _e('Migrate from AIOSEO', 'nerdy-seo'); ?></a></li>
+                                <li><a href="<?php echo admin_url('admin.php?page=nerdy-seo-redirects'); ?>"><?php esc_html_e('Manage 301/302 Redirects', 'nerdy-seo'); ?></a></li>
+                                <li><a href="<?php echo admin_url('admin.php?page=nerdy-seo-404s'); ?>"><?php esc_html_e('View 404 Error Logs', 'nerdy-seo'); ?></a></li>
+                                <li><a href="<?php echo admin_url('admin.php?page=nerdy-seo-images'); ?>"><?php esc_html_e('Bulk Edit Image Alt Text', 'nerdy-seo'); ?></a></li>
+                                <li><a href="<?php echo admin_url('admin.php?page=nerdy-seo-migration'); ?>"><?php esc_html_e('Migrate from AIOSEO', 'nerdy-seo'); ?></a></li>
                             </ul>
                         </div>
                     </div>
@@ -1167,9 +1167,9 @@ class Nerdy_SEO_Admin {
                 }
 
                 mediaUploader = wp.media({
-                    title: '<?php _e('Choose Default Social Image', 'nerdy-seo'); ?>',
+                    title: '<?php esc_html_e('Choose Default Social Image', 'nerdy-seo'); ?>',
                     button: {
-                        text: '<?php _e('Use this image', 'nerdy-seo'); ?>'
+                        text: '<?php esc_html_e('Use this image', 'nerdy-seo'); ?>'
                     },
                     multiple: false
                 });
@@ -1220,7 +1220,7 @@ class Nerdy_SEO_Admin {
                 e.preventDefault();
                 var $allVars = $(this).closest('.nerdy-seo-variable-field-wrapper').find('.nerdy-seo-all-variables');
                 $allVars.slideToggle();
-                $(this).text($allVars.is(':visible') ? '<?php _e('Hide tags', 'nerdy-seo'); ?>' : '<?php _e('View all tags →', 'nerdy-seo'); ?>');
+                $(this).text($allVars.is(':visible') ? '<?php esc_html_e('Hide tags', 'nerdy-seo'); ?>' : '<?php esc_html_e('View all tags →', 'nerdy-seo'); ?>');
             });
 
             // Update preview on input
@@ -1266,10 +1266,10 @@ class Nerdy_SEO_Admin {
                     .replace(/%separator%/g, '<?php echo esc_js(get_option('nerdy_seo_separator', '|')); ?>')
                     .replace(/%excerpt%/g, 'This is a sample excerpt from the post that gives a brief overview of the content.')
                     .replace(/%author%/g, 'Author Name')
-                    .replace(/%date%/g, '<?php echo date('F j, Y'); ?>')
-                    .replace(/%year%/g, '<?php echo date('Y'); ?>')
-                    .replace(/%month%/g, '<?php echo date('F'); ?>')
-                    .replace(/%day%/g, '<?php echo date('j'); ?>')
+                    .replace(/%date%/g, '<?php echo gmdate('F j, Y'); ?>')
+                    .replace(/%year%/g, '<?php echo gmdate('Y'); ?>')
+                    .replace(/%month%/g, '<?php echo gmdate('F'); ?>')
+                    .replace(/%day%/g, '<?php echo gmdate('j'); ?>')
                     .replace(/%categories%/g, 'Category 1, Category 2')
                     .replace(/%tags%/g, 'Tag 1, Tag 2');
 
@@ -1295,10 +1295,10 @@ class Nerdy_SEO_Admin {
             '%separator%' => '|',
             '%excerpt%' => 'This is a sample excerpt from the post that gives a brief overview of the content.',
             '%author%' => 'Author Name',
-            '%date%' => date('F j, Y'),
-            '%year%' => date('Y'),
-            '%month%' => date('F'),
-            '%day%' => date('j'),
+            '%date%' => gmdate('F j, Y'),
+            '%year%' => gmdate('Y'),
+            '%month%' => gmdate('F'),
+            '%day%' => gmdate('j'),
             '%categories%' => 'Category 1, Category 2',
             '%tags%' => 'Tag 1, Tag 2',
         );

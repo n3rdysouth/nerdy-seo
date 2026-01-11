@@ -244,7 +244,7 @@ class Nerdy_SEO_Sitemap {
             if ($count->publish > 0) {
                 $xml .= "\t<sitemap>\n";
                 $xml .= "\t\t<loc>" . home_url("/sitemap-{$post_type}.xml") . "</loc>\n";
-                $xml .= "\t\t<lastmod>" . date('c') . "</lastmod>\n";
+                $xml .= "\t\t<lastmod>" . gmdate('c') . "</lastmod>\n";
                 $xml .= "\t</sitemap>\n";
             }
         }
@@ -262,7 +262,7 @@ class Nerdy_SEO_Sitemap {
             if (!empty($terms) && !is_wp_error($terms)) {
                 $xml .= "\t<sitemap>\n";
                 $xml .= "\t\t<loc>" . home_url("/sitemap-tax-{$taxonomy}.xml") . "</loc>\n";
-                $xml .= "\t\t<lastmod>" . date('c') . "</lastmod>\n";
+                $xml .= "\t\t<lastmod>" . gmdate('c') . "</lastmod>\n";
                 $xml .= "\t</sitemap>\n";
             }
         }
@@ -347,7 +347,7 @@ class Nerdy_SEO_Sitemap {
             foreach ($terms as $term) {
                 $xml .= "\t<url>\n";
                 $xml .= "\t\t<loc>" . esc_url(get_term_link($term)) . "</loc>\n";
-                $xml .= "\t\t<lastmod>" . date('c') . "</lastmod>\n";
+                $xml .= "\t\t<lastmod>" . gmdate('c') . "</lastmod>\n";
                 $xml .= "\t\t<priority>0.6</priority>\n";
                 $xml .= "\t\t<changefreq>weekly</changefreq>\n";
                 $xml .= "\t</url>\n";
@@ -476,13 +476,13 @@ class Nerdy_SEO_Sitemap {
                     value="1"
                     <?php checked($exclude, '1'); ?>
                 />
-                <?php _e('Exclude from XML Sitemap', 'nerdy-seo'); ?>
+                <?php esc_html_e('Exclude from XML Sitemap', 'nerdy-seo'); ?>
             </label>
         </div>
 
         <div class="nerdy-seo-sitemap-field">
             <label for="nerdy_seo_sitemap_priority">
-                <?php _e('Priority', 'nerdy-seo'); ?>
+                <?php esc_html_e('Priority', 'nerdy-seo'); ?>
             </label>
             <input
                 type="number"
@@ -492,24 +492,24 @@ class Nerdy_SEO_Sitemap {
                 min="0"
                 max="1"
                 step="0.1"
-                placeholder="<?php _e('Auto', 'nerdy-seo'); ?>"
+                placeholder="<?php esc_html_e('Auto', 'nerdy-seo'); ?>"
             />
-            <p class="description"><?php _e('0.0 to 1.0 (leave blank for automatic)', 'nerdy-seo'); ?></p>
+            <p class="description"><?php esc_html_e('0.0 to 1.0 (leave blank for automatic)', 'nerdy-seo'); ?></p>
         </div>
 
         <div class="nerdy-seo-sitemap-field">
             <label for="nerdy_seo_sitemap_changefreq">
-                <?php _e('Change Frequency', 'nerdy-seo'); ?>
+                <?php esc_html_e('Change Frequency', 'nerdy-seo'); ?>
             </label>
             <select id="nerdy_seo_sitemap_changefreq" name="nerdy_seo_sitemap_changefreq">
-                <option value=""><?php _e('Auto', 'nerdy-seo'); ?></option>
-                <option value="always" <?php selected($changefreq, 'always'); ?>><?php _e('Always', 'nerdy-seo'); ?></option>
-                <option value="hourly" <?php selected($changefreq, 'hourly'); ?>><?php _e('Hourly', 'nerdy-seo'); ?></option>
-                <option value="daily" <?php selected($changefreq, 'daily'); ?>><?php _e('Daily', 'nerdy-seo'); ?></option>
-                <option value="weekly" <?php selected($changefreq, 'weekly'); ?>><?php _e('Weekly', 'nerdy-seo'); ?></option>
-                <option value="monthly" <?php selected($changefreq, 'monthly'); ?>><?php _e('Monthly', 'nerdy-seo'); ?></option>
-                <option value="yearly" <?php selected($changefreq, 'yearly'); ?>><?php _e('Yearly', 'nerdy-seo'); ?></option>
-                <option value="never" <?php selected($changefreq, 'never'); ?>><?php _e('Never', 'nerdy-seo'); ?></option>
+                <option value=""><?php esc_html_e('Auto', 'nerdy-seo'); ?></option>
+                <option value="always" <?php selected($changefreq, 'always'); ?>><?php esc_html_e('Always', 'nerdy-seo'); ?></option>
+                <option value="hourly" <?php selected($changefreq, 'hourly'); ?>><?php esc_html_e('Hourly', 'nerdy-seo'); ?></option>
+                <option value="daily" <?php selected($changefreq, 'daily'); ?>><?php esc_html_e('Daily', 'nerdy-seo'); ?></option>
+                <option value="weekly" <?php selected($changefreq, 'weekly'); ?>><?php esc_html_e('Weekly', 'nerdy-seo'); ?></option>
+                <option value="monthly" <?php selected($changefreq, 'monthly'); ?>><?php esc_html_e('Monthly', 'nerdy-seo'); ?></option>
+                <option value="yearly" <?php selected($changefreq, 'yearly'); ?>><?php esc_html_e('Yearly', 'nerdy-seo'); ?></option>
+                <option value="never" <?php selected($changefreq, 'never'); ?>><?php esc_html_e('Never', 'nerdy-seo'); ?></option>
             </select>
         </div>
         <?php
@@ -616,7 +616,7 @@ class Nerdy_SEO_Sitemap {
         ?>
         <label>
             <input type="checkbox" name="nerdy_seo_sitemap_enabled" value="1" <?php checked($value, true); ?> />
-            <?php _e('Enable XML sitemaps', 'nerdy-seo'); ?>
+            <?php esc_html_e('Enable XML sitemaps', 'nerdy-seo'); ?>
         </label>
         <?php
     }
@@ -654,10 +654,10 @@ class Nerdy_SEO_Sitemap {
         ?>
         <button type="button" class="button button-primary" id="nerdy-seo-generate-sitemap">
             <span class="dashicons dashicons-update" style="margin-top: 3px;"></span>
-            <?php _e('Generate Now', 'nerdy-seo'); ?>
+            <?php esc_html_e('Generate Now', 'nerdy-seo'); ?>
         </button>
         <span id="nerdy-seo-sitemap-status" style="margin-left: 10px;"></span>
-        <p class="description"><?php _e('Manually regenerate all sitemap files. This happens automatically daily and when content changes.', 'nerdy-seo'); ?></p>
+        <p class="description"><?php esc_html_e('Manually regenerate all sitemap files. This happens automatically daily and when content changes.', 'nerdy-seo'); ?></p>
 
         <script>
         jQuery(document).ready(function($) {

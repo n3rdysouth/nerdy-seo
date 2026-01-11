@@ -101,13 +101,13 @@ class Nerdy_SEO_Image_SEO {
 
         ?>
         <div class="wrap">
-            <h1><?php _e('Image SEO Manager', 'nerdy-seo'); ?></h1>
+            <h1><?php esc_html_e('Image SEO Manager', 'nerdy-seo'); ?></h1>
 
             <div class="nerdy-seo-image-stats" style="background: white; padding: 20px; margin: 20px 0; border-left: 4px solid #2271b1;">
-                <h3><?php _e('Statistics', 'nerdy-seo'); ?></h3>
+                <h3><?php esc_html_e('Statistics', 'nerdy-seo'); ?></h3>
                 <p>
-                    <strong><?php _e('Total Images:', 'nerdy-seo'); ?></strong> <?php echo number_format($total_images); ?><br>
-                    <strong><?php _e('Missing Alt Text:', 'nerdy-seo'); ?></strong>
+                    <strong><?php esc_html_e('Total Images:', 'nerdy-seo'); ?></strong> <?php echo number_format($total_images); ?><br>
+                    <strong><?php esc_html_e('Missing Alt Text:', 'nerdy-seo'); ?></strong>
                     <span style="color: <?php echo $missing_alt > 0 ? '#dc3232' : '#46b450'; ?>;">
                         <?php echo number_format($missing_alt); ?>
                         (<?php echo $total_images > 0 ? round(($missing_alt / $total_images) * 100, 1) : 0; ?>%)
@@ -119,16 +119,16 @@ class Nerdy_SEO_Image_SEO {
                 <div class="tablenav top">
                     <div class="alignleft actions">
                         <select id="nerdy-seo-image-filter">
-                            <option value="all" <?php selected($filter, 'all'); ?>><?php _e('All Images', 'nerdy-seo'); ?></option>
-                            <option value="missing" <?php selected($filter, 'missing'); ?>><?php _e('Missing Alt Text', 'nerdy-seo'); ?></option>
+                            <option value="all" <?php selected($filter, 'all'); ?>><?php esc_html_e('All Images', 'nerdy-seo'); ?></option>
+                            <option value="missing" <?php selected($filter, 'missing'); ?>><?php esc_html_e('Missing Alt Text', 'nerdy-seo'); ?></option>
                         </select>
                         <button type="button" class="button" id="nerdy-seo-apply-filter">
-                            <?php _e('Filter', 'nerdy-seo'); ?>
+                            <?php esc_html_e('Filter', 'nerdy-seo'); ?>
                         </button>
                     </div>
                     <div class="alignleft actions">
                         <button type="button" class="button button-primary" id="nerdy-seo-bulk-generate">
-                            <?php _e('Auto-Generate All Missing Alt Text', 'nerdy-seo'); ?>
+                            <?php esc_html_e('Auto-Generate All Missing Alt Text', 'nerdy-seo'); ?>
                         </button>
                     </div>
                 </div>
@@ -136,17 +136,17 @@ class Nerdy_SEO_Image_SEO {
 
             <?php if (empty($images)): ?>
                 <div class="notice notice-info">
-                    <p><?php _e('No images found matching your filter.', 'nerdy-seo'); ?></p>
+                    <p><?php esc_html_e('No images found matching your filter.', 'nerdy-seo'); ?></p>
                 </div>
             <?php else: ?>
                 <table class="wp-list-table widefat fixed striped">
                     <thead>
                         <tr>
-                            <th style="width: 80px;"><?php _e('Image', 'nerdy-seo'); ?></th>
-                            <th style="width: 25%;"><?php _e('Filename', 'nerdy-seo'); ?></th>
-                            <th style="width: 35%;"><?php _e('Alt Text', 'nerdy-seo'); ?></th>
-                            <th style="width: 20%;"><?php _e('Title', 'nerdy-seo'); ?></th>
-                            <th style="width: 15%;"><?php _e('Actions', 'nerdy-seo'); ?></th>
+                            <th style="width: 80px;"><?php esc_html_e('Image', 'nerdy-seo'); ?></th>
+                            <th style="width: 25%;"><?php esc_html_e('Filename', 'nerdy-seo'); ?></th>
+                            <th style="width: 35%;"><?php esc_html_e('Alt Text', 'nerdy-seo'); ?></th>
+                            <th style="width: 20%;"><?php esc_html_e('Title', 'nerdy-seo'); ?></th>
+                            <th style="width: 15%;"><?php esc_html_e('Actions', 'nerdy-seo'); ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -166,7 +166,7 @@ class Nerdy_SEO_Image_SEO {
                                     <strong><?php echo esc_html(basename($image->guid)); ?></strong>
                                     <br>
                                     <small style="color: #666;">
-                                        <?php echo esc_html(date('Y-m-d', strtotime($image->post_date))); ?>
+                                        <?php echo esc_html(gmdate('Y-m-d', strtotime($image->post_date))); ?>
                                     </small>
                                 </td>
                                 <td>
@@ -175,11 +175,11 @@ class Nerdy_SEO_Image_SEO {
                                         class="nerdy-seo-alt-input regular-text"
                                         data-id="<?php echo esc_attr($image->ID); ?>"
                                         value="<?php echo esc_attr($alt_text); ?>"
-                                        placeholder="<?php _e('Enter alt text...', 'nerdy-seo'); ?>"
+                                        placeholder="<?php esc_html_e('Enter alt text...', 'nerdy-seo'); ?>"
                                     />
                                     <?php if (!$has_alt): ?>
                                         <span class="nerdy-seo-missing-indicator" style="color: #dc3232; font-size: 12px;">
-                                            ⚠ <?php _e('Missing', 'nerdy-seo'); ?>
+                                            ⚠ <?php esc_html_e('Missing', 'nerdy-seo'); ?>
                                         </span>
                                     <?php endif; ?>
                                 </td>
@@ -192,16 +192,16 @@ class Nerdy_SEO_Image_SEO {
                                         class="button button-small nerdy-seo-save-alt"
                                         data-id="<?php echo esc_attr($image->ID); ?>"
                                     >
-                                        <?php _e('Save', 'nerdy-seo'); ?>
+                                        <?php esc_html_e('Save', 'nerdy-seo'); ?>
                                     </button>
                                     <button
                                         type="button"
                                         class="button button-small nerdy-seo-auto-generate"
                                         data-id="<?php echo esc_attr($image->ID); ?>"
                                         data-filename="<?php echo esc_attr(basename($image->guid)); ?>"
-                                        title="<?php _e('Auto-generate from filename', 'nerdy-seo'); ?>"
+                                        title="<?php esc_html_e('Auto-generate from filename', 'nerdy-seo'); ?>"
                                     >
-                                        <?php _e('Auto', 'nerdy-seo'); ?>
+                                        <?php esc_html_e('Auto', 'nerdy-seo'); ?>
                                     </button>
                                 </td>
                             </tr>
@@ -211,7 +211,7 @@ class Nerdy_SEO_Image_SEO {
 
                 <?php if (count($images) >= 50): ?>
                     <p style="margin-top: 20px;">
-                        <em><?php _e('Showing first 50 images. Use filters to find specific images.', 'nerdy-seo'); ?></em>
+                        <em><?php esc_html_e('Showing first 50 images. Use filters to find specific images.', 'nerdy-seo'); ?></em>
                     </p>
                 <?php endif; ?>
             <?php endif; ?>
@@ -253,7 +253,7 @@ class Nerdy_SEO_Image_SEO {
                 var alt = $input.val();
                 var $row = $btn.closest('tr');
 
-                $btn.prop('disabled', true).text('<?php _e('Saving...', 'nerdy-seo'); ?>');
+                $btn.prop('disabled', true).text('<?php esc_html_e('Saving...', 'nerdy-seo'); ?>');
 
                 $.post(ajaxurl, {
                     action: 'nerdy_seo_save_image_alt',
@@ -270,7 +270,7 @@ class Nerdy_SEO_Image_SEO {
                     } else {
                         $btn.after('<span class="nerdy-seo-save-status error">✗</span>');
                     }
-                    $btn.prop('disabled', false).text('<?php _e('Save', 'nerdy-seo'); ?>');
+                    $btn.prop('disabled', false).text('<?php esc_html_e('Save', 'nerdy-seo'); ?>');
                 });
             });
 
@@ -293,18 +293,18 @@ class Nerdy_SEO_Image_SEO {
                         $input.val(response.data.alt);
                         $btn.closest('tr').find('.nerdy-seo-missing-indicator').remove();
                     }
-                    $btn.prop('disabled', false).text('<?php _e('Auto', 'nerdy-seo'); ?>');
+                    $btn.prop('disabled', false).text('<?php esc_html_e('Auto', 'nerdy-seo'); ?>');
                 });
             });
 
             // Bulk auto-generate
             $('#nerdy-seo-bulk-generate').on('click', function() {
-                if (!confirm('<?php _e('This will auto-generate alt text for all images missing it. Continue?', 'nerdy-seo'); ?>')) {
+                if (!confirm('<?php esc_html_e('This will auto-generate alt text for all images missing it. Continue?', 'nerdy-seo'); ?>')) {
                     return;
                 }
 
                 var $btn = $(this);
-                $btn.prop('disabled', true).text('<?php _e('Processing...', 'nerdy-seo'); ?>');
+                $btn.prop('disabled', true).text('<?php esc_html_e('Processing...', 'nerdy-seo'); ?>');
 
                 $.post(ajaxurl, {
                     action: 'nerdy_seo_bulk_generate_alt',
@@ -314,8 +314,8 @@ class Nerdy_SEO_Image_SEO {
                         alert(response.data.message);
                         location.reload();
                     } else {
-                        alert('<?php _e('Error processing images', 'nerdy-seo'); ?>');
-                        $btn.prop('disabled', false).text('<?php _e('Auto-Generate All Missing Alt Text', 'nerdy-seo'); ?>');
+                        alert('<?php esc_html_e('Error processing images', 'nerdy-seo'); ?>');
+                        $btn.prop('disabled', false).text('<?php esc_html_e('Auto-Generate All Missing Alt Text', 'nerdy-seo'); ?>');
                     }
                 });
             });
@@ -516,7 +516,7 @@ class Nerdy_SEO_Image_SEO {
         ?>
         <label>
             <input type="checkbox" name="nerdy_seo_auto_generate_alt" value="1" <?php checked($enabled, true); ?> />
-            <?php _e('Automatically generate alt text from filename when uploading images', 'nerdy-seo'); ?>
+            <?php esc_html_e('Automatically generate alt text from filename when uploading images', 'nerdy-seo'); ?>
         </label>
         <?php
     }

@@ -159,10 +159,10 @@ class Nerdy_SEO_Meta_Box {
 
             <div class="nerdy-seo-field">
                 <label for="nerdy_seo_title">
-                    <?php _e('SEO Title', 'nerdy-seo'); ?>
+                    <?php esc_html_e('SEO Title', 'nerdy-seo'); ?>
                     <button type="button" class="button button-small button-primary nerdy-seo-ai-meta-btn" data-post-id="<?php echo esc_attr($post->ID); ?>" data-field="title" style="float: right; margin-top: -2px;">
                         <span class="dashicons dashicons-superhero" style="font-size: 13px; width: 13px; height: 13px; margin-top: 5px;"></span>
-                        <?php _e('Generate with AI', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Generate with AI', 'nerdy-seo'); ?>
                     </button>
                 </label>
                 <input
@@ -186,16 +186,16 @@ class Nerdy_SEO_Meta_Box {
 
             <div class="nerdy-seo-field">
                 <label for="nerdy_seo_description">
-                    <?php _e('Meta Description', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Meta Description', 'nerdy-seo'); ?>
                     <button type="button" class="button button-small button-primary nerdy-seo-ai-meta-btn" data-post-id="<?php echo esc_attr($post->ID); ?>" data-field="description" style="float: right; margin-top: -2px;">
                         <span class="dashicons dashicons-superhero" style="font-size: 13px; width: 13px; height: 13px; margin-top: 5px;"></span>
-                        <?php _e('Generate with AI', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Generate with AI', 'nerdy-seo'); ?>
                     </button>
                 </label>
                 <textarea
                     id="nerdy_seo_description"
                     name="nerdy_seo_description"
-                    placeholder="<?php _e('Brief description of this page for search engines...', 'nerdy-seo'); ?>"
+                    placeholder="<?php esc_html_e('Brief description of this page for search engines...', 'nerdy-seo'); ?>"
                 ><?php echo esc_textarea($meta_description); ?></textarea>
                 <div class="nerdy-seo-counter" data-field="description">
                     <?php
@@ -211,23 +211,23 @@ class Nerdy_SEO_Meta_Box {
 
             <div class="nerdy-seo-field">
                 <label for="nerdy_seo_focus_keyword">
-                    <?php _e('Focus Keyword', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Focus Keyword', 'nerdy-seo'); ?>
                 </label>
                 <input
                     type="text"
                     id="nerdy_seo_focus_keyword"
                     name="nerdy_seo_focus_keyword"
                     value="<?php echo esc_attr($focus_keyword); ?>"
-                    placeholder="<?php _e('e.g., wordpress seo', 'nerdy-seo'); ?>"
+                    placeholder="<?php esc_html_e('e.g., wordpress seo', 'nerdy-seo'); ?>"
                 />
                 <p class="nerdy-seo-field-description">
-                    <?php _e('Primary keyword you want this page to rank for', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Primary keyword you want this page to rank for', 'nerdy-seo'); ?>
                 </p>
             </div>
 
             <div class="nerdy-seo-field">
                 <label for="nerdy_seo_canonical">
-                    <?php _e('Canonical URL', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Canonical URL', 'nerdy-seo'); ?>
                 </label>
                 <input
                     type="text"
@@ -237,7 +237,7 @@ class Nerdy_SEO_Meta_Box {
                     placeholder="<?php echo esc_url(get_permalink($post->ID)); ?>"
                 />
                 <p class="nerdy-seo-field-description">
-                    <?php _e('Override the canonical URL for this page (leave blank for default)', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Override the canonical URL for this page (leave blank for default)', 'nerdy-seo'); ?>
                 </p>
             </div>
 
@@ -249,7 +249,7 @@ class Nerdy_SEO_Meta_Box {
                         value="1"
                         <?php checked($noindex, '1'); ?>
                     />
-                    <?php _e('No Index (tell search engines not to index this page)', 'nerdy-seo'); ?>
+                    <?php esc_html_e('No Index (tell search engines not to index this page)', 'nerdy-seo'); ?>
                 </label>
                 <br>
                 <label>
@@ -259,12 +259,12 @@ class Nerdy_SEO_Meta_Box {
                         value="1"
                         <?php checked($nofollow, '1'); ?>
                     />
-                    <?php _e('No Follow (tell search engines not to follow links on this page)', 'nerdy-seo'); ?>
+                    <?php esc_html_e('No Follow (tell search engines not to follow links on this page)', 'nerdy-seo'); ?>
                 </label>
             </div>
 
             <div class="nerdy-seo-preview">
-                <h4><?php _e('Google Search Preview', 'nerdy-seo'); ?></h4>
+                <h4><?php esc_html_e('Google Search Preview', 'nerdy-seo'); ?></h4>
                 <div class="nerdy-seo-preview-title" id="preview-title">
                     <?php echo esc_html($meta_title ?: $post->post_title); ?>
                 </div>

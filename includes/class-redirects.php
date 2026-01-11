@@ -242,74 +242,74 @@ class Nerdy_SEO_Redirects {
 
         ?>
         <div class="wrap">
-            <h1><?php _e('Redirect Manager', 'nerdy-seo'); ?></h1>
+            <h1><?php esc_html_e('Redirect Manager', 'nerdy-seo'); ?></h1>
 
             <div class="nerdy-seo-redirect-actions" style="margin: 20px 0;">
                 <button type="button" class="button button-primary" id="nerdy-seo-add-redirect-btn">
-                    <?php _e('Add New Redirect', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Add New Redirect', 'nerdy-seo'); ?>
                 </button>
                 <button type="button" class="button" id="nerdy-seo-import-redirects-btn">
-                    <?php _e('Import Redirects', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Import Redirects', 'nerdy-seo'); ?>
                 </button>
                 <button type="button" class="button" id="nerdy-seo-export-redirects-btn">
-                    <?php _e('Export Redirects', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Export Redirects', 'nerdy-seo'); ?>
                 </button>
             </div>
 
             <!-- Add/Edit Redirect Form -->
             <div id="nerdy-seo-redirect-form" style="display: none; background: white; padding: 20px; border: 1px solid #ccc; margin-bottom: 20px;">
-                <h2><?php _e('Add Redirect', 'nerdy-seo'); ?></h2>
+                <h2><?php esc_html_e('Add Redirect', 'nerdy-seo'); ?></h2>
 
                 <table class="form-table">
                     <tr>
-                        <th><label for="redirect-source"><?php _e('Source URL', 'nerdy-seo'); ?></label></th>
+                        <th><label for="redirect-source"><?php esc_html_e('Source URL', 'nerdy-seo'); ?></label></th>
                         <td>
                             <input type="text" id="redirect-source" class="regular-text" placeholder="/old-page" />
-                            <p class="description"><?php _e('The URL you want to redirect FROM (relative path, e.g., /old-page)', 'nerdy-seo'); ?></p>
+                            <p class="description"><?php esc_html_e('The URL you want to redirect FROM (relative path, e.g., /old-page)', 'nerdy-seo'); ?></p>
                         </td>
                     </tr>
                     <tr>
-                        <th><label for="redirect-target"><?php _e('Target URL', 'nerdy-seo'); ?></label></th>
+                        <th><label for="redirect-target"><?php esc_html_e('Target URL', 'nerdy-seo'); ?></label></th>
                         <td>
                             <input type="text" id="redirect-target" class="regular-text" placeholder="/new-page or https://example.com/page" />
-                            <p class="description"><?php _e('The URL you want to redirect TO (can be relative or absolute)', 'nerdy-seo'); ?></p>
+                            <p class="description"><?php esc_html_e('The URL you want to redirect TO (can be relative or absolute)', 'nerdy-seo'); ?></p>
                         </td>
                     </tr>
                     <tr>
-                        <th><label for="redirect-type"><?php _e('Redirect Type', 'nerdy-seo'); ?></label></th>
+                        <th><label for="redirect-type"><?php esc_html_e('Redirect Type', 'nerdy-seo'); ?></label></th>
                         <td>
                             <select id="redirect-type">
-                                <option value="301"><?php _e('301 (Permanent)', 'nerdy-seo'); ?></option>
-                                <option value="302"><?php _e('302 (Temporary)', 'nerdy-seo'); ?></option>
+                                <option value="301"><?php esc_html_e('301 (Permanent)', 'nerdy-seo'); ?></option>
+                                <option value="302"><?php esc_html_e('302 (Temporary)', 'nerdy-seo'); ?></option>
                             </select>
-                            <p class="description"><?php _e('Use 301 for permanent redirects (most common). Use 302 for temporary redirects.', 'nerdy-seo'); ?></p>
+                            <p class="description"><?php esc_html_e('Use 301 for permanent redirects (most common). Use 302 for temporary redirects.', 'nerdy-seo'); ?></p>
                         </td>
                     </tr>
                 </table>
 
                 <p>
                     <button type="button" class="button button-primary" id="nerdy-seo-save-redirect">
-                        <?php _e('Save Redirect', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Save Redirect', 'nerdy-seo'); ?>
                     </button>
                     <button type="button" class="button" id="nerdy-seo-cancel-redirect">
-                        <?php _e('Cancel', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Cancel', 'nerdy-seo'); ?>
                     </button>
                 </p>
             </div>
 
             <!-- Import Form -->
             <div id="nerdy-seo-import-form" style="display: none; background: white; padding: 20px; border: 1px solid #ccc; margin-bottom: 20px;">
-                <h2><?php _e('Import Redirects', 'nerdy-seo'); ?></h2>
-                <p><?php _e('Upload a CSV file with columns: source_url, target_url, redirect_type (optional)', 'nerdy-seo'); ?></p>
+                <h2><?php esc_html_e('Import Redirects', 'nerdy-seo'); ?></h2>
+                <p><?php esc_html_e('Upload a CSV file with columns: source_url, target_url, redirect_type (optional)', 'nerdy-seo'); ?></p>
 
                 <input type="file" id="nerdy-seo-import-file" accept=".csv" />
 
                 <p>
                     <button type="button" class="button button-primary" id="nerdy-seo-do-import">
-                        <?php _e('Import', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Import', 'nerdy-seo'); ?>
                     </button>
                     <button type="button" class="button" id="nerdy-seo-cancel-import">
-                        <?php _e('Cancel', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Cancel', 'nerdy-seo'); ?>
                     </button>
                 </p>
             </div>
@@ -318,19 +318,19 @@ class Nerdy_SEO_Redirects {
             <table class="wp-list-table widefat fixed striped">
                 <thead>
                     <tr>
-                        <th style="width: 30%;"><?php _e('Source URL', 'nerdy-seo'); ?></th>
-                        <th style="width: 30%;"><?php _e('Target URL', 'nerdy-seo'); ?></th>
-                        <th style="width: 10%;"><?php _e('Type', 'nerdy-seo'); ?></th>
-                        <th style="width: 10%;"><?php _e('Hits', 'nerdy-seo'); ?></th>
-                        <th style="width: 10%;"><?php _e('Status', 'nerdy-seo'); ?></th>
-                        <th style="width: 10%;"><?php _e('Actions', 'nerdy-seo'); ?></th>
+                        <th style="width: 30%;"><?php esc_html_e('Source URL', 'nerdy-seo'); ?></th>
+                        <th style="width: 30%;"><?php esc_html_e('Target URL', 'nerdy-seo'); ?></th>
+                        <th style="width: 10%;"><?php esc_html_e('Type', 'nerdy-seo'); ?></th>
+                        <th style="width: 10%;"><?php esc_html_e('Hits', 'nerdy-seo'); ?></th>
+                        <th style="width: 10%;"><?php esc_html_e('Status', 'nerdy-seo'); ?></th>
+                        <th style="width: 10%;"><?php esc_html_e('Actions', 'nerdy-seo'); ?></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if (empty($redirects)): ?>
                         <tr>
                             <td colspan="6" style="text-align: center; padding: 20px;">
-                                <?php _e('No redirects found. Click "Add New Redirect" to create one.', 'nerdy-seo'); ?>
+                                <?php esc_html_e('No redirects found. Click "Add New Redirect" to create one.', 'nerdy-seo'); ?>
                             </td>
                         </tr>
                     <?php else: ?>
@@ -359,7 +359,7 @@ class Nerdy_SEO_Redirects {
                                         data-id="<?php echo esc_attr($redirect->id); ?>"
                                         style="color: #dc3232;"
                                     >
-                                        <?php _e('Delete', 'nerdy-seo'); ?>
+                                        <?php esc_html_e('Delete', 'nerdy-seo'); ?>
                                     </button>
                                 </td>
                             </tr>
@@ -397,7 +397,7 @@ class Nerdy_SEO_Redirects {
                 var type = $('#redirect-type').val();
 
                 if (!source || !target) {
-                    alert('<?php _e('Please fill in both source and target URLs', 'nerdy-seo'); ?>');
+                    alert('<?php esc_html_e('Please fill in both source and target URLs', 'nerdy-seo'); ?>');
                     return;
                 }
 
@@ -411,14 +411,14 @@ class Nerdy_SEO_Redirects {
                     if (response.success) {
                         location.reload();
                     } else {
-                        alert(response.data.message || '<?php _e('Error adding redirect', 'nerdy-seo'); ?>');
+                        alert(response.data.message || '<?php esc_html_e('Error adding redirect', 'nerdy-seo'); ?>');
                     }
                 });
             });
 
             // Delete redirect
             $('.nerdy-seo-delete-redirect').on('click', function() {
-                if (!confirm('<?php _e('Are you sure you want to delete this redirect?', 'nerdy-seo'); ?>')) {
+                if (!confirm('<?php esc_html_e('Are you sure you want to delete this redirect?', 'nerdy-seo'); ?>')) {
                     return;
                 }
 
@@ -471,7 +471,7 @@ class Nerdy_SEO_Redirects {
                 var file = $('#nerdy-seo-import-file')[0].files[0];
 
                 if (!file) {
-                    alert('<?php _e('Please select a CSV file', 'nerdy-seo'); ?>');
+                    alert('<?php esc_html_e('Please select a CSV file', 'nerdy-seo'); ?>');
                     return;
                 }
 
@@ -488,7 +488,7 @@ class Nerdy_SEO_Redirects {
                             alert(response.data.message);
                             location.reload();
                         } else {
-                            alert(response.data.message || '<?php _e('Error importing redirects', 'nerdy-seo'); ?>');
+                            alert(response.data.message || '<?php esc_html_e('Error importing redirects', 'nerdy-seo'); ?>');
                         }
                     });
                 };
@@ -510,14 +510,14 @@ class Nerdy_SEO_Redirects {
 
         ?>
         <div class="wrap">
-            <h1><?php _e('404 Error Tracking', 'nerdy-seo'); ?></h1>
+            <h1><?php esc_html_e('404 Error Tracking', 'nerdy-seo'); ?></h1>
 
             <div class="nerdy-seo-404-actions" style="margin: 20px 0;">
                 <button type="button" class="button" id="nerdy-seo-delete-selected-404s" disabled>
-                    <?php _e('Delete Selected', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Delete Selected', 'nerdy-seo'); ?>
                 </button>
                 <button type="button" class="button" id="nerdy-seo-clear-404s">
-                    <?php _e('Clear All 404 Logs', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Clear All 404 Logs', 'nerdy-seo'); ?>
                 </button>
             </div>
 
@@ -527,18 +527,18 @@ class Nerdy_SEO_Redirects {
                         <td class="manage-column column-cb check-column">
                             <input type="checkbox" id="nerdy-seo-select-all-404s" />
                         </td>
-                        <th style="width: 35%;"><?php _e('URL', 'nerdy-seo'); ?></th>
-                        <th style="width: 8%;"><?php _e('Hits', 'nerdy-seo'); ?></th>
-                        <th style="width: 18%;"><?php _e('Last Seen', 'nerdy-seo'); ?></th>
-                        <th style="width: 18%;"><?php _e('Referer', 'nerdy-seo'); ?></th>
-                        <th style="width: 21%;"><?php _e('Actions', 'nerdy-seo'); ?></th>
+                        <th style="width: 35%;"><?php esc_html_e('URL', 'nerdy-seo'); ?></th>
+                        <th style="width: 8%;"><?php esc_html_e('Hits', 'nerdy-seo'); ?></th>
+                        <th style="width: 18%;"><?php esc_html_e('Last Seen', 'nerdy-seo'); ?></th>
+                        <th style="width: 18%;"><?php esc_html_e('Referer', 'nerdy-seo'); ?></th>
+                        <th style="width: 21%;"><?php esc_html_e('Actions', 'nerdy-seo'); ?></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if (empty($logs)): ?>
                         <tr>
                             <td colspan="6" style="text-align: center; padding: 20px;">
-                                <?php _e('No 404 errors logged yet.', 'nerdy-seo'); ?>
+                                <?php esc_html_e('No 404 errors logged yet.', 'nerdy-seo'); ?>
                             </td>
                         </tr>
                     <?php else: ?>
@@ -563,7 +563,7 @@ class Nerdy_SEO_Redirects {
                                         class="button button-small nerdy-seo-create-redirect"
                                         data-url="<?php echo esc_attr($log->url); ?>"
                                     >
-                                        <?php _e('Create Redirect', 'nerdy-seo'); ?>
+                                        <?php esc_html_e('Create Redirect', 'nerdy-seo'); ?>
                                     </button>
                                     <button
                                         type="button"
@@ -571,7 +571,7 @@ class Nerdy_SEO_Redirects {
                                         data-id="<?php echo esc_attr($log->id); ?>"
                                         style="color: #dc3232;"
                                     >
-                                        <?php _e('Delete', 'nerdy-seo'); ?>
+                                        <?php esc_html_e('Delete', 'nerdy-seo'); ?>
                                     </button>
                                 </td>
                             </tr>
@@ -608,7 +608,7 @@ class Nerdy_SEO_Redirects {
 
                 if (ids.length === 0) return;
 
-                if (!confirm('<?php _e('Are you sure you want to delete the selected 404 logs?', 'nerdy-seo'); ?>')) {
+                if (!confirm('<?php esc_html_e('Are you sure you want to delete the selected 404 logs?', 'nerdy-seo'); ?>')) {
                     return;
                 }
 
@@ -625,7 +625,7 @@ class Nerdy_SEO_Redirects {
 
             // Delete individual 404
             $('.nerdy-seo-delete-404').on('click', function() {
-                if (!confirm('<?php _e('Are you sure you want to delete this 404 log?', 'nerdy-seo'); ?>')) {
+                if (!confirm('<?php esc_html_e('Are you sure you want to delete this 404 log?', 'nerdy-seo'); ?>')) {
                     return;
                 }
 
@@ -651,7 +651,7 @@ class Nerdy_SEO_Redirects {
 
             // Clear all 404s
             $('#nerdy-seo-clear-404s').on('click', function() {
-                if (!confirm('<?php _e('Are you sure you want to clear all 404 logs?', 'nerdy-seo'); ?>')) {
+                if (!confirm('<?php esc_html_e('Are you sure you want to clear all 404 logs?', 'nerdy-seo'); ?>')) {
                     return;
                 }
 
@@ -668,7 +668,7 @@ class Nerdy_SEO_Redirects {
             // Create redirect from 404
             $('.nerdy-seo-create-redirect').on('click', function() {
                 var url = $(this).data('url');
-                var target = prompt('<?php _e('Enter target URL for redirect:', 'nerdy-seo'); ?>');
+                var target = prompt('<?php esc_html_e('Enter target URL for redirect:', 'nerdy-seo'); ?>');
 
                 if (!target) return;
 
@@ -680,7 +680,7 @@ class Nerdy_SEO_Redirects {
                     type: '301'
                 }, function(response) {
                     if (response.success) {
-                        alert('<?php _e('Redirect created successfully!', 'nerdy-seo'); ?>');
+                        alert('<?php esc_html_e('Redirect created successfully!', 'nerdy-seo'); ?>');
                         window.location.href = '<?php echo admin_url('admin.php?page=nerdy-seo-redirects'); ?>';
                     }
                 });
@@ -827,7 +827,7 @@ class Nerdy_SEO_Redirects {
         $redirects = $wpdb->get_results("SELECT source_url, target_url, redirect_type FROM {$this->redirects_table}", ARRAY_A);
 
         header('Content-Type: text/csv');
-        header('Content-Disposition: attachment; filename="redirects-' . date('Y-m-d') . '.csv"');
+        header('Content-Disposition: attachment; filename="redirects-' . gmdate('Y-m-d') . '.csv"');
 
         $output = fopen('php://output', 'w');
         fputcsv($output, array('source_url', 'target_url', 'redirect_type'));

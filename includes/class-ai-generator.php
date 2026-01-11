@@ -331,7 +331,7 @@ class Nerdy_SEO_AI_Generator {
                 <div class="nerdy-seo-modal-header">
                     <h2>
                         <span class="dashicons dashicons-superhero"></span>
-                        <?php _e('Generate Meta Description with AI', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Generate Meta Description with AI', 'nerdy-seo'); ?>
                     </h2>
                     <button class="nerdy-seo-modal-close">&times;</button>
                 </div>
@@ -339,37 +339,37 @@ class Nerdy_SEO_AI_Generator {
                 <div class="nerdy-seo-modal-body">
                     <div class="nerdy-seo-ai-form">
                         <div class="nerdy-seo-form-field">
-                            <label for="nerdy-seo-ai-tone"><?php _e('Tone', 'nerdy-seo'); ?></label>
+                            <label for="nerdy-seo-ai-tone"><?php esc_html_e('Tone', 'nerdy-seo'); ?></label>
                             <select id="nerdy-seo-ai-tone" class="widefat">
-                                <option value="professional"><?php _e('Professional', 'nerdy-seo'); ?></option>
-                                <option value="conversational"><?php _e('Conversational', 'nerdy-seo'); ?></option>
-                                <option value="friendly"><?php _e('Friendly', 'nerdy-seo'); ?></option>
-                                <option value="authoritative"><?php _e('Authoritative', 'nerdy-seo'); ?></option>
-                                <option value="persuasive"><?php _e('Persuasive', 'nerdy-seo'); ?></option>
-                                <option value="educational"><?php _e('Educational', 'nerdy-seo'); ?></option>
+                                <option value="professional"><?php esc_html_e('Professional', 'nerdy-seo'); ?></option>
+                                <option value="conversational"><?php esc_html_e('Conversational', 'nerdy-seo'); ?></option>
+                                <option value="friendly"><?php esc_html_e('Friendly', 'nerdy-seo'); ?></option>
+                                <option value="authoritative"><?php esc_html_e('Authoritative', 'nerdy-seo'); ?></option>
+                                <option value="persuasive"><?php esc_html_e('Persuasive', 'nerdy-seo'); ?></option>
+                                <option value="educational"><?php esc_html_e('Educational', 'nerdy-seo'); ?></option>
                             </select>
                         </div>
 
                         <div class="nerdy-seo-form-field">
-                            <label for="nerdy-seo-ai-keywords"><?php _e('Focus Keywords (Optional)', 'nerdy-seo'); ?></label>
-                            <input type="text" id="nerdy-seo-ai-keywords" class="widefat" placeholder="<?php _e('Enter keywords separated by commas', 'nerdy-seo'); ?>" />
+                            <label for="nerdy-seo-ai-keywords"><?php esc_html_e('Focus Keywords (Optional)', 'nerdy-seo'); ?></label>
+                            <input type="text" id="nerdy-seo-ai-keywords" class="widefat" placeholder="<?php esc_html_e('Enter keywords separated by commas', 'nerdy-seo'); ?>" />
                         </div>
 
                         <div class="nerdy-seo-form-actions">
                             <button type="button" class="button button-primary button-large" id="nerdy-seo-ai-generate-btn">
                                 <span class="dashicons dashicons-superhero"></span>
-                                <?php _e('Generate Suggestions', 'nerdy-seo'); ?>
+                                <?php esc_html_e('Generate Suggestions', 'nerdy-seo'); ?>
                             </button>
                         </div>
                     </div>
 
                     <div class="nerdy-seo-ai-loading" style="display: none;">
                         <div class="nerdy-seo-spinner"></div>
-                        <p><?php _e('Generating meta descriptions...', 'nerdy-seo'); ?></p>
+                        <p><?php esc_html_e('Generating meta descriptions...', 'nerdy-seo'); ?></p>
                     </div>
 
                     <div class="nerdy-seo-ai-results" style="display: none;">
-                        <h3><?php _e('Select a Meta Description', 'nerdy-seo'); ?></h3>
+                        <h3><?php esc_html_e('Select a Meta Description', 'nerdy-seo'); ?></h3>
                         <div class="nerdy-seo-suggestions-list"></div>
                     </div>
                 </div>

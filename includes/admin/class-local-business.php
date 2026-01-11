@@ -193,11 +193,11 @@ class Nerdy_SEO_Local_Business {
         <div class="wrap nerdy-seo-settings-wrap">
             <h1 class="nerdy-seo-page-title">
                 <span class="dashicons dashicons-location"></span>
-                <?php _e('Local Business Settings', 'nerdy-seo'); ?>
+                <?php esc_html_e('Local Business Settings', 'nerdy-seo'); ?>
             </h1>
 
             <div class="nerdy-seo-settings-header">
-                <p><?php _e('Set up your local business information to generate structured data that helps your business appear in local search results and Google Maps.', 'nerdy-seo'); ?></p>
+                <p><?php esc_html_e('Set up your local business information to generate structured data that helps your business appear in local search results and Google Maps.', 'nerdy-seo'); ?></p>
             </div>
 
             <form method="post" action="">
@@ -207,49 +207,49 @@ class Nerdy_SEO_Local_Business {
                     <div class="nerdy-seo-tabs-nav">
                         <button type="button" class="nerdy-seo-tab-btn active" data-tab="general">
                             <span class="dashicons dashicons-admin-home"></span>
-                            <?php _e('Business Info', 'nerdy-seo'); ?>
+                            <?php esc_html_e('Business Info', 'nerdy-seo'); ?>
                         </button>
                         <button type="button" class="nerdy-seo-tab-btn" data-tab="hours">
                             <span class="dashicons dashicons-clock"></span>
-                            <?php _e('Hours', 'nerdy-seo'); ?>
+                            <?php esc_html_e('Hours', 'nerdy-seo'); ?>
                         </button>
                         <button type="button" class="nerdy-seo-tab-btn" data-tab="location">
                             <span class="dashicons dashicons-location-alt"></span>
-                            <?php _e('Location', 'nerdy-seo'); ?>
+                            <?php esc_html_e('Location', 'nerdy-seo'); ?>
                         </button>
                         <button type="button" class="nerdy-seo-tab-btn" data-tab="social">
                             <span class="dashicons dashicons-share"></span>
-                            <?php _e('Social Profiles', 'nerdy-seo'); ?>
+                            <?php esc_html_e('Social Profiles', 'nerdy-seo'); ?>
                         </button>
                     </div>
 
                     <!-- Business Info Tab -->
                     <div class="nerdy-seo-tab-content active" data-tab="general">
                         <div class="nerdy-seo-settings-card">
-                            <h2><?php _e('Enable Local Business Schema', 'nerdy-seo'); ?></h2>
-                            <p class="description"><?php _e('Add structured data about your business to help search engines display rich results.', 'nerdy-seo'); ?></p>
+                            <h2><?php esc_html_e('Enable Local Business Schema', 'nerdy-seo'); ?></h2>
+                            <p class="description"><?php esc_html_e('Add structured data about your business to help search engines display rich results.', 'nerdy-seo'); ?></p>
 
                             <table class="form-table">
                                 <tr>
-                                    <th scope="row"><?php _e('Enable Local Business', 'nerdy-seo'); ?></th>
+                                    <th scope="row"><?php esc_html_e('Enable Local Business', 'nerdy-seo'); ?></th>
                                     <td>
                                         <label class="nerdy-seo-toggle">
                                             <input type="checkbox" name="nerdy_seo_lb_enabled" value="1" <?php checked($enabled, true); ?> />
                                             <span class="nerdy-seo-toggle-slider"></span>
                                         </label>
-                                        <p class="description"><?php _e('Enable to output LocalBusiness schema markup on your site.', 'nerdy-seo'); ?></p>
+                                        <p class="description"><?php esc_html_e('Enable to output LocalBusiness schema markup on your site.', 'nerdy-seo'); ?></p>
                                     </td>
                                 </tr>
                             </table>
                         </div>
 
                         <div class="nerdy-seo-settings-card">
-                            <h2><?php _e('Basic Information', 'nerdy-seo'); ?></h2>
+                            <h2><?php esc_html_e('Basic Information', 'nerdy-seo'); ?></h2>
 
                             <table class="form-table">
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_lb_name"><?php _e('Business Name', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_lb_name"><?php esc_html_e('Business Name', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <input
@@ -263,7 +263,7 @@ class Nerdy_SEO_Local_Business {
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_lb_type"><?php _e('Business Type', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_lb_type"><?php esc_html_e('Business Type', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <select id="nerdy_seo_lb_type" name="nerdy_seo_lb_type" class="regular-text">
@@ -273,12 +273,12 @@ class Nerdy_SEO_Local_Business {
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
-                                        <p class="description"><?php _e('Select the most specific business type that describes your business.', 'nerdy-seo'); ?></p>
+                                        <p class="description"><?php esc_html_e('Select the most specific business type that describes your business.', 'nerdy-seo'); ?></p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_lb_description"><?php _e('Description', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_lb_description"><?php esc_html_e('Description', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <textarea
@@ -291,7 +291,7 @@ class Nerdy_SEO_Local_Business {
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_lb_url"><?php _e('Website URL', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_lb_url"><?php esc_html_e('Website URL', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <input
@@ -305,7 +305,7 @@ class Nerdy_SEO_Local_Business {
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_lb_phone"><?php _e('Phone Number', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_lb_phone"><?php esc_html_e('Phone Number', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <input
@@ -320,7 +320,7 @@ class Nerdy_SEO_Local_Business {
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_lb_email"><?php _e('Email', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_lb_email"><?php esc_html_e('Email', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <input
@@ -334,7 +334,7 @@ class Nerdy_SEO_Local_Business {
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_lb_price_range"><?php _e('Price Range', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_lb_price_range"><?php esc_html_e('Price Range', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <select id="nerdy_seo_lb_price_range" name="nerdy_seo_lb_price_range">
@@ -349,12 +349,12 @@ class Nerdy_SEO_Local_Business {
                         </div>
 
                         <div class="nerdy-seo-settings-card">
-                            <h2><?php _e('Images', 'nerdy-seo'); ?></h2>
+                            <h2><?php esc_html_e('Images', 'nerdy-seo'); ?></h2>
 
                             <table class="form-table">
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_lb_logo"><?php _e('Logo', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_lb_logo"><?php esc_html_e('Logo', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <div class="nerdy-seo-image-upload">
@@ -366,7 +366,7 @@ class Nerdy_SEO_Local_Business {
                                                 class="large-text"
                                             />
                                             <button type="button" class="button nerdy-seo-upload-btn" data-target="nerdy_seo_lb_logo">
-                                                <?php _e('Choose Image', 'nerdy-seo'); ?>
+                                                <?php esc_html_e('Choose Image', 'nerdy-seo'); ?>
                                             </button>
                                         </div>
                                         <?php if ($logo): ?>
@@ -374,12 +374,12 @@ class Nerdy_SEO_Local_Business {
                                                 <img src="<?php echo esc_url($logo); ?>" alt="Logo" />
                                             </div>
                                         <?php endif; ?>
-                                        <p class="description"><?php _e('Your business logo. Square format recommended (minimum 112x112px).', 'nerdy-seo'); ?></p>
+                                        <p class="description"><?php esc_html_e('Your business logo. Square format recommended (minimum 112x112px).', 'nerdy-seo'); ?></p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_lb_image"><?php _e('Featured Image', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_lb_image"><?php esc_html_e('Featured Image', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <div class="nerdy-seo-image-upload">
@@ -391,7 +391,7 @@ class Nerdy_SEO_Local_Business {
                                                 class="large-text"
                                             />
                                             <button type="button" class="button nerdy-seo-upload-btn" data-target="nerdy_seo_lb_image">
-                                                <?php _e('Choose Image', 'nerdy-seo'); ?>
+                                                <?php esc_html_e('Choose Image', 'nerdy-seo'); ?>
                                             </button>
                                         </div>
                                         <?php if ($image): ?>
@@ -399,7 +399,7 @@ class Nerdy_SEO_Local_Business {
                                                 <img src="<?php echo esc_url($image); ?>" alt="Featured" />
                                             </div>
                                         <?php endif; ?>
-                                        <p class="description"><?php _e('A photo of your business, storefront, or location.', 'nerdy-seo'); ?></p>
+                                        <p class="description"><?php esc_html_e('A photo of your business, storefront, or location.', 'nerdy-seo'); ?></p>
                                     </td>
                                 </tr>
                             </table>
@@ -409,8 +409,8 @@ class Nerdy_SEO_Local_Business {
                     <!-- Hours Tab -->
                     <div class="nerdy-seo-tab-content" data-tab="hours">
                         <div class="nerdy-seo-settings-card">
-                            <h2><?php _e('Business Hours', 'nerdy-seo'); ?></h2>
-                            <p class="description"><?php _e('Set your business hours. Leave blank for closed days.', 'nerdy-seo'); ?></p>
+                            <h2><?php esc_html_e('Business Hours', 'nerdy-seo'); ?></h2>
+                            <p class="description"><?php esc_html_e('Set your business hours. Leave blank for closed days.', 'nerdy-seo'); ?></p>
 
                             <table class="form-table">
                                 <?php
@@ -440,7 +440,7 @@ class Nerdy_SEO_Local_Business {
                                             placeholder="9:00"
                                             style="width: 120px;"
                                         />
-                                        <span style="margin: 0 10px;"><?php _e('to', 'nerdy-seo'); ?></span>
+                                        <span style="margin: 0 10px;"><?php esc_html_e('to', 'nerdy-seo'); ?></span>
                                         <input
                                             type="time"
                                             name="nerdy_seo_lb_hours[<?php echo esc_attr($day); ?>_close]"
@@ -448,7 +448,7 @@ class Nerdy_SEO_Local_Business {
                                             placeholder="17:00"
                                             style="width: 120px;"
                                         />
-                                        <p class="description" style="margin: 5px 0 0 0;"><?php _e('Use 24-hour format (e.g., 09:00 for 9 AM, 17:00 for 5 PM). Leave blank if closed.', 'nerdy-seo'); ?></p>
+                                        <p class="description" style="margin: 5px 0 0 0;"><?php esc_html_e('Use 24-hour format (e.g., 09:00 for 9 AM, 17:00 for 5 PM). Leave blank if closed.', 'nerdy-seo'); ?></p>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -459,12 +459,12 @@ class Nerdy_SEO_Local_Business {
                     <!-- Location Tab -->
                     <div class="nerdy-seo-tab-content" data-tab="location">
                         <div class="nerdy-seo-settings-card">
-                            <h2><?php _e('Business Address', 'nerdy-seo'); ?></h2>
+                            <h2><?php esc_html_e('Business Address', 'nerdy-seo'); ?></h2>
 
                             <table class="form-table">
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_lb_street_address"><?php _e('Street Address', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_lb_street_address"><?php esc_html_e('Street Address', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <input
@@ -479,7 +479,7 @@ class Nerdy_SEO_Local_Business {
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_lb_city"><?php _e('City', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_lb_city"><?php esc_html_e('City', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <input
@@ -493,7 +493,7 @@ class Nerdy_SEO_Local_Business {
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_lb_state"><?php _e('State / Province', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_lb_state"><?php esc_html_e('State / Province', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <input
@@ -508,7 +508,7 @@ class Nerdy_SEO_Local_Business {
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_lb_postal_code"><?php _e('Postal Code', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_lb_postal_code"><?php esc_html_e('Postal Code', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <input
@@ -523,7 +523,7 @@ class Nerdy_SEO_Local_Business {
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_lb_country"><?php _e('Country', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_lb_country"><?php esc_html_e('Country', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <input
@@ -534,20 +534,20 @@ class Nerdy_SEO_Local_Business {
                                             class="regular-text"
                                             placeholder="US"
                                         />
-                                        <p class="description"><?php _e('Two-letter country code (e.g., US, CA, GB).', 'nerdy-seo'); ?></p>
+                                        <p class="description"><?php esc_html_e('Two-letter country code (e.g., US, CA, GB).', 'nerdy-seo'); ?></p>
                                     </td>
                                 </tr>
                             </table>
                         </div>
 
                         <div class="nerdy-seo-settings-card">
-                            <h2><?php _e('Geographic Coordinates', 'nerdy-seo'); ?></h2>
-                            <p class="description"><?php _e('Optional: Add exact GPS coordinates for more accurate location data.', 'nerdy-seo'); ?></p>
+                            <h2><?php esc_html_e('Geographic Coordinates', 'nerdy-seo'); ?></h2>
+                            <p class="description"><?php esc_html_e('Optional: Add exact GPS coordinates for more accurate location data.', 'nerdy-seo'); ?></p>
 
                             <table class="form-table">
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_lb_latitude"><?php _e('Latitude', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_lb_latitude"><?php esc_html_e('Latitude', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <input
@@ -562,7 +562,7 @@ class Nerdy_SEO_Local_Business {
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="nerdy_seo_lb_longitude"><?php _e('Longitude', 'nerdy-seo'); ?></label>
+                                        <label for="nerdy_seo_lb_longitude"><?php esc_html_e('Longitude', 'nerdy-seo'); ?></label>
                                     </th>
                                     <td>
                                         <input
@@ -574,7 +574,7 @@ class Nerdy_SEO_Local_Business {
                                             placeholder="-118.2437"
                                         />
                                         <p class="description">
-                                            <a href="https://www.latlong.net/" target="_blank"><?php _e('Find your coordinates', 'nerdy-seo'); ?></a>
+                                            <a href="https://www.latlong.net/" target="_blank"><?php esc_html_e('Find your coordinates', 'nerdy-seo'); ?></a>
                                         </p>
                                     </td>
                                 </tr>
@@ -585,15 +585,15 @@ class Nerdy_SEO_Local_Business {
                     <!-- Social Tab -->
                     <div class="nerdy-seo-tab-content" data-tab="social">
                         <div class="nerdy-seo-settings-card">
-                            <h2><?php _e('Social Media Profiles', 'nerdy-seo'); ?></h2>
-                            <p class="description"><?php _e('Add your social media profile URLs to include them in your business schema.', 'nerdy-seo'); ?></p>
+                            <h2><?php esc_html_e('Social Media Profiles', 'nerdy-seo'); ?></h2>
+                            <p class="description"><?php esc_html_e('Add your social media profile URLs to include them in your business schema.', 'nerdy-seo'); ?></p>
 
                             <table class="form-table">
                                 <tr>
                                     <th scope="row">
                                         <label for="nerdy_seo_lb_facebook">
                                             <span class="dashicons dashicons-facebook"></span>
-                                            <?php _e('Facebook', 'nerdy-seo'); ?>
+                                            <?php esc_html_e('Facebook', 'nerdy-seo'); ?>
                                         </label>
                                     </th>
                                     <td>
@@ -611,7 +611,7 @@ class Nerdy_SEO_Local_Business {
                                     <th scope="row">
                                         <label for="nerdy_seo_lb_twitter">
                                             <span class="dashicons dashicons-twitter"></span>
-                                            <?php _e('Twitter', 'nerdy-seo'); ?>
+                                            <?php esc_html_e('Twitter', 'nerdy-seo'); ?>
                                         </label>
                                     </th>
                                     <td>
@@ -629,7 +629,7 @@ class Nerdy_SEO_Local_Business {
                                     <th scope="row">
                                         <label for="nerdy_seo_lb_instagram">
                                             <span class="dashicons dashicons-instagram"></span>
-                                            <?php _e('Instagram', 'nerdy-seo'); ?>
+                                            <?php esc_html_e('Instagram', 'nerdy-seo'); ?>
                                         </label>
                                     </th>
                                     <td>
@@ -647,7 +647,7 @@ class Nerdy_SEO_Local_Business {
                                     <th scope="row">
                                         <label for="nerdy_seo_lb_linkedin">
                                             <span class="dashicons dashicons-linkedin"></span>
-                                            <?php _e('LinkedIn', 'nerdy-seo'); ?>
+                                            <?php esc_html_e('LinkedIn', 'nerdy-seo'); ?>
                                         </label>
                                     </th>
                                     <td>
@@ -665,7 +665,7 @@ class Nerdy_SEO_Local_Business {
                                     <th scope="row">
                                         <label for="nerdy_seo_lb_youtube">
                                             <span class="dashicons dashicons-video-alt3"></span>
-                                            <?php _e('YouTube', 'nerdy-seo'); ?>
+                                            <?php esc_html_e('YouTube', 'nerdy-seo'); ?>
                                         </label>
                                     </th>
                                     <td>
@@ -716,9 +716,9 @@ class Nerdy_SEO_Local_Business {
                 }
 
                 mediaUploader = wp.media({
-                    title: '<?php _e('Choose Image', 'nerdy-seo'); ?>',
+                    title: '<?php esc_html_e('Choose Image', 'nerdy-seo'); ?>',
                     button: {
-                        text: '<?php _e('Use this image', 'nerdy-seo'); ?>'
+                        text: '<?php esc_html_e('Use this image', 'nerdy-seo'); ?>'
                     },
                     multiple: false
                 });

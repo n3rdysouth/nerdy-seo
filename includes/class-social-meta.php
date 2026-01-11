@@ -140,17 +140,17 @@ class Nerdy_SEO_Social_Meta {
 
         <div class="nerdy-seo-social-tabs">
             <button type="button" class="nerdy-seo-tab-btn active" data-tab="facebook">
-                <?php _e('Facebook / Open Graph', 'nerdy-seo'); ?>
+                <?php esc_html_e('Facebook / Open Graph', 'nerdy-seo'); ?>
             </button>
             <button type="button" class="nerdy-seo-tab-btn" data-tab="twitter">
-                <?php _e('Twitter', 'nerdy-seo'); ?>
+                <?php esc_html_e('Twitter', 'nerdy-seo'); ?>
             </button>
         </div>
 
         <div id="tab-facebook" class="nerdy-seo-social-tab-content active">
             <div class="nerdy-seo-social-field">
                 <label for="nerdy_seo_og_title">
-                    <?php _e('Facebook Title', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Facebook Title', 'nerdy-seo'); ?>
                 </label>
                 <input
                     type="text"
@@ -160,27 +160,27 @@ class Nerdy_SEO_Social_Meta {
                     placeholder="<?php echo esc_attr($post->post_title); ?>"
                 />
                 <p class="nerdy-seo-social-hint">
-                    <?php _e('Leave blank to use SEO title or post title', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Leave blank to use SEO title or post title', 'nerdy-seo'); ?>
                 </p>
             </div>
 
             <div class="nerdy-seo-social-field">
                 <label for="nerdy_seo_og_description">
-                    <?php _e('Facebook Description', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Facebook Description', 'nerdy-seo'); ?>
                 </label>
                 <textarea
                     id="nerdy_seo_og_description"
                     name="nerdy_seo_og_description"
-                    placeholder="<?php _e('Brief description for Facebook sharing...', 'nerdy-seo'); ?>"
+                    placeholder="<?php esc_html_e('Brief description for Facebook sharing...', 'nerdy-seo'); ?>"
                 ><?php echo esc_textarea($og_description); ?></textarea>
                 <p class="nerdy-seo-social-hint">
-                    <?php _e('Leave blank to use meta description', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Leave blank to use meta description', 'nerdy-seo'); ?>
                 </p>
             </div>
 
             <div class="nerdy-seo-social-field">
                 <label for="nerdy_seo_og_image">
-                    <?php _e('Facebook Image', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Facebook Image', 'nerdy-seo'); ?>
                 </label>
                 <div class="nerdy-seo-image-upload">
                     <input
@@ -188,10 +188,10 @@ class Nerdy_SEO_Social_Meta {
                         id="nerdy_seo_og_image"
                         name="nerdy_seo_og_image"
                         value="<?php echo esc_url($og_image); ?>"
-                        placeholder="<?php _e('Image URL', 'nerdy-seo'); ?>"
+                        placeholder="<?php esc_html_e('Image URL', 'nerdy-seo'); ?>"
                     />
                     <button type="button" class="button nerdy-seo-upload-image" data-target="nerdy_seo_og_image">
-                        <?php _e('Upload Image', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Upload Image', 'nerdy-seo'); ?>
                     </button>
                 </div>
                 <?php if ($og_image): ?>
@@ -200,7 +200,7 @@ class Nerdy_SEO_Social_Meta {
                     <img src="" class="nerdy-seo-image-preview" id="preview-nerdy_seo_og_image" />
                 <?php endif; ?>
                 <p class="nerdy-seo-social-hint">
-                    <?php _e('Recommended: 1200x630px. Leave blank to use featured image.', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Recommended: 1200x630px. Leave blank to use featured image.', 'nerdy-seo'); ?>
                 </p>
             </div>
         </div>
@@ -208,7 +208,7 @@ class Nerdy_SEO_Social_Meta {
         <div id="tab-twitter" class="nerdy-seo-social-tab-content">
             <div class="nerdy-seo-social-field">
                 <label for="nerdy_seo_twitter_title">
-                    <?php _e('Twitter Title', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Twitter Title', 'nerdy-seo'); ?>
                 </label>
                 <input
                     type="text"
@@ -218,27 +218,27 @@ class Nerdy_SEO_Social_Meta {
                     placeholder="<?php echo esc_attr($post->post_title); ?>"
                 />
                 <p class="nerdy-seo-social-hint">
-                    <?php _e('Leave blank to use Facebook/OG title', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Leave blank to use Facebook/OG title', 'nerdy-seo'); ?>
                 </p>
             </div>
 
             <div class="nerdy-seo-social-field">
                 <label for="nerdy_seo_twitter_description">
-                    <?php _e('Twitter Description', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Twitter Description', 'nerdy-seo'); ?>
                 </label>
                 <textarea
                     id="nerdy_seo_twitter_description"
                     name="nerdy_seo_twitter_description"
-                    placeholder="<?php _e('Brief description for Twitter sharing...', 'nerdy-seo'); ?>"
+                    placeholder="<?php esc_html_e('Brief description for Twitter sharing...', 'nerdy-seo'); ?>"
                 ><?php echo esc_textarea($twitter_description); ?></textarea>
                 <p class="nerdy-seo-social-hint">
-                    <?php _e('Leave blank to use Facebook/OG description', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Leave blank to use Facebook/OG description', 'nerdy-seo'); ?>
                 </p>
             </div>
 
             <div class="nerdy-seo-social-field">
                 <label for="nerdy_seo_twitter_image">
-                    <?php _e('Twitter Image', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Twitter Image', 'nerdy-seo'); ?>
                 </label>
                 <div class="nerdy-seo-image-upload">
                     <input
@@ -246,9 +246,9 @@ class Nerdy_SEO_Social_Meta {
                         id="nerdy_seo_twitter_image"
                         name="nerdy_seo_twitter_image"
                         value="<?php echo esc_url($twitter_image); ?>"
-                        placeholder="<?php _e('Image URL', 'nerdy-seo'); ?>"/>
+                        placeholder="<?php esc_html_e('Image URL', 'nerdy-seo'); ?>"/>
                     <button type="button" class="button nerdy-seo-upload-image" data-target="nerdy_seo_twitter_image">
-                        <?php _e('Upload Image', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Upload Image', 'nerdy-seo'); ?>
                     </button>
                 </div>
                 <?php if ($twitter_image): ?>
@@ -257,7 +257,7 @@ class Nerdy_SEO_Social_Meta {
                     <img src="" class="nerdy-seo-image-preview" id="preview-nerdy_seo_twitter_image" />
                 <?php endif; ?>
                 <p class="nerdy-seo-social-hint">
-                    <?php _e('Recommended: 1200x675px. Leave blank to use Facebook/OG image.', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Recommended: 1200x675px. Leave blank to use Facebook/OG image.', 'nerdy-seo'); ?>
                 </p>
             </div>
         </div>
@@ -290,9 +290,9 @@ class Nerdy_SEO_Social_Meta {
                     }
 
                     mediaUploader = wp.media({
-                        title: '<?php _e('Choose Image', 'nerdy-seo'); ?>',
+                        title: '<?php esc_html_e('Choose Image', 'nerdy-seo'); ?>',
                         button: {
-                            text: '<?php _e('Use this image', 'nerdy-seo'); ?>'
+                            text: '<?php esc_html_e('Use this image', 'nerdy-seo'); ?>'
                         },
                         multiple: false
                     });
@@ -665,9 +665,9 @@ class Nerdy_SEO_Social_Meta {
             '%excerpt%' => $post && $post->post_excerpt ? $post->post_excerpt : '',
             '%author%' => $post ? get_the_author_meta('display_name', $post->post_author) : '',
             '%date%' => $post ? get_the_date('', $post->ID) : '',
-            '%year%' => date('Y'),
-            '%month%' => date('F'),
-            '%day%' => date('j'),
+            '%year%' => gmdate('Y'),
+            '%month%' => gmdate('F'),
+            '%day%' => gmdate('j'),
             '%categories%' => $categories,
             '%tags%' => $tags,
         );

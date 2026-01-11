@@ -65,35 +65,35 @@ class Nerdy_SEO_Migration {
 
         ?>
         <div class="wrap">
-            <h1><?php _e('SEO Data Migration', 'nerdy-seo'); ?></h1>
+            <h1><?php esc_html_e('SEO Data Migration', 'nerdy-seo'); ?></h1>
 
             <div class="nerdy-seo-migration-status" style="background: white; padding: 20px; margin: 20px 0; border-left: 4px solid <?php echo $aioseo_active ? '#2271b1' : '#dba617'; ?>;">
-                <h2><?php _e('Migration Status', 'nerdy-seo'); ?></h2>
+                <h2><?php esc_html_e('Migration Status', 'nerdy-seo'); ?></h2>
 
                 <?php if ($aioseo_active): ?>
                     <p style="color: #46b450;">
                         <span class="dashicons dashicons-yes-alt"></span>
-                        <?php _e('All in One SEO (AIOSEO) is installed and active', 'nerdy-seo'); ?>
+                        <?php esc_html_e('All in One SEO (AIOSEO) is installed and active', 'nerdy-seo'); ?>
                     </p>
                 <?php else: ?>
                     <p style="color: #dba617;">
                         <span class="dashicons dashicons-info"></span>
-                        <?php _e('All in One SEO (AIOSEO) is not currently active', 'nerdy-seo'); ?>
+                        <?php esc_html_e('All in One SEO (AIOSEO) is not currently active', 'nerdy-seo'); ?>
                     </p>
                 <?php endif; ?>
 
-                <h3><?php _e('Detectable AIOSEO Data', 'nerdy-seo'); ?></h3>
+                <h3><?php esc_html_e('Detectable AIOSEO Data', 'nerdy-seo'); ?></h3>
                 <ul>
                     <li>
-                        <strong><?php _e('Posts with SEO data:', 'nerdy-seo'); ?></strong>
+                        <strong><?php esc_html_e('Posts with SEO data:', 'nerdy-seo'); ?></strong>
                         <?php echo number_format($aioseo_data['posts']); ?>
                     </li>
                     <li>
-                        <strong><?php _e('Pages with SEO data:', 'nerdy-seo'); ?></strong>
+                        <strong><?php esc_html_e('Pages with SEO data:', 'nerdy-seo'); ?></strong>
                         <?php echo number_format($aioseo_data['pages']); ?>
                     </li>
                     <li>
-                        <strong><?php _e('Total items to migrate:', 'nerdy-seo'); ?></strong>
+                        <strong><?php esc_html_e('Total items to migrate:', 'nerdy-seo'); ?></strong>
                         <?php echo number_format($aioseo_data['total']); ?>
                     </li>
                 </ul>
@@ -101,7 +101,7 @@ class Nerdy_SEO_Migration {
 
             <?php if ($aioseo_data['total'] > 0): ?>
                 <div class="nerdy-seo-migration-info" style="background: #f0f6fc; padding: 20px; margin: 20px 0; border-left: 4px solid #2271b1;">
-                    <h3><?php _e('What Will Be Migrated?', 'nerdy-seo'); ?></h3>
+                    <h3><?php esc_html_e('What Will Be Migrated?', 'nerdy-seo'); ?></h3>
                     <ul>
                         <li>✓ SEO titles</li>
                         <li>✓ Meta descriptions</li>
@@ -117,19 +117,19 @@ class Nerdy_SEO_Migration {
                         <li>✓ Social media profiles</li>
                         <li>✓ Global SEO settings (separator, home title/description)</li>
                     </ul>
-                    <p><strong><?php _e('Note:', 'nerdy-seo'); ?></strong> <?php _e('This will NOT delete your AIOSEO data. You can keep AIOSEO active or deactivate it after migration.', 'nerdy-seo'); ?></p>
+                    <p><strong><?php esc_html_e('Note:', 'nerdy-seo'); ?></strong> <?php esc_html_e('This will NOT delete your AIOSEO data. You can keep AIOSEO active or deactivate it after migration.', 'nerdy-seo'); ?></p>
                 </div>
 
                 <div class="nerdy-seo-migration-actions" style="background: white; padding: 20px; margin: 20px 0; border: 1px solid #ddd;">
-                    <h3><?php _e('Start Migration', 'nerdy-seo'); ?></h3>
-                    <p><?php _e('Click the button below to migrate all SEO data from AIOSEO to Nerdy SEO.', 'nerdy-seo'); ?></p>
+                    <h3><?php esc_html_e('Start Migration', 'nerdy-seo'); ?></h3>
+                    <p><?php esc_html_e('Click the button below to migrate all SEO data from AIOSEO to Nerdy SEO.', 'nerdy-seo'); ?></p>
 
                     <button type="button" class="button button-primary button-large" id="nerdy-seo-start-migration">
-                        <?php _e('Start Migration', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Start Migration', 'nerdy-seo'); ?>
                     </button>
 
                     <div id="nerdy-seo-migration-progress" style="display: none; margin-top: 20px;">
-                        <h4><?php _e('Migration in Progress...', 'nerdy-seo'); ?></h4>
+                        <h4><?php esc_html_e('Migration in Progress...', 'nerdy-seo'); ?></h4>
                         <div style="background: #f0f0f0; height: 30px; border-radius: 5px; overflow: hidden; position: relative;">
                             <div id="nerdy-seo-progress-bar" style="background: #2271b1; height: 100%; width: 0%; transition: width 0.3s;"></div>
                             <div id="nerdy-seo-progress-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: 600; color: #333;">
@@ -137,41 +137,41 @@ class Nerdy_SEO_Migration {
                             </div>
                         </div>
                         <p id="nerdy-seo-progress-status" style="margin-top: 10px; font-style: italic;">
-                            <?php _e('Preparing migration...', 'nerdy-seo'); ?>
+                            <?php esc_html_e('Preparing migration...', 'nerdy-seo'); ?>
                         </p>
                     </div>
 
                     <div id="nerdy-seo-migration-complete" style="display: none; margin-top: 20px; background: #d4edda; padding: 15px; border-left: 4px solid #46b450;">
                         <h4 style="margin: 0 0 10px 0; color: #155724;">
                             <span class="dashicons dashicons-yes-alt"></span>
-                            <?php _e('Migration Complete!', 'nerdy-seo'); ?>
+                            <?php esc_html_e('Migration Complete!', 'nerdy-seo'); ?>
                         </h4>
                         <p id="nerdy-seo-migration-stats"></p>
                         <p>
-                            <strong><?php _e('Next Steps:', 'nerdy-seo'); ?></strong>
+                            <strong><?php esc_html_e('Next Steps:', 'nerdy-seo'); ?></strong>
                         </p>
                         <ol>
-                            <li><?php _e('Review a few pages to ensure data migrated correctly', 'nerdy-seo'); ?></li>
-                            <li><?php _e('If everything looks good, you can deactivate AIOSEO', 'nerdy-seo'); ?></li>
-                            <li><?php _e('Consider keeping AIOSEO installed (but inactive) for a backup', 'nerdy-seo'); ?></li>
+                            <li><?php esc_html_e('Review a few pages to ensure data migrated correctly', 'nerdy-seo'); ?></li>
+                            <li><?php esc_html_e('If everything looks good, you can deactivate AIOSEO', 'nerdy-seo'); ?></li>
+                            <li><?php esc_html_e('Consider keeping AIOSEO installed (but inactive) for a backup', 'nerdy-seo'); ?></li>
                         </ol>
                     </div>
 
                     <div id="nerdy-seo-migration-error" style="display: none; margin-top: 20px; background: #f8d7da; padding: 15px; border-left: 4px solid #dc3232;">
                         <h4 style="margin: 0 0 10px 0; color: #721c24;">
                             <span class="dashicons dashicons-warning"></span>
-                            <?php _e('Migration Error', 'nerdy-seo'); ?>
+                            <?php esc_html_e('Migration Error', 'nerdy-seo'); ?>
                         </h4>
                         <p id="nerdy-seo-migration-error-message"></p>
                     </div>
                 </div>
             <?php else: ?>
                 <div class="notice notice-info">
-                    <p><?php _e('No AIOSEO data found to migrate. This could mean:', 'nerdy-seo'); ?></p>
+                    <p><?php esc_html_e('No AIOSEO data found to migrate. This could mean:', 'nerdy-seo'); ?></p>
                     <ul>
-                        <li><?php _e('AIOSEO was never used on this site', 'nerdy-seo'); ?></li>
-                        <li><?php _e('AIOSEO data has already been migrated', 'nerdy-seo'); ?></li>
-                        <li><?php _e('AIOSEO data has been deleted', 'nerdy-seo'); ?></li>
+                        <li><?php esc_html_e('AIOSEO was never used on this site', 'nerdy-seo'); ?></li>
+                        <li><?php esc_html_e('AIOSEO data has already been migrated', 'nerdy-seo'); ?></li>
+                        <li><?php esc_html_e('AIOSEO data has been deleted', 'nerdy-seo'); ?></li>
                     </ul>
                 </div>
             <?php endif; ?>
@@ -182,13 +182,13 @@ class Nerdy_SEO_Migration {
             if ($debug_info && current_user_can('manage_options')):
             ?>
                 <div style="background: white; padding: 20px; margin: 20px 0; border: 1px solid #ddd;">
-                    <h3><?php _e('Migration Debug Info', 'nerdy-seo'); ?></h3>
+                    <h3><?php esc_html_e('Migration Debug Info', 'nerdy-seo'); ?></h3>
                     <p style="font-size: 12px; color: #666; font-style: italic;">
-                        <?php _e('This information helps diagnose migration issues. Share this with support if you experience problems.', 'nerdy-seo'); ?>
+                        <?php esc_html_e('This information helps diagnose migration issues. Share this with support if you experience problems.', 'nerdy-seo'); ?>
                     </p>
                     <details>
                         <summary style="cursor: pointer; font-weight: 600; padding: 10px 0;">
-                            <?php _e('Show Debug Data', 'nerdy-seo'); ?>
+                            <?php esc_html_e('Show Debug Data', 'nerdy-seo'); ?>
                         </summary>
                         <pre style="background: #f5f5f5; padding: 15px; overflow-x: auto; font-size: 11px; border: 1px solid #ddd; margin-top: 10px;"><?php echo esc_html(print_r($debug_info, true)); ?></pre>
 
@@ -197,9 +197,9 @@ class Nerdy_SEO_Migration {
                         $aioseo_opts = get_option('aioseo_options', false);
                         if ($aioseo_opts && is_array($aioseo_opts)):
                         ?>
-                            <h4 style="margin-top: 20px;"><?php _e('AIOSEO Option Structure', 'nerdy-seo'); ?></h4>
+                            <h4 style="margin-top: 20px;"><?php esc_html_e('AIOSEO Option Structure', 'nerdy-seo'); ?></h4>
                             <p style="font-size: 12px; color: #666;">
-                                <?php _e('Top-level keys found in AIOSEO options:', 'nerdy-seo'); ?>
+                                <?php esc_html_e('Top-level keys found in AIOSEO options:', 'nerdy-seo'); ?>
                             </p>
                             <ul style="list-style: none; padding: 0; font-family: monospace; font-size: 12px;">
                                 <?php foreach (array_keys($aioseo_opts) as $key): ?>
@@ -222,7 +222,7 @@ class Nerdy_SEO_Migration {
         <script>
         jQuery(document).ready(function($) {
             $('#nerdy-seo-start-migration').on('click', function() {
-                if (!confirm('<?php _e('Are you sure you want to migrate all SEO data from AIOSEO? This will copy data to Nerdy SEO fields.', 'nerdy-seo'); ?>')) {
+                if (!confirm('<?php esc_html_e('Are you sure you want to migrate all SEO data from AIOSEO? This will copy data to Nerdy SEO fields.', 'nerdy-seo'); ?>')) {
                     return;
                 }
 
@@ -241,13 +241,13 @@ class Nerdy_SEO_Migration {
                     } else {
                         $('#nerdy-seo-migration-progress').hide();
                         $('#nerdy-seo-migration-error').show();
-                        $('#nerdy-seo-migration-error-message').text(response.data.message || '<?php _e('Unknown error occurred', 'nerdy-seo'); ?>');
+                        $('#nerdy-seo-migration-error-message').text(response.data.message || '<?php esc_html_e('Unknown error occurred', 'nerdy-seo'); ?>');
                         $btn.prop('disabled', false);
                     }
                 }).fail(function() {
                     $('#nerdy-seo-migration-progress').hide();
                     $('#nerdy-seo-migration-error').show();
-                    $('#nerdy-seo-migration-error-message').text('<?php _e('Server error occurred', 'nerdy-seo'); ?>');
+                    $('#nerdy-seo-migration-error-message').text('<?php esc_html_e('Server error occurred', 'nerdy-seo'); ?>');
                     $btn.prop('disabled', false);
                 });
 

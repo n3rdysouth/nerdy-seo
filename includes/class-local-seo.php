@@ -263,8 +263,8 @@ class Nerdy_SEO_Local_SEO {
             <table class="nerdy-business-hours-table">
                 <thead>
                     <tr>
-                        <th><?php _e('Day', 'nerdy-seo'); ?></th>
-                        <th><?php _e('Hours', 'nerdy-seo'); ?></th>
+                        <th><?php esc_html_e('Day', 'nerdy-seo'); ?></th>
+                        <th><?php esc_html_e('Hours', 'nerdy-seo'); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -280,7 +280,7 @@ class Nerdy_SEO_Local_SEO {
                                 <?php if ($enabled): ?>
                                     <?php echo esc_html($this->format_time($open)); ?> - <?php echo esc_html($this->format_time($close)); ?>
                                 <?php else: ?>
-                                    <em><?php _e('Closed', 'nerdy-seo'); ?></em>
+                                    <em><?php esc_html_e('Closed', 'nerdy-seo'); ?></em>
                                 <?php endif; ?>
                             </td>
                         </tr>
@@ -302,7 +302,7 @@ class Nerdy_SEO_Local_SEO {
                         <?php if ($enabled): ?>
                             <?php echo esc_html($this->format_time($open)); ?> - <?php echo esc_html($this->format_time($close)); ?>
                         <?php else: ?>
-                            <em><?php _e('Closed', 'nerdy-seo'); ?></em>
+                            <em><?php esc_html_e('Closed', 'nerdy-seo'); ?></em>
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
@@ -369,7 +369,7 @@ class Nerdy_SEO_Local_SEO {
      * Format time for display
      */
     private function format_time($time) {
-        return date('g:i A', strtotime($time));
+        return gmdate('g:i A', strtotime($time));
     }
 
     /**
@@ -472,12 +472,12 @@ class Nerdy_SEO_Local_SEO {
         ?>
         <label>
             <input type="checkbox" name="nerdy_seo_local_enabled" value="1" <?php checked($enabled, true); ?> />
-            <?php _e('Enable Local Business schema markup', 'nerdy-seo'); ?>
+            <?php esc_html_e('Enable Local Business schema markup', 'nerdy-seo'); ?>
         </label>
         <br><br>
         <label>
             <input type="checkbox" name="nerdy_seo_local_all_pages" value="1" <?php checked($all_pages, true); ?> />
-            <?php _e('Show schema on all pages (default: homepage only)', 'nerdy-seo'); ?>
+            <?php esc_html_e('Show schema on all pages (default: homepage only)', 'nerdy-seo'); ?>
         </label>
         <?php
     }
@@ -499,72 +499,72 @@ class Nerdy_SEO_Local_SEO {
         ?>
         <table class="form-table" style="margin: 0;">
             <tr>
-                <th><label><?php _e('Business Name', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('Business Name', 'nerdy-seo'); ?></label></th>
                 <td>
                     <input type="text" name="nerdy_seo_local_business_name" value="<?php echo esc_attr($business_name); ?>" class="regular-text" />
                 </td>
             </tr>
             <tr>
-                <th><label><?php _e('Business Type', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('Business Type', 'nerdy-seo'); ?></label></th>
                 <td>
                     <select name="nerdy_seo_local_business_type">
-                        <option value="LocalBusiness" <?php selected($business_type, 'LocalBusiness'); ?>><?php _e('Local Business', 'nerdy-seo'); ?></option>
-                        <option value="Restaurant" <?php selected($business_type, 'Restaurant'); ?>><?php _e('Restaurant', 'nerdy-seo'); ?></option>
-                        <option value="Store" <?php selected($business_type, 'Store'); ?>><?php _e('Store', 'nerdy-seo'); ?></option>
-                        <option value="ProfessionalService" <?php selected($business_type, 'ProfessionalService'); ?>><?php _e('Professional Service', 'nerdy-seo'); ?></option>
-                        <option value="HealthAndBeautyBusiness" <?php selected($business_type, 'HealthAndBeautyBusiness'); ?>><?php _e('Health & Beauty', 'nerdy-seo'); ?></option>
-                        <option value="HomeAndConstructionBusiness" <?php selected($business_type, 'HomeAndConstructionBusiness'); ?>><?php _e('Home & Construction', 'nerdy-seo'); ?></option>
-                        <option value="AutoRepair" <?php selected($business_type, 'AutoRepair'); ?>><?php _e('Auto Repair', 'nerdy-seo'); ?></option>
+                        <option value="LocalBusiness" <?php selected($business_type, 'LocalBusiness'); ?>><?php esc_html_e('Local Business', 'nerdy-seo'); ?></option>
+                        <option value="Restaurant" <?php selected($business_type, 'Restaurant'); ?>><?php esc_html_e('Restaurant', 'nerdy-seo'); ?></option>
+                        <option value="Store" <?php selected($business_type, 'Store'); ?>><?php esc_html_e('Store', 'nerdy-seo'); ?></option>
+                        <option value="ProfessionalService" <?php selected($business_type, 'ProfessionalService'); ?>><?php esc_html_e('Professional Service', 'nerdy-seo'); ?></option>
+                        <option value="HealthAndBeautyBusiness" <?php selected($business_type, 'HealthAndBeautyBusiness'); ?>><?php esc_html_e('Health & Beauty', 'nerdy-seo'); ?></option>
+                        <option value="HomeAndConstructionBusiness" <?php selected($business_type, 'HomeAndConstructionBusiness'); ?>><?php esc_html_e('Home & Construction', 'nerdy-seo'); ?></option>
+                        <option value="AutoRepair" <?php selected($business_type, 'AutoRepair'); ?>><?php esc_html_e('Auto Repair', 'nerdy-seo'); ?></option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <th><label><?php _e('Street Address', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('Street Address', 'nerdy-seo'); ?></label></th>
                 <td>
                     <input type="text" name="nerdy_seo_local_street_address" value="<?php echo esc_attr($street_address); ?>" class="regular-text" />
                 </td>
             </tr>
             <tr>
-                <th><label><?php _e('City', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('City', 'nerdy-seo'); ?></label></th>
                 <td>
                     <input type="text" name="nerdy_seo_local_city" value="<?php echo esc_attr($city); ?>" class="regular-text" />
                 </td>
             </tr>
             <tr>
-                <th><label><?php _e('State/Region', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('State/Region', 'nerdy-seo'); ?></label></th>
                 <td>
                     <input type="text" name="nerdy_seo_local_state" value="<?php echo esc_attr($state); ?>" class="regular-text" />
                 </td>
             </tr>
             <tr>
-                <th><label><?php _e('Postal Code', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('Postal Code', 'nerdy-seo'); ?></label></th>
                 <td>
                     <input type="text" name="nerdy_seo_local_postal_code" value="<?php echo esc_attr($postal_code); ?>" class="regular-text" />
                 </td>
             </tr>
             <tr>
-                <th><label><?php _e('Country', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('Country', 'nerdy-seo'); ?></label></th>
                 <td>
                     <input type="text" name="nerdy_seo_local_country" value="<?php echo esc_attr($country); ?>" class="regular-text" placeholder="US" />
                 </td>
             </tr>
             <tr>
-                <th><label><?php _e('Phone', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('Phone', 'nerdy-seo'); ?></label></th>
                 <td>
                     <input type="text" name="nerdy_seo_local_phone" value="<?php echo esc_attr($phone); ?>" class="regular-text" placeholder="(555) 123-4567" />
                 </td>
             </tr>
             <tr>
-                <th><label><?php _e('Email', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('Email', 'nerdy-seo'); ?></label></th>
                 <td>
                     <input type="email" name="nerdy_seo_local_email" value="<?php echo esc_attr($email); ?>" class="regular-text" />
                 </td>
             </tr>
             <tr>
-                <th><label><?php _e('Price Range', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('Price Range', 'nerdy-seo'); ?></label></th>
                 <td>
                     <input type="text" name="nerdy_seo_local_price_range" value="<?php echo esc_attr($price_range); ?>" class="small-text" placeholder="$$" />
-                    <p class="description"><?php _e('e.g., $, $$, $$$, or $$$$', 'nerdy-seo'); ?></p>
+                    <p class="description"><?php esc_html_e('e.g., $, $$, $$$, or $$$$', 'nerdy-seo'); ?></p>
                 </td>
             </tr>
         </table>
@@ -581,27 +581,27 @@ class Nerdy_SEO_Local_SEO {
         ?>
         <table class="form-table" style="margin: 0;">
             <tr>
-                <th><label><?php _e('Latitude', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('Latitude', 'nerdy-seo'); ?></label></th>
                 <td>
                     <input type="text" name="nerdy_seo_local_latitude" value="<?php echo esc_attr($latitude); ?>" class="regular-text" placeholder="34.0522" />
                 </td>
             </tr>
             <tr>
-                <th><label><?php _e('Longitude', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('Longitude', 'nerdy-seo'); ?></label></th>
                 <td>
                     <input type="text" name="nerdy_seo_local_longitude" value="<?php echo esc_attr($longitude); ?>" class="regular-text" placeholder="-118.2437" />
                     <p class="description">
-                        <?php _e('Find coordinates:', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Find coordinates:', 'nerdy-seo'); ?>
                         <a href="https://www.latlong.net/" target="_blank">latlong.net</a>
                     </p>
                 </td>
             </tr>
             <tr>
-                <th><label><?php _e('Google Maps API Key', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('Google Maps API Key', 'nerdy-seo'); ?></label></th>
                 <td>
                     <input type="text" name="nerdy_seo_local_google_maps_api" value="<?php echo esc_attr($api_key); ?>" class="regular-text" />
                     <p class="description">
-                        <?php _e('Optional. Get API key:', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Optional. Get API key:', 'nerdy-seo'); ?>
                         <a href="https://developers.google.com/maps/documentation/embed/get-api-key" target="_blank">Google Maps Platform</a>
                     </p>
                 </td>
@@ -627,10 +627,10 @@ class Nerdy_SEO_Local_SEO {
         <table class="wp-list-table widefat fixed striped">
             <thead>
                 <tr>
-                    <th style="width: 20%;"><?php _e('Day', 'nerdy-seo'); ?></th>
-                    <th style="width: 15%;"><?php _e('Open', 'nerdy-seo'); ?></th>
-                    <th style="width: 30%;"><?php _e('Opening Time', 'nerdy-seo'); ?></th>
-                    <th style="width: 30%;"><?php _e('Closing Time', 'nerdy-seo'); ?></th>
+                    <th style="width: 20%;"><?php esc_html_e('Day', 'nerdy-seo'); ?></th>
+                    <th style="width: 15%;"><?php esc_html_e('Open', 'nerdy-seo'); ?></th>
+                    <th style="width: 30%;"><?php esc_html_e('Opening Time', 'nerdy-seo'); ?></th>
+                    <th style="width: 30%;"><?php esc_html_e('Closing Time', 'nerdy-seo'); ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -655,7 +655,7 @@ class Nerdy_SEO_Local_SEO {
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <p class="description"><?php _e('Uncheck "Open" for days when you are closed', 'nerdy-seo'); ?></p>
+        <p class="description"><?php esc_html_e('Uncheck "Open" for days when you are closed', 'nerdy-seo'); ?></p>
         <?php
     }
 
@@ -670,31 +670,31 @@ class Nerdy_SEO_Local_SEO {
         ?>
         <table class="form-table" style="margin: 0;">
             <tr>
-                <th><label><?php _e('Facebook URL', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('Facebook URL', 'nerdy-seo'); ?></label></th>
                 <td>
                     <input type="url" name="nerdy_seo_local_facebook" value="<?php echo esc_url($facebook); ?>" class="regular-text" placeholder="https://facebook.com/yourpage" />
                 </td>
             </tr>
             <tr>
-                <th><label><?php _e('Twitter URL', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('Twitter URL', 'nerdy-seo'); ?></label></th>
                 <td>
                     <input type="url" name="nerdy_seo_local_twitter" value="<?php echo esc_url($twitter); ?>" class="regular-text" placeholder="https://twitter.com/youraccount" />
                 </td>
             </tr>
             <tr>
-                <th><label><?php _e('Instagram URL', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('Instagram URL', 'nerdy-seo'); ?></label></th>
                 <td>
                     <input type="url" name="nerdy_seo_local_instagram" value="<?php echo esc_url($instagram); ?>" class="regular-text" placeholder="https://instagram.com/youraccount" />
                 </td>
             </tr>
             <tr>
-                <th><label><?php _e('LinkedIn URL', 'nerdy-seo'); ?></label></th>
+                <th><label><?php esc_html_e('LinkedIn URL', 'nerdy-seo'); ?></label></th>
                 <td>
                     <input type="url" name="nerdy_seo_local_linkedin" value="<?php echo esc_url($linkedin); ?>" class="regular-text" placeholder="https://linkedin.com/company/yourcompany" />
                 </td>
             </tr>
         </table>
-        <p class="description"><?php _e('These URLs are included in your Local Business schema', 'nerdy-seo'); ?></p>
+        <p class="description"><?php esc_html_e('These URLs are included in your Local Business schema', 'nerdy-seo'); ?></p>
         <?php
     }
 }

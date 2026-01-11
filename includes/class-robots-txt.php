@@ -116,7 +116,7 @@ class Nerdy_SEO_Robots_Txt {
      * Get default robots.txt content
      */
     private function get_default_robots() {
-        $site_url = parse_url(site_url());
+        $site_url = wp_parse_url(site_url());
         $path = (!empty($site_url['path'])) ? $site_url['path'] : '';
 
         $output = "User-agent: *\n";
@@ -152,22 +152,22 @@ class Nerdy_SEO_Robots_Txt {
         $robots_url = home_url('/robots.txt');
         ?>
         <div class="wrap">
-            <h1><?php _e('Robots.txt Editor', 'nerdy-seo'); ?></h1>
+            <h1><?php esc_html_e('Robots.txt Editor', 'nerdy-seo'); ?></h1>
 
             <?php settings_errors('nerdy_seo_robots'); ?>
 
             <div class="nerdy-seo-robots-header" style="background: #fff; padding: 20px; margin: 20px 0; border-left: 4px solid #2271b1;">
-                <h2 style="margin-top: 0;"><?php _e('About Robots.txt', 'nerdy-seo'); ?></h2>
+                <h2 style="margin-top: 0;"><?php esc_html_e('About Robots.txt', 'nerdy-seo'); ?></h2>
                 <p>
-                    <?php _e('The robots.txt file tells search engines which pages or files they can or can\'t request from your site. This is mainly used to avoid overloading your site with requests.', 'nerdy-seo'); ?>
+                    <?php esc_html_e('The robots.txt file tells search engines which pages or files they can or can\'t request from your site. This is mainly used to avoid overloading your site with requests.', 'nerdy-seo'); ?>
                 </p>
                 <p>
-                    <strong><?php _e('Current robots.txt URL:', 'nerdy-seo'); ?></strong>
+                    <strong><?php esc_html_e('Current robots.txt URL:', 'nerdy-seo'); ?></strong>
                     <a href="<?php echo esc_url($robots_url); ?>" target="_blank"><?php echo esc_html($robots_url); ?></a>
                     <span class="dashicons dashicons-external" style="text-decoration: none;"></span>
                 </p>
                 <p class="description">
-                    <?php _e('Note: If you have a physical robots.txt file in your WordPress root directory, it will override this virtual robots.txt.', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Note: If you have a physical robots.txt file in your WordPress root directory, it will override this virtual robots.txt.', 'nerdy-seo'); ?>
                 </p>
             </div>
 
@@ -178,7 +178,7 @@ class Nerdy_SEO_Robots_Txt {
                     <tr>
                         <th scope="row">
                             <label for="nerdy_seo_robots_custom_enabled">
-                                <?php _e('Custom Robots.txt', 'nerdy-seo'); ?>
+                                <?php esc_html_e('Custom Robots.txt', 'nerdy-seo'); ?>
                             </label>
                         </th>
                         <td>
@@ -190,17 +190,17 @@ class Nerdy_SEO_Robots_Txt {
                                     value="1"
                                     <?php checked($enabled, true); ?>
                                 />
-                                <?php _e('Enable custom robots.txt', 'nerdy-seo'); ?>
+                                <?php esc_html_e('Enable custom robots.txt', 'nerdy-seo'); ?>
                             </label>
                             <p class="description">
-                                <?php _e('When disabled, WordPress will use its default robots.txt rules.', 'nerdy-seo'); ?>
+                                <?php esc_html_e('When disabled, WordPress will use its default robots.txt rules.', 'nerdy-seo'); ?>
                             </p>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">
                             <label for="nerdy_seo_robots_custom_content">
-                                <?php _e('Robots.txt Content', 'nerdy-seo'); ?>
+                                <?php esc_html_e('Robots.txt Content', 'nerdy-seo'); ?>
                             </label>
                         </th>
                         <td>
@@ -212,37 +212,37 @@ class Nerdy_SEO_Robots_Txt {
                                 style="font-family: monospace; width: 100%; max-width: 800px;"
                             ><?php echo esc_textarea($custom_content); ?></textarea>
                             <p class="description">
-                                <?php _e('Edit your robots.txt rules above. Use "User-agent:" to specify which bots the rules apply to, "Disallow:" to block access, and "Allow:" to permit access.', 'nerdy-seo'); ?>
+                                <?php esc_html_e('Edit your robots.txt rules above. Use "User-agent:" to specify which bots the rules apply to, "Disallow:" to block access, and "Allow:" to permit access.', 'nerdy-seo'); ?>
                             </p>
                         </td>
                     </tr>
                 </table>
 
                 <div class="nerdy-seo-robots-examples" style="background: #f0f0f1; padding: 20px; margin: 20px 0; border-radius: 4px; max-width: 800px;">
-                    <h3 style="margin-top: 0;"><?php _e('Common Examples', 'nerdy-seo'); ?></h3>
+                    <h3 style="margin-top: 0;"><?php esc_html_e('Common Examples', 'nerdy-seo'); ?></h3>
 
-                    <h4><?php _e('Block All Bots', 'nerdy-seo'); ?></h4>
+                    <h4><?php esc_html_e('Block All Bots', 'nerdy-seo'); ?></h4>
                     <pre style="background: #fff; padding: 10px; overflow-x: auto;">User-agent: *
 Disallow: /</pre>
 
-                    <h4><?php _e('Block Specific Directory', 'nerdy-seo'); ?></h4>
+                    <h4><?php esc_html_e('Block Specific Directory', 'nerdy-seo'); ?></h4>
                     <pre style="background: #fff; padding: 10px; overflow-x: auto;">User-agent: *
 Disallow: /private/
 Disallow: /temp/</pre>
 
-                    <h4><?php _e('Block Specific Bot', 'nerdy-seo'); ?></h4>
+                    <h4><?php esc_html_e('Block Specific Bot', 'nerdy-seo'); ?></h4>
                     <pre style="background: #fff; padding: 10px; overflow-x: auto;">User-agent: BadBot
 Disallow: /
 
 User-agent: *
 Disallow: /wp-admin/</pre>
 
-                    <h4><?php _e('Crawl Delay', 'nerdy-seo'); ?></h4>
+                    <h4><?php esc_html_e('Crawl Delay', 'nerdy-seo'); ?></h4>
                     <pre style="background: #fff; padding: 10px; overflow-x: auto;">User-agent: *
 Crawl-delay: 10
 Disallow: /wp-admin/</pre>
 
-                    <h4><?php _e('Reference Sitemap', 'nerdy-seo'); ?></h4>
+                    <h4><?php esc_html_e('Reference Sitemap', 'nerdy-seo'); ?></h4>
                     <pre style="background: #fff; padding: 10px; overflow-x: auto;">User-agent: *
 Disallow: /wp-admin/
 
@@ -251,10 +251,10 @@ Sitemap: <?php echo esc_url(home_url('/sitemap.xml')); ?></pre>
 
                 <p class="submit">
                     <button type="submit" class="button button-primary">
-                        <?php _e('Save Changes', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Save Changes', 'nerdy-seo'); ?>
                     </button>
                     <button type="button" class="button" id="nerdy-seo-reset-robots">
-                        <?php _e('Reset to Default', 'nerdy-seo'); ?>
+                        <?php esc_html_e('Reset to Default', 'nerdy-seo'); ?>
                     </button>
                 </p>
             </form>
@@ -264,7 +264,7 @@ Sitemap: <?php echo esc_url(home_url('/sitemap.xml')); ?></pre>
         jQuery(document).ready(function($) {
             // Reset to default
             $('#nerdy-seo-reset-robots').on('click', function() {
-                if (confirm('<?php _e('Are you sure you want to reset to default robots.txt rules? This will overwrite your current content.', 'nerdy-seo'); ?>')) {
+                if (confirm('<?php esc_html_e('Are you sure you want to reset to default robots.txt rules? This will overwrite your current content.', 'nerdy-seo'); ?>')) {
                     $('#nerdy_seo_robots_custom_content').val(<?php echo json_encode($this->get_default_robots()); ?>);
                 }
             });

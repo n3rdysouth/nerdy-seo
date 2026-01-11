@@ -188,32 +188,32 @@ class Nerdy_SEO_Schema {
 
         <div class="nerdy-seo-schema-field">
             <label for="nerdy_seo_schema_type">
-                <?php _e('Schema Type', 'nerdy-seo'); ?>
+                <?php esc_html_e('Schema Type', 'nerdy-seo'); ?>
             </label>
             <select id="nerdy_seo_schema_type" name="nerdy_seo_schema_type">
-                <option value=""><?php _e('Default (Auto)', 'nerdy-seo'); ?></option>
-                <option value="Article" <?php selected($schema_type, 'Article'); ?>><?php _e('Article', 'nerdy-seo'); ?></option>
-                <option value="WebPage" <?php selected($schema_type, 'WebPage'); ?>><?php _e('Web Page', 'nerdy-seo'); ?></option>
-                <option value="FAQ" <?php selected($schema_type, 'FAQ'); ?>><?php _e('FAQ Page', 'nerdy-seo'); ?></option>
-                <option value="Review" <?php selected($schema_type, 'Review'); ?>><?php _e('Review', 'nerdy-seo'); ?></option>
-                <option value="Product" <?php selected($schema_type, 'Product'); ?>><?php _e('Product', 'nerdy-seo'); ?></option>
-                <option value="Service" <?php selected($schema_type, 'Service'); ?>><?php _e('Service', 'nerdy-seo'); ?></option>
-                <option value="LocalBusiness" <?php selected($schema_type, 'LocalBusiness'); ?>><?php _e('Local Business', 'nerdy-seo'); ?></option>
-                <option value="Recipe" <?php selected($schema_type, 'Recipe'); ?>><?php _e('Recipe', 'nerdy-seo'); ?></option>
-                <option value="Video" <?php selected($schema_type, 'Video'); ?>><?php _e('Video', 'nerdy-seo'); ?></option>
-                <option value="Event" <?php selected($schema_type, 'Event'); ?>><?php _e('Event', 'nerdy-seo'); ?></option>
-                <option value="Course" <?php selected($schema_type, 'Course'); ?>><?php _e('Course', 'nerdy-seo'); ?></option>
-                <option value="HowTo" <?php selected($schema_type, 'HowTo'); ?>><?php _e('HowTo Guide', 'nerdy-seo'); ?></option>
-                <option value="JobPosting" <?php selected($schema_type, 'JobPosting'); ?>><?php _e('Job Posting', 'nerdy-seo'); ?></option>
+                <option value=""><?php esc_html_e('Default (Auto)', 'nerdy-seo'); ?></option>
+                <option value="Article" <?php selected($schema_type, 'Article'); ?>><?php esc_html_e('Article', 'nerdy-seo'); ?></option>
+                <option value="WebPage" <?php selected($schema_type, 'WebPage'); ?>><?php esc_html_e('Web Page', 'nerdy-seo'); ?></option>
+                <option value="FAQ" <?php selected($schema_type, 'FAQ'); ?>><?php esc_html_e('FAQ Page', 'nerdy-seo'); ?></option>
+                <option value="Review" <?php selected($schema_type, 'Review'); ?>><?php esc_html_e('Review', 'nerdy-seo'); ?></option>
+                <option value="Product" <?php selected($schema_type, 'Product'); ?>><?php esc_html_e('Product', 'nerdy-seo'); ?></option>
+                <option value="Service" <?php selected($schema_type, 'Service'); ?>><?php esc_html_e('Service', 'nerdy-seo'); ?></option>
+                <option value="LocalBusiness" <?php selected($schema_type, 'LocalBusiness'); ?>><?php esc_html_e('Local Business', 'nerdy-seo'); ?></option>
+                <option value="Recipe" <?php selected($schema_type, 'Recipe'); ?>><?php esc_html_e('Recipe', 'nerdy-seo'); ?></option>
+                <option value="Video" <?php selected($schema_type, 'Video'); ?>><?php esc_html_e('Video', 'nerdy-seo'); ?></option>
+                <option value="Event" <?php selected($schema_type, 'Event'); ?>><?php esc_html_e('Event', 'nerdy-seo'); ?></option>
+                <option value="Course" <?php selected($schema_type, 'Course'); ?>><?php esc_html_e('Course', 'nerdy-seo'); ?></option>
+                <option value="HowTo" <?php selected($schema_type, 'HowTo'); ?>><?php esc_html_e('HowTo Guide', 'nerdy-seo'); ?></option>
+                <option value="JobPosting" <?php selected($schema_type, 'JobPosting'); ?>><?php esc_html_e('Job Posting', 'nerdy-seo'); ?></option>
             </select>
             <p class="nerdy-seo-schema-hint">
-                <?php _e('Default (Auto): Blog posts = Article schema, Pages = WebPage schema. Override by selecting a specific type.', 'nerdy-seo'); ?>
+                <?php esc_html_e('Default (Auto): Blog posts = Article schema, Pages = WebPage schema. Override by selecting a specific type.', 'nerdy-seo'); ?>
             </p>
         </div>
 
         <!-- FAQ Schema -->
         <div id="schema-faq" class="nerdy-seo-schema-conditional <?php echo $schema_type === 'FAQ' ? 'active' : ''; ?>">
-            <h4><?php _e('FAQ Items', 'nerdy-seo'); ?></h4>
+            <h4><?php esc_html_e('FAQ Items', 'nerdy-seo'); ?></h4>
             <div id="nerdy-seo-faq-items">
                 <?php
                 if (is_array($schema_faqs) && !empty($schema_faqs)) {
@@ -223,14 +223,14 @@ class Nerdy_SEO_Schema {
                             <input
                                 type="text"
                                 name="nerdy_seo_schema_faqs[<?php echo $index; ?>][question]"
-                                placeholder="<?php _e('Question', 'nerdy-seo'); ?>"
+                                placeholder="<?php esc_html_e('Question', 'nerdy-seo'); ?>"
                                 value="<?php echo esc_attr($faq['question'] ?? ''); ?>"
                             />
                             <textarea
                                 name="nerdy_seo_schema_faqs[<?php echo $index; ?>][answer]"
-                                placeholder="<?php _e('Answer', 'nerdy-seo'); ?>"
+                                placeholder="<?php esc_html_e('Answer', 'nerdy-seo'); ?>"
                             ><?php echo esc_textarea($faq['answer'] ?? ''); ?></textarea>
-                            <a href="#" class="nerdy-seo-faq-remove"><?php _e('Remove', 'nerdy-seo'); ?></a>
+                            <a href="#" class="nerdy-seo-faq-remove"><?php esc_html_e('Remove', 'nerdy-seo'); ?></a>
                         </div>
                         <?php
                     }
@@ -238,30 +238,30 @@ class Nerdy_SEO_Schema {
                 ?>
             </div>
             <button type="button" class="button" id="nerdy-seo-add-faq">
-                <?php _e('Add FAQ Item', 'nerdy-seo'); ?>
+                <?php esc_html_e('Add FAQ Item', 'nerdy-seo'); ?>
             </button>
         </div>
 
         <!-- Review Schema -->
         <div id="schema-review" class="nerdy-seo-schema-conditional <?php echo $schema_type === 'Review' ? 'active' : ''; ?>">
-            <h4><?php _e('Review Details', 'nerdy-seo'); ?></h4>
+            <h4><?php esc_html_e('Review Details', 'nerdy-seo'); ?></h4>
 
             <div class="nerdy-seo-schema-field">
                 <label for="nerdy_seo_schema_review_item">
-                    <?php _e('Item Being Reviewed', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Item Being Reviewed', 'nerdy-seo'); ?>
                 </label>
                 <input
                     type="text"
                     id="nerdy_seo_schema_review_item"
                     name="nerdy_seo_schema_review_item"
                     value="<?php echo esc_attr($schema_review_item); ?>"
-                    placeholder="<?php _e('e.g., Product Name, Service Name', 'nerdy-seo'); ?>"
+                    placeholder="<?php esc_html_e('e.g., Product Name, Service Name', 'nerdy-seo'); ?>"
                 />
             </div>
 
             <div class="nerdy-seo-schema-field">
                 <label for="nerdy_seo_schema_review_rating">
-                    <?php _e('Rating (1-5)', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Rating (1-5)', 'nerdy-seo'); ?>
                 </label>
                 <input
                     type="number"
@@ -276,7 +276,7 @@ class Nerdy_SEO_Schema {
 
             <div class="nerdy-seo-schema-field">
                 <label for="nerdy_seo_schema_review_author">
-                    <?php _e('Review Author', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Review Author', 'nerdy-seo'); ?>
                 </label>
                 <input
                     type="text"
@@ -286,278 +286,278 @@ class Nerdy_SEO_Schema {
                     placeholder="<?php echo esc_attr(get_the_author_meta('display_name', $post->post_author)); ?>"
                 />
                 <p class="nerdy-seo-schema-hint">
-                    <?php _e('Leave blank to use post author', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Leave blank to use post author', 'nerdy-seo'); ?>
                 </p>
             </div>
 
             <div class="nerdy-seo-schema-field">
                 <label for="nerdy_seo_schema_review_text">
-                    <?php _e('Review Text', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Review Text', 'nerdy-seo'); ?>
                 </label>
                 <textarea
                     id="nerdy_seo_schema_review_text"
                     name="nerdy_seo_schema_review_text"
                     rows="4"
-                    placeholder="<?php _e('Brief summary of the review...', 'nerdy-seo'); ?>"
+                    placeholder="<?php esc_html_e('Brief summary of the review...', 'nerdy-seo'); ?>"
                 ><?php echo esc_textarea($schema_review_text); ?></textarea>
             </div>
         </div>
 
         <!-- Recipe Schema -->
         <div id="schema-recipe" class="nerdy-seo-schema-conditional <?php echo $schema_type === 'Recipe' ? 'active' : ''; ?>">
-            <h4><?php _e('Recipe Details', 'nerdy-seo'); ?></h4>
+            <h4><?php esc_html_e('Recipe Details', 'nerdy-seo'); ?></h4>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_recipe_name"><?php _e('Recipe Name', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_recipe_name"><?php esc_html_e('Recipe Name', 'nerdy-seo'); ?></label>
                 <input type="text" id="nerdy_seo_recipe_name" name="nerdy_seo_recipe_name" value="<?php echo esc_attr($recipe_name); ?>" placeholder="<?php echo esc_attr($post->post_title); ?>" />
-                <p class="nerdy-seo-schema-hint"><?php _e('Leave blank to use post title', 'nerdy-seo'); ?></p>
+                <p class="nerdy-seo-schema-hint"><?php esc_html_e('Leave blank to use post title', 'nerdy-seo'); ?></p>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_recipe_description"><?php _e('Recipe Description', 'nerdy-seo'); ?></label>
-                <textarea id="nerdy_seo_recipe_description" name="nerdy_seo_recipe_description" rows="3" placeholder="<?php _e('Brief description of this recipe...', 'nerdy-seo'); ?>"><?php echo esc_textarea($recipe_description); ?></textarea>
+                <label for="nerdy_seo_recipe_description"><?php esc_html_e('Recipe Description', 'nerdy-seo'); ?></label>
+                <textarea id="nerdy_seo_recipe_description" name="nerdy_seo_recipe_description" rows="3" placeholder="<?php esc_html_e('Brief description of this recipe...', 'nerdy-seo'); ?>"><?php echo esc_textarea($recipe_description); ?></textarea>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_recipe_prep_time"><?php _e('Prep Time (minutes)', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_recipe_prep_time"><?php esc_html_e('Prep Time (minutes)', 'nerdy-seo'); ?></label>
                 <input type="number" id="nerdy_seo_recipe_prep_time" name="nerdy_seo_recipe_prep_time" value="<?php echo esc_attr($recipe_prep_time); ?>" min="0" placeholder="15" />
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_recipe_cook_time"><?php _e('Cook Time (minutes)', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_recipe_cook_time"><?php esc_html_e('Cook Time (minutes)', 'nerdy-seo'); ?></label>
                 <input type="number" id="nerdy_seo_recipe_cook_time" name="nerdy_seo_recipe_cook_time" value="<?php echo esc_attr($recipe_cook_time); ?>" min="0" placeholder="30" />
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_recipe_yield"><?php _e('Yield (servings)', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_recipe_yield"><?php esc_html_e('Yield (servings)', 'nerdy-seo'); ?></label>
                 <input type="text" id="nerdy_seo_recipe_yield" name="nerdy_seo_recipe_yield" value="<?php echo esc_attr($recipe_yield); ?>" placeholder="4 servings" />
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_recipe_calories"><?php _e('Calories (per serving)', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_recipe_calories"><?php esc_html_e('Calories (per serving)', 'nerdy-seo'); ?></label>
                 <input type="number" id="nerdy_seo_recipe_calories" name="nerdy_seo_recipe_calories" value="<?php echo esc_attr($recipe_calories); ?>" min="0" placeholder="350" />
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_recipe_ingredients"><?php _e('Ingredients (one per line)', 'nerdy-seo'); ?></label>
-                <textarea id="nerdy_seo_recipe_ingredients" name="nerdy_seo_recipe_ingredients" rows="6" placeholder="<?php _e('2 cups flour&#10;1 cup sugar&#10;3 eggs', 'nerdy-seo'); ?>"><?php echo esc_textarea($recipe_ingredients); ?></textarea>
+                <label for="nerdy_seo_recipe_ingredients"><?php esc_html_e('Ingredients (one per line)', 'nerdy-seo'); ?></label>
+                <textarea id="nerdy_seo_recipe_ingredients" name="nerdy_seo_recipe_ingredients" rows="6" placeholder="<?php esc_html_e('2 cups flour&#10;1 cup sugar&#10;3 eggs', 'nerdy-seo'); ?>"><?php echo esc_textarea($recipe_ingredients); ?></textarea>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_recipe_instructions"><?php _e('Instructions (one step per line)', 'nerdy-seo'); ?></label>
-                <textarea id="nerdy_seo_recipe_instructions" name="nerdy_seo_recipe_instructions" rows="6" placeholder="<?php _e('Preheat oven to 350°F&#10;Mix dry ingredients&#10;Add wet ingredients', 'nerdy-seo'); ?>"><?php echo esc_textarea($recipe_instructions); ?></textarea>
+                <label for="nerdy_seo_recipe_instructions"><?php esc_html_e('Instructions (one step per line)', 'nerdy-seo'); ?></label>
+                <textarea id="nerdy_seo_recipe_instructions" name="nerdy_seo_recipe_instructions" rows="6" placeholder="<?php esc_html_e('Preheat oven to 350°F&#10;Mix dry ingredients&#10;Add wet ingredients', 'nerdy-seo'); ?>"><?php echo esc_textarea($recipe_instructions); ?></textarea>
             </div>
         </div>
 
         <!-- Video Schema -->
         <div id="schema-video" class="nerdy-seo-schema-conditional <?php echo $schema_type === 'Video' ? 'active' : ''; ?>">
-            <h4><?php _e('Video Details', 'nerdy-seo'); ?></h4>
+            <h4><?php esc_html_e('Video Details', 'nerdy-seo'); ?></h4>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_video_name"><?php _e('Video Name', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_video_name"><?php esc_html_e('Video Name', 'nerdy-seo'); ?></label>
                 <input type="text" id="nerdy_seo_video_name" name="nerdy_seo_video_name" value="<?php echo esc_attr($video_name); ?>" placeholder="<?php echo esc_attr($post->post_title); ?>" />
-                <p class="nerdy-seo-schema-hint"><?php _e('Leave blank to use post title', 'nerdy-seo'); ?></p>
+                <p class="nerdy-seo-schema-hint"><?php esc_html_e('Leave blank to use post title', 'nerdy-seo'); ?></p>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_video_description"><?php _e('Video Description', 'nerdy-seo'); ?></label>
-                <textarea id="nerdy_seo_video_description" name="nerdy_seo_video_description" rows="3" placeholder="<?php _e('Brief description of this video...', 'nerdy-seo'); ?>"><?php echo esc_textarea($video_description); ?></textarea>
+                <label for="nerdy_seo_video_description"><?php esc_html_e('Video Description', 'nerdy-seo'); ?></label>
+                <textarea id="nerdy_seo_video_description" name="nerdy_seo_video_description" rows="3" placeholder="<?php esc_html_e('Brief description of this video...', 'nerdy-seo'); ?>"><?php echo esc_textarea($video_description); ?></textarea>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_video_url"><?php _e('Video URL', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_video_url"><?php esc_html_e('Video URL', 'nerdy-seo'); ?></label>
                 <input type="url" id="nerdy_seo_video_url" name="nerdy_seo_video_url" value="<?php echo esc_attr($video_url); ?>" placeholder="https://www.youtube.com/watch?v=..." />
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_video_thumbnail"><?php _e('Thumbnail URL', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_video_thumbnail"><?php esc_html_e('Thumbnail URL', 'nerdy-seo'); ?></label>
                 <input type="url" id="nerdy_seo_video_thumbnail" name="nerdy_seo_video_thumbnail" value="<?php echo esc_attr($video_thumbnail); ?>" placeholder="https://example.com/thumbnail.jpg" />
-                <p class="nerdy-seo-schema-hint"><?php _e('Leave blank to use featured image', 'nerdy-seo'); ?></p>
+                <p class="nerdy-seo-schema-hint"><?php esc_html_e('Leave blank to use featured image', 'nerdy-seo'); ?></p>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_video_duration"><?php _e('Duration (ISO 8601 format)', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_video_duration"><?php esc_html_e('Duration (ISO 8601 format)', 'nerdy-seo'); ?></label>
                 <input type="text" id="nerdy_seo_video_duration" name="nerdy_seo_video_duration" value="<?php echo esc_attr($video_duration); ?>" placeholder="PT10M30S" />
-                <p class="nerdy-seo-schema-hint"><?php _e('Format: PT#M#S (e.g., PT10M30S = 10 minutes 30 seconds)', 'nerdy-seo'); ?></p>
+                <p class="nerdy-seo-schema-hint"><?php esc_html_e('Format: PT#M#S (e.g., PT10M30S = 10 minutes 30 seconds)', 'nerdy-seo'); ?></p>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_video_upload_date"><?php _e('Upload Date', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_video_upload_date"><?php esc_html_e('Upload Date', 'nerdy-seo'); ?></label>
                 <input type="date" id="nerdy_seo_video_upload_date" name="nerdy_seo_video_upload_date" value="<?php echo esc_attr($video_upload_date); ?>" />
-                <p class="nerdy-seo-schema-hint"><?php _e('Leave blank to use post publish date', 'nerdy-seo'); ?></p>
+                <p class="nerdy-seo-schema-hint"><?php esc_html_e('Leave blank to use post publish date', 'nerdy-seo'); ?></p>
             </div>
         </div>
 
         <!-- Event Schema -->
         <div id="schema-event" class="nerdy-seo-schema-conditional <?php echo $schema_type === 'Event' ? 'active' : ''; ?>">
-            <h4><?php _e('Event Details', 'nerdy-seo'); ?></h4>
+            <h4><?php esc_html_e('Event Details', 'nerdy-seo'); ?></h4>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_event_name"><?php _e('Event Name', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_event_name"><?php esc_html_e('Event Name', 'nerdy-seo'); ?></label>
                 <input type="text" id="nerdy_seo_event_name" name="nerdy_seo_event_name" value="<?php echo esc_attr($event_name); ?>" placeholder="<?php echo esc_attr($post->post_title); ?>" />
-                <p class="nerdy-seo-schema-hint"><?php _e('Leave blank to use post title', 'nerdy-seo'); ?></p>
+                <p class="nerdy-seo-schema-hint"><?php esc_html_e('Leave blank to use post title', 'nerdy-seo'); ?></p>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_event_description"><?php _e('Event Description', 'nerdy-seo'); ?></label>
-                <textarea id="nerdy_seo_event_description" name="nerdy_seo_event_description" rows="3" placeholder="<?php _e('Brief description of this event...', 'nerdy-seo'); ?>"><?php echo esc_textarea($event_description); ?></textarea>
+                <label for="nerdy_seo_event_description"><?php esc_html_e('Event Description', 'nerdy-seo'); ?></label>
+                <textarea id="nerdy_seo_event_description" name="nerdy_seo_event_description" rows="3" placeholder="<?php esc_html_e('Brief description of this event...', 'nerdy-seo'); ?>"><?php echo esc_textarea($event_description); ?></textarea>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_event_start_date"><?php _e('Start Date & Time', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_event_start_date"><?php esc_html_e('Start Date & Time', 'nerdy-seo'); ?></label>
                 <input type="datetime-local" id="nerdy_seo_event_start_date" name="nerdy_seo_event_start_date" value="<?php echo esc_attr($event_start_date); ?>" />
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_event_end_date"><?php _e('End Date & Time', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_event_end_date"><?php esc_html_e('End Date & Time', 'nerdy-seo'); ?></label>
                 <input type="datetime-local" id="nerdy_seo_event_end_date" name="nerdy_seo_event_end_date" value="<?php echo esc_attr($event_end_date); ?>" />
             </div>
 
             <div class="nerdy-seo-schema-field">
                 <label>
                     <input type="checkbox" name="nerdy_seo_event_online" value="1" <?php checked($event_online, '1'); ?> />
-                    <?php _e('Online Event', 'nerdy-seo'); ?>
+                    <?php esc_html_e('Online Event', 'nerdy-seo'); ?>
                 </label>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_event_location"><?php _e('Location', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_event_location"><?php esc_html_e('Location', 'nerdy-seo'); ?></label>
                 <input type="text" id="nerdy_seo_event_location" name="nerdy_seo_event_location" value="<?php echo esc_attr($event_location); ?>" placeholder="123 Main St, City, State 12345" />
-                <p class="nerdy-seo-schema-hint"><?php _e('For online events, enter the website URL', 'nerdy-seo'); ?></p>
+                <p class="nerdy-seo-schema-hint"><?php esc_html_e('For online events, enter the website URL', 'nerdy-seo'); ?></p>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_event_url"><?php _e('Event URL', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_event_url"><?php esc_html_e('Event URL', 'nerdy-seo'); ?></label>
                 <input type="url" id="nerdy_seo_event_url" name="nerdy_seo_event_url" value="<?php echo esc_attr($event_url); ?>" placeholder="https://example.com/event" />
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_event_price"><?php _e('Price', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_event_price"><?php esc_html_e('Price', 'nerdy-seo'); ?></label>
                 <input type="number" id="nerdy_seo_event_price" name="nerdy_seo_event_price" value="<?php echo esc_attr($event_price); ?>" min="0" step="0.01" placeholder="0" />
-                <p class="nerdy-seo-schema-hint"><?php _e('Enter 0 for free events', 'nerdy-seo'); ?></p>
+                <p class="nerdy-seo-schema-hint"><?php esc_html_e('Enter 0 for free events', 'nerdy-seo'); ?></p>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_event_currency"><?php _e('Currency', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_event_currency"><?php esc_html_e('Currency', 'nerdy-seo'); ?></label>
                 <input type="text" id="nerdy_seo_event_currency" name="nerdy_seo_event_currency" value="<?php echo esc_attr($event_currency ?: 'USD'); ?>" placeholder="USD" maxlength="3" />
             </div>
         </div>
 
         <!-- Course Schema -->
         <div id="schema-course" class="nerdy-seo-schema-conditional <?php echo $schema_type === 'Course' ? 'active' : ''; ?>">
-            <h4><?php _e('Course Details', 'nerdy-seo'); ?></h4>
+            <h4><?php esc_html_e('Course Details', 'nerdy-seo'); ?></h4>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_course_name"><?php _e('Course Name', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_course_name"><?php esc_html_e('Course Name', 'nerdy-seo'); ?></label>
                 <input type="text" id="nerdy_seo_course_name" name="nerdy_seo_course_name" value="<?php echo esc_attr($course_name); ?>" placeholder="<?php echo esc_attr($post->post_title); ?>" />
-                <p class="nerdy-seo-schema-hint"><?php _e('Leave blank to use post title', 'nerdy-seo'); ?></p>
+                <p class="nerdy-seo-schema-hint"><?php esc_html_e('Leave blank to use post title', 'nerdy-seo'); ?></p>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_course_description"><?php _e('Course Description', 'nerdy-seo'); ?></label>
-                <textarea id="nerdy_seo_course_description" name="nerdy_seo_course_description" rows="3" placeholder="<?php _e('Brief description of this course...', 'nerdy-seo'); ?>"><?php echo esc_textarea($course_description); ?></textarea>
+                <label for="nerdy_seo_course_description"><?php esc_html_e('Course Description', 'nerdy-seo'); ?></label>
+                <textarea id="nerdy_seo_course_description" name="nerdy_seo_course_description" rows="3" placeholder="<?php esc_html_e('Brief description of this course...', 'nerdy-seo'); ?>"><?php echo esc_textarea($course_description); ?></textarea>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_course_provider"><?php _e('Provider / Institution', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_course_provider"><?php esc_html_e('Provider / Institution', 'nerdy-seo'); ?></label>
                 <input type="text" id="nerdy_seo_course_provider" name="nerdy_seo_course_provider" value="<?php echo esc_attr($course_provider); ?>" placeholder="<?php echo esc_attr(get_bloginfo('name')); ?>" />
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_course_price"><?php _e('Price', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_course_price"><?php esc_html_e('Price', 'nerdy-seo'); ?></label>
                 <input type="number" id="nerdy_seo_course_price" name="nerdy_seo_course_price" value="<?php echo esc_attr($course_price); ?>" min="0" step="0.01" placeholder="0" />
-                <p class="nerdy-seo-schema-hint"><?php _e('Enter 0 for free courses', 'nerdy-seo'); ?></p>
+                <p class="nerdy-seo-schema-hint"><?php esc_html_e('Enter 0 for free courses', 'nerdy-seo'); ?></p>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_course_currency"><?php _e('Currency', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_course_currency"><?php esc_html_e('Currency', 'nerdy-seo'); ?></label>
                 <input type="text" id="nerdy_seo_course_currency" name="nerdy_seo_course_currency" value="<?php echo esc_attr($course_currency ?: 'USD'); ?>" placeholder="USD" maxlength="3" />
             </div>
         </div>
 
         <!-- HowTo Schema -->
         <div id="schema-howto" class="nerdy-seo-schema-conditional <?php echo $schema_type === 'HowTo' ? 'active' : ''; ?>">
-            <h4><?php _e('HowTo Guide Details', 'nerdy-seo'); ?></h4>
+            <h4><?php esc_html_e('HowTo Guide Details', 'nerdy-seo'); ?></h4>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_howto_name"><?php _e('Guide Name', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_howto_name"><?php esc_html_e('Guide Name', 'nerdy-seo'); ?></label>
                 <input type="text" id="nerdy_seo_howto_name" name="nerdy_seo_howto_name" value="<?php echo esc_attr($howto_name); ?>" placeholder="<?php echo esc_attr($post->post_title); ?>" />
-                <p class="nerdy-seo-schema-hint"><?php _e('Leave blank to use post title', 'nerdy-seo'); ?></p>
+                <p class="nerdy-seo-schema-hint"><?php esc_html_e('Leave blank to use post title', 'nerdy-seo'); ?></p>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_howto_description"><?php _e('Description', 'nerdy-seo'); ?></label>
-                <textarea id="nerdy_seo_howto_description" name="nerdy_seo_howto_description" rows="3" placeholder="<?php _e('Brief description of what this guide teaches...', 'nerdy-seo'); ?>"><?php echo esc_textarea($howto_description); ?></textarea>
+                <label for="nerdy_seo_howto_description"><?php esc_html_e('Description', 'nerdy-seo'); ?></label>
+                <textarea id="nerdy_seo_howto_description" name="nerdy_seo_howto_description" rows="3" placeholder="<?php esc_html_e('Brief description of what this guide teaches...', 'nerdy-seo'); ?>"><?php echo esc_textarea($howto_description); ?></textarea>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_howto_total_time"><?php _e('Total Time (minutes)', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_howto_total_time"><?php esc_html_e('Total Time (minutes)', 'nerdy-seo'); ?></label>
                 <input type="number" id="nerdy_seo_howto_total_time" name="nerdy_seo_howto_total_time" value="<?php echo esc_attr($howto_total_time); ?>" min="0" placeholder="30" />
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_howto_steps"><?php _e('Steps (one per line)', 'nerdy-seo'); ?></label>
-                <textarea id="nerdy_seo_howto_steps" name="nerdy_seo_howto_steps" rows="6" placeholder="<?php _e('Step 1: Do this&#10;Step 2: Then do that&#10;Step 3: Finally do this', 'nerdy-seo'); ?>"><?php echo esc_textarea($howto_steps); ?></textarea>
+                <label for="nerdy_seo_howto_steps"><?php esc_html_e('Steps (one per line)', 'nerdy-seo'); ?></label>
+                <textarea id="nerdy_seo_howto_steps" name="nerdy_seo_howto_steps" rows="6" placeholder="<?php esc_html_e('Step 1: Do this&#10;Step 2: Then do that&#10;Step 3: Finally do this', 'nerdy-seo'); ?>"><?php echo esc_textarea($howto_steps); ?></textarea>
             </div>
         </div>
 
         <!-- JobPosting Schema -->
         <div id="schema-jobposting" class="nerdy-seo-schema-conditional <?php echo $schema_type === 'JobPosting' ? 'active' : ''; ?>">
-            <h4><?php _e('Job Posting Details', 'nerdy-seo'); ?></h4>
+            <h4><?php esc_html_e('Job Posting Details', 'nerdy-seo'); ?></h4>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_job_title"><?php _e('Job Title', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_job_title"><?php esc_html_e('Job Title', 'nerdy-seo'); ?></label>
                 <input type="text" id="nerdy_seo_job_title" name="nerdy_seo_job_title" value="<?php echo esc_attr($job_title); ?>" placeholder="<?php echo esc_attr($post->post_title); ?>" />
-                <p class="nerdy-seo-schema-hint"><?php _e('Leave blank to use post title', 'nerdy-seo'); ?></p>
+                <p class="nerdy-seo-schema-hint"><?php esc_html_e('Leave blank to use post title', 'nerdy-seo'); ?></p>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_job_description"><?php _e('Job Description', 'nerdy-seo'); ?></label>
-                <textarea id="nerdy_seo_job_description" name="nerdy_seo_job_description" rows="4" placeholder="<?php _e('Full job description...', 'nerdy-seo'); ?>"><?php echo esc_textarea($job_description); ?></textarea>
+                <label for="nerdy_seo_job_description"><?php esc_html_e('Job Description', 'nerdy-seo'); ?></label>
+                <textarea id="nerdy_seo_job_description" name="nerdy_seo_job_description" rows="4" placeholder="<?php esc_html_e('Full job description...', 'nerdy-seo'); ?>"><?php echo esc_textarea($job_description); ?></textarea>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_job_company"><?php _e('Company Name', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_job_company"><?php esc_html_e('Company Name', 'nerdy-seo'); ?></label>
                 <input type="text" id="nerdy_seo_job_company" name="nerdy_seo_job_company" value="<?php echo esc_attr($job_company); ?>" placeholder="<?php echo esc_attr(get_bloginfo('name')); ?>" />
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_job_location"><?php _e('Job Location', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_job_location"><?php esc_html_e('Job Location', 'nerdy-seo'); ?></label>
                 <input type="text" id="nerdy_seo_job_location" name="nerdy_seo_job_location" value="<?php echo esc_attr($job_location); ?>" placeholder="New York, NY" />
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_job_employment_type"><?php _e('Employment Type', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_job_employment_type"><?php esc_html_e('Employment Type', 'nerdy-seo'); ?></label>
                 <select id="nerdy_seo_job_employment_type" name="nerdy_seo_job_employment_type">
-                    <option value=""><?php _e('Select Type', 'nerdy-seo'); ?></option>
-                    <option value="FULL_TIME" <?php selected($job_employment_type, 'FULL_TIME'); ?>><?php _e('Full Time', 'nerdy-seo'); ?></option>
-                    <option value="PART_TIME" <?php selected($job_employment_type, 'PART_TIME'); ?>><?php _e('Part Time', 'nerdy-seo'); ?></option>
-                    <option value="CONTRACT" <?php selected($job_employment_type, 'CONTRACT'); ?>><?php _e('Contract', 'nerdy-seo'); ?></option>
-                    <option value="TEMPORARY" <?php selected($job_employment_type, 'TEMPORARY'); ?>><?php _e('Temporary', 'nerdy-seo'); ?></option>
-                    <option value="INTERN" <?php selected($job_employment_type, 'INTERN'); ?>><?php _e('Intern', 'nerdy-seo'); ?></option>
+                    <option value=""><?php esc_html_e('Select Type', 'nerdy-seo'); ?></option>
+                    <option value="FULL_TIME" <?php selected($job_employment_type, 'FULL_TIME'); ?>><?php esc_html_e('Full Time', 'nerdy-seo'); ?></option>
+                    <option value="PART_TIME" <?php selected($job_employment_type, 'PART_TIME'); ?>><?php esc_html_e('Part Time', 'nerdy-seo'); ?></option>
+                    <option value="CONTRACT" <?php selected($job_employment_type, 'CONTRACT'); ?>><?php esc_html_e('Contract', 'nerdy-seo'); ?></option>
+                    <option value="TEMPORARY" <?php selected($job_employment_type, 'TEMPORARY'); ?>><?php esc_html_e('Temporary', 'nerdy-seo'); ?></option>
+                    <option value="INTERN" <?php selected($job_employment_type, 'INTERN'); ?>><?php esc_html_e('Intern', 'nerdy-seo'); ?></option>
                 </select>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_job_salary"><?php _e('Salary (annual)', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_job_salary"><?php esc_html_e('Salary (annual)', 'nerdy-seo'); ?></label>
                 <input type="number" id="nerdy_seo_job_salary" name="nerdy_seo_job_salary" value="<?php echo esc_attr($job_salary); ?>" min="0" step="1000" placeholder="50000" />
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_job_salary_currency"><?php _e('Currency', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_job_salary_currency"><?php esc_html_e('Currency', 'nerdy-seo'); ?></label>
                 <input type="text" id="nerdy_seo_job_salary_currency" name="nerdy_seo_job_salary_currency" value="<?php echo esc_attr($job_salary_currency ?: 'USD'); ?>" placeholder="USD" maxlength="3" />
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_job_date_posted"><?php _e('Date Posted', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_job_date_posted"><?php esc_html_e('Date Posted', 'nerdy-seo'); ?></label>
                 <input type="date" id="nerdy_seo_job_date_posted" name="nerdy_seo_job_date_posted" value="<?php echo esc_attr($job_date_posted); ?>" />
-                <p class="nerdy-seo-schema-hint"><?php _e('Leave blank to use post publish date', 'nerdy-seo'); ?></p>
+                <p class="nerdy-seo-schema-hint"><?php esc_html_e('Leave blank to use post publish date', 'nerdy-seo'); ?></p>
             </div>
 
             <div class="nerdy-seo-schema-field">
-                <label for="nerdy_seo_job_valid_through"><?php _e('Valid Through Date', 'nerdy-seo'); ?></label>
+                <label for="nerdy_seo_job_valid_through"><?php esc_html_e('Valid Through Date', 'nerdy-seo'); ?></label>
                 <input type="date" id="nerdy_seo_job_valid_through" name="nerdy_seo_job_valid_through" value="<?php echo esc_attr($job_valid_through); ?>" />
-                <p class="nerdy-seo-schema-hint"><?php _e('When this job posting expires', 'nerdy-seo'); ?></p>
+                <p class="nerdy-seo-schema-hint"><?php esc_html_e('When this job posting expires', 'nerdy-seo'); ?></p>
             </div>
         </div>
 
@@ -566,13 +566,13 @@ class Nerdy_SEO_Schema {
                 <input
                     type="text"
                     name="nerdy_seo_schema_faqs[{{INDEX}}][question]"
-                    placeholder="<?php _e('Question', 'nerdy-seo'); ?>"
+                    placeholder="<?php esc_html_e('Question', 'nerdy-seo'); ?>"
                 />
                 <textarea
                     name="nerdy_seo_schema_faqs[{{INDEX}}][answer]"
-                    placeholder="<?php _e('Answer', 'nerdy-seo'); ?>"
+                    placeholder="<?php esc_html_e('Answer', 'nerdy-seo'); ?>"
                 ></textarea>
-                <a href="#" class="nerdy-seo-faq-remove"><?php _e('Remove', 'nerdy-seo'); ?></a>
+                <a href="#" class="nerdy-seo-faq-remove"><?php esc_html_e('Remove', 'nerdy-seo'); ?></a>
             </div>
         </script>
 
@@ -1204,7 +1204,7 @@ class Nerdy_SEO_Schema {
         }
 
         if ($upload_date) {
-            $schema['uploadDate'] = date('c', strtotime($upload_date));
+            $schema['uploadDate'] = gmdate('c', strtotime($upload_date));
         } else {
             $schema['uploadDate'] = get_the_date('c', $post->ID);
         }
@@ -1234,7 +1234,7 @@ class Nerdy_SEO_Schema {
             '@context' => 'https://schema.org',
             '@type' => 'Event',
             'name' => $name,
-            'startDate' => date('c', strtotime($start_date)),
+            'startDate' => gmdate('c', strtotime($start_date)),
         );
 
         if ($description) {
@@ -1242,7 +1242,7 @@ class Nerdy_SEO_Schema {
         }
 
         if ($end_date) {
-            $schema['endDate'] = date('c', strtotime($end_date));
+            $schema['endDate'] = gmdate('c', strtotime($end_date));
         }
 
         if (has_post_thumbnail($post->ID)) {
@@ -1403,13 +1403,13 @@ class Nerdy_SEO_Schema {
         );
 
         if ($date_posted) {
-            $schema['datePosted'] = date('c', strtotime($date_posted));
+            $schema['datePosted'] = gmdate('c', strtotime($date_posted));
         } else {
             $schema['datePosted'] = get_the_date('c', $post->ID);
         }
 
         if ($valid_through) {
-            $schema['validThrough'] = date('c', strtotime($valid_through));
+            $schema['validThrough'] = gmdate('c', strtotime($valid_through));
         }
 
         if ($location) {
