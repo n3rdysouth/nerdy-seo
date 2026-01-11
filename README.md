@@ -36,6 +36,7 @@ So we built **Nerdy SEO** - a plugin that does what SEO plugins should have been
 
 **Title & Meta Management**
 - Full control over page titles with template variables (`%title%`, `%sitename%`, `%separator%`, etc.)
+- AI Generate meta descriptions and page titles based on page content using OpenAI or Gemini APIs
 - Meta descriptions with real-time Google search preview
 - Canonical URL support
 - Per-post and global settings
@@ -115,7 +116,7 @@ So we built **Nerdy SEO** - a plugin that does what SEO plugins should have been
 **AI Integration**
 - OpenAI (GPT-4o, GPT-4 Turbo, GPT-3.5) support
 - Google Gemini (2.0 Flash, 1.5 Pro, 1.5 Flash) support
-- One-click meta description generation from post list
+- One-click meta description & title generation from post & page lists
 - Generates 5 unique suggestions based on content
 - Configurable tone (professional, conversational, friendly, etc.)
 - Focus keyword targeting
